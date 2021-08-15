@@ -223,9 +223,9 @@ export default {
   position: relative;
   .set-language {
     position: absolute;
-    top: 3px;
+    top: 27px;
     font-size: 18px;
-    right: 0px;
+    right: 27px;
     cursor: pointer;
   }
 

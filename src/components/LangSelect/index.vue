@@ -4,14 +4,14 @@
     class="international"
     @command="handleSetLanguage"
   >
-    <el-button type="text">
+    <div class="lange-box" :class="`lange-box-${type}`">
       <svg-icon
         class-name="international-icon"
-        icon-class="language"
+        icon-class="yuyan"
       />
-      {{ languageText }}
+      <div class="lange-text">{{ languageText }}</div>
       <i class="el-icon-arrow-down el-icon--right" />
-    </el-button>
+    </div>
     <el-dropdown-menu slot="dropdown">
       <el-dropdown-item
         v-for="item in languageOptions"
@@ -33,6 +33,13 @@ const languageTextMap = {
   ja: '日本語'
 }
 export default {
+  name: 'LangSelect',
+  props: {
+    type: {
+      type: String,
+      default: 'primary'
+    }
+  },
   computed: {
     languageOptions() {
       return Object.keys(languageTextMap).map(value => ({ value, label: languageTextMap[value] }))
@@ -58,3 +65,18 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.lange-box {
+  display: flex;
+  align-items: center;
+  color: $color-info;
+
+  &-primary {
+    color: $color-primary;
+  }
+
+  .lange-text {
+    margin: 0 4px 0 10px;
+  }
+}
+</style>

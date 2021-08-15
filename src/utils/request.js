@@ -24,7 +24,7 @@ const rebuildSendData = (config) => {
       newConfig = {
         data: {
           ...data,
-          access_token: ' 65116363208740d039ab8d0c8fb2d2d5'
+          access_token: '052c94ce6403c595c328d78488132c11'
         },
         method,
         ...args
@@ -34,7 +34,7 @@ const rebuildSendData = (config) => {
       newConfig = {
         params: {
           ...params,
-          access_token: ' 65116363208740d039ab8d0c8fb2d2d5'
+          access_token: '052c94ce6403c595c328d78488132c11'
         },
         method,
         ...args
