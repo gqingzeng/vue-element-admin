@@ -1,121 +1,166 @@
 <template>
   <div class="login-container">
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on" label-position="left">
-
-      <div class="title-container">
-        <h3 class="title">
-          {{ $t('login.title') }}
-        </h3>
-        <lang-select class="set-language" />
-      </div>
-
-      <el-form-item prop="username">
-        <span class="svg-container">
-          <svg-icon icon-class="user" />
-        </span>
-        <el-input
-          ref="username"
-          v-model="loginForm.username"
-          :placeholder="$t('login.username')"
-          name="username"
-          type="text"
-          tabindex="1"
-          autocomplete="on"
-        />
-      </el-form-item>
-
-      <el-tooltip v-model="capsTooltip" content="Caps lock is On" placement="right" manual>
-        <el-form-item prop="password">
-          <span class="svg-container">
-            <svg-icon icon-class="password" />
-          </span>
-          <el-input
-            :key="passwordType"
-            ref="password"
-            v-model="loginForm.password"
-            :type="passwordType"
-            :placeholder="$t('login.password')"
-            name="password"
-            tabindex="2"
-            autocomplete="on"
-            @keyup.native="checkCapslock"
-            @blur="capsTooltip = false"
-            @keyup.enter.native="handleLogin"
-          />
-          <span class="show-pwd" @click="showPwd">
-            <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
-          </span>
-        </el-form-item>
-      </el-tooltip>
-
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">
-        {{ $t('login.logIn') }}
-      </el-button>
-
-      <div style="position:relative">
-        <div class="tips">
-          <span>{{ $t('login.username') }} : admin</span>
-          <span>{{ $t('login.password') }} : {{ $t('login.any') }}</span>
+    <lang-select class="set-language" />
+    <div class="login-box">
+      <img
+        class="login-box-sidebar"
+        src="@/assets/images/login/sidebar.png"
+      >
+      <el-form
+        ref="loginForm"
+        :model="loginForm"
+        :rules="loginRules"
+        class="login-form"
+        autocomplete="on"
+        label-position="left"
+      >
+        <el-tabs v-model="loginModel">
+          <el-tab-pane :label="$t('login.passwordTitle')" name="password">
+            <template v-if="loginModel === 'password'">
+              <el-form-item prop="account">
+                <el-input
+                  v-model="loginForm.account"
+                  :placeholder="$t('login.accountPlaceholder')"
+                  prefix-icon="el-icon-message"
+                />
+              </el-form-item>
+              <el-form-item prop="password">
+                <el-input
+                  v-model="loginForm.password"
+                  type="password"
+                  show-password
+                  :placeholder="$t('login.passwordPlaceholder')"
+                  prefix-icon="el-icon-lock"
+                />
+              </el-form-item>
+              <el-form-item
+                prop="webCaptcha"
+                class="captcha-form-item"
+              >
+                <el-input
+                  v-model="loginForm.webCaptcha"
+                  prefix-icon="el-icon-circle-check"
+                  :placeholder="$t('login.captchaPlaceholder')"
+                  @keyup.enter.native="handleLogin"
+                />
+                <div class="captcha-box">
+                  xxx
+                </div>
+              </el-form-item>
+            </template>
+          </el-tab-pane>
+          <el-tab-pane :label="$t('login.captchaTitle')" name="captcha">
+            <template v-if="loginModel === 'captcha'">
+              <el-form-item prop="mobile">
+                <el-input
+                  v-model="loginForm.mobile"
+                  :placeholder="$t('login.mobilePlaceholder')"
+                  prefix-icon="el-icon-mobile-phone"
+                />
+              </el-form-item>
+              <el-form-item prop="captcha">
+                <el-input
+                  v-model="loginForm.captcha"
+                  :placeholder="$t('login.captchaPlaceholder')"
+                  prefix-icon="el-icon-circle-check"
+                  @keyup.enter.native="handleLogin"
+                />
+              </el-form-item>
+            </template>
+          </el-tab-pane>
+        </el-tabs>
+        <div class="user-box">
+          <el-button type="text">{{ $t('login.accountRegister') }}</el-button>
+          <el-button type="text">{{ $t('login.forgetPassword') }}</el-button>
         </div>
-        <div class="tips">
-          <span style="margin-right:18px;">
-            {{ $t('login.username') }} : editor
-          </span>
-          <span>{{ $t('login.password') }} : {{ $t('login.any') }}</span>
+        <div class="login-btn-box">
+          <el-button :loading="loading" type="primary" @click="handleLogin">{{ $t('login.logIn') }}</el-button>
         </div>
-
-        <el-button class="thirdparty-button" type="primary" @click="showDialog=true">
-          {{ $t('login.thirdparty') }}
-        </el-button>
-      </div>
-    </el-form>
-
-    <el-dialog :title="$t('login.thirdparty')" :visible.sync="showDialog">
-      {{ $t('login.thirdpartyTips') }}
-      <br>
-      <br>
-      <br>
-      <social-sign />
-    </el-dialog>
+        <i18n
+          class="tips"
+          path="login.agreementTips"
+          tag="div"
+        >
+          <span>{{ $t('login.accountAgreement') }}</span>
+          <span>{{ $t('login.privacyAgreement') }}</span>
+        </i18n>
+        <div class="thirdparty-platform-list">
+          <div
+            v-for="platform in thirdpartyPlatform"
+            :key="platform"
+            class="thirdparty-platform-item"
+          >{{ platform }}</div>
+        </div>
+      </el-form>
+    </div>
   </div>
 </template>
 
 <script>
-import { validUsername } from '@/utils/validate'
 import LangSelect from '@/components/LangSelect'
-import SocialSign from './components/SocialSignin'
+
+const thirdpartyPlatform = ['qq', '微信', '支付']
 
 export default {
   name: 'Login',
-  components: { LangSelect, SocialSign },
+  components: { LangSelect },
   data() {
-    const validateUsername = (rule, value, callback) => {
-      if (!validUsername(value)) {
-        callback(new Error('Please enter the correct user name'))
+    const validateAccount = (rule, value, callback) => {
+      if (!value) {
+        callback(new Error(this.$t('login.accountPlaceholder')))
       } else {
         callback()
       }
     }
+
     const validatePassword = (rule, value, callback) => {
-      if (value.length < 6) {
-        callback(new Error('The password can not be less than 6 digits'))
+      if (!value) {
+        callback(new Error(this.$t('login.passwordPlaceholder')))
+      } else {
+        callback()
+      }
+    }
+
+    const validateWebCaptcha = (rule, value, callback) => {
+      if (!value) {
+        callback(new Error(this.$t('login.captchaPlaceholder')))
+      } else {
+        callback()
+      }
+    }
+
+    const validateMobile = (rule, value, callback) => {
+      if (!value) {
+        callback(new Error(this.$t('login.captchaPlaceholder')))
+      } else {
+        callback()
+      }
+    }
+    const validateCaptcha = (rule, value, callback) => {
+      if (!value) {
+        callback(new Error(this.$t('login.captchaPlaceholder')))
       } else {
         callback()
       }
     }
     return {
+      thirdpartyPlatform,
+      loginModel: 'password',
       loginForm: {
-        username: 'admin',
-        password: '111111'
+        account: '',
+        password: '',
+        webCaptcha: '',
+        mobile: '',
+        captcha: ''
       },
       loginRules: {
-        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
-        password: [{ required: true, trigger: 'blur', validator: validatePassword }]
+        account: [{ required: true, trigger: 'blur', validator: validateAccount }],
+        password: [{ required: true, trigger: 'blur', validator: validatePassword }],
+        webCaptcha: [{ required: true, trigger: 'blur', validator: validateWebCaptcha }],
+        mobile: [{ required: true, trigger: 'blur', validator: validateMobile }],
+        captcha: [{ required: true, trigger: 'blur', validator: validateCaptcha }]
       },
-      passwordType: 'password',
-      capsTooltip: false,
       loading: false,
-      showDialog: false,
       redirect: undefined,
       otherQuery: {}
     }
@@ -132,51 +177,25 @@ export default {
       immediate: true
     }
   },
-  created() {
-    // window.addEventListener('storage', this.afterQRScan)
-  },
-  mounted() {
-    if (this.loginForm.username === '') {
-      this.$refs.username.focus()
-    } else if (this.loginForm.password === '') {
-      this.$refs.password.focus()
-    }
-  },
-  destroyed() {
-    // window.removeEventListener('storage', this.afterQRScan)
-  },
   methods: {
-    checkCapslock(e) {
-      const { key } = e
-      this.capsTooltip = key && key.length === 1 && (key >= 'A' && key <= 'Z')
-    },
-    showPwd() {
-      if (this.passwordType === 'password') {
-        this.passwordType = ''
-      } else {
-        this.passwordType = 'password'
-      }
-      this.$nextTick(() => {
-        this.$refs.password.focus()
-      })
-    },
     handleLogin() {
-      this.$refs.loginForm.validate(valid => {
-        if (valid) {
-          this.loading = true
-          this.$store.dispatch('user/login', this.loginForm)
-            .then(() => {
-              this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
-              this.loading = false
-            })
-            .catch(() => {
-              this.loading = false
-            })
-        } else {
-          console.log('error submit!!')
-          return false
-        }
-      })
+      // this.$refs.loginForm.validate(valid => {
+      // if (valid) {
+      this.loading = true
+      const parasm = {
+        username: 'admin',
+        password: '111111'
+      }
+      this.$store.dispatch('user/login', parasm)
+        .then(() => {
+          this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+          this.loading = false
+        })
+        .catch(() => {
+          this.loading = false
+        })
+        // }
+      // })
     },
     getOtherQuery(query) {
       return Object.keys(query).reduce((acc, cur) => {
@@ -186,155 +205,147 @@ export default {
         return acc
       }, {})
     }
-    // afterQRScan() {
-    //   if (e.key === 'x-admin-oauth-code') {
-    //     const code = getQueryObject(e.newValue)
-    //     const codeMap = {
-    //       wechat: 'code',
-    //       tencent: 'code'
-    //     }
-    //     const type = codeMap[this.auth_type]
-    //     const codeName = code[type]
-    //     if (codeName) {
-    //       this.$store.dispatch('LoginByThirdparty', codeName).then(() => {
-    //         this.$router.push({ path: this.redirect || '/' })
-    //       })
-    //     } else {
-    //       alert('第三方登录失败')
-    //     }
-    //   }
-    // }
   }
 }
 </script>
 
-<style lang="scss">
-/* 修复input 背景不协调 和光标变色 */
-/* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
-
-$bg:#283443;
-$light_gray:#fff;
-$cursor: #fff;
-
-@supports (-webkit-mask: none) and (not (cater-color: $cursor)) {
-  .login-container .el-input input {
-    color: $cursor;
-  }
-}
-
-/* reset element-ui css */
-.login-container {
-  .el-input {
-    display: inline-block;
-    height: 47px;
-    width: 85%;
-
-    input {
-      background: transparent;
-      border: 0px;
-      -webkit-appearance: none;
-      border-radius: 0px;
-      padding: 12px 5px 12px 15px;
-      color: $light_gray;
-      height: 47px;
-      caret-color: $cursor;
-
-      &:-webkit-autofill {
-        box-shadow: 0 0 0px 1000px $bg inset !important;
-        -webkit-text-fill-color: $cursor !important;
-      }
-    }
-  }
-
-  .el-form-item {
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    color: #454545;
-  }
-}
-</style>
-
 <style lang="scss" scoped>
-$bg:#2d3a4b;
-$dark_gray:#889aa4;
-$light_gray:#eee;
-
 .login-container {
   min-height: 100%;
   width: 100%;
-  background-color: $bg;
+  background: url("~@/assets/images/login/bg.png") 100% no-repeat;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0px 4px 4px 0px;
+  position: relative;
+  .set-language {
+    position: absolute;
+    top: 3px;
+    font-size: 18px;
+    right: 0px;
+    cursor: pointer;
+  }
 
+  .login-box {
+    display: flex;
+    background-color: #fff;
+    &-sidebar {
+      width: 600px;
+    }
+  }
   .login-form {
     position: relative;
-    width: 520px;
-    max-width: 100%;
-    padding: 160px 35px 0;
+    width: 600px;
+    padding: 0 76px 0 64px;
     margin: 0 auto;
     overflow: hidden;
-  }
+    box-sizing: border-box;
 
-  .tips {
-    font-size: 14px;
-    color: #fff;
-    margin-bottom: 10px;
+    ::v-deep .el-tabs {
+      &__header {
+        margin-bottom: 80px;
+      }
 
-    span {
-      &:first-of-type {
-        margin-right: 16px;
+      &__nav {
+        width: 100%;
+        display: flex;
+      }
+
+      &__item {
+        flex: 1;
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        height: 100px;
+        line-height: 100px;
+      }
+      &__content {
+        margin-bottom: 26px;
       }
     }
-  }
 
-  .svg-container {
-    padding: 6px 5px 6px 15px;
-    color: $dark_gray;
-    vertical-align: middle;
-    width: 30px;
-    display: inline-block;
-  }
+    .el-form-item {
+      margin-bottom: 40px;
 
-  .title-container {
-    position: relative;
-
-    .title {
-      font-size: 26px;
-      color: $light_gray;
-      margin: 0px auto 40px auto;
-      text-align: center;
-      font-weight: bold;
+      ::v-deep .el-form-item__error {
+        font-size: 14px;
+      }
     }
 
-    .set-language {
-      color: #fff;
-      position: absolute;
-      top: 3px;
-      font-size: 18px;
-      right: 0px;
-      cursor: pointer;
+    ::v-deep .el-input {
+      font-size: 20px;
+      .el-input__prefix {
+        left: 0;
+      }
+      .el-input__inner {
+        height: 60px;
+        line-height: 60px;
+        padding-left: 60px;
+      }
+      .el-input__icon {
+        width: 60px;
+        font-size: 24px;
+        box-sizing: border-box;
+        line-height: 60px;
+      }
     }
-  }
-
-  .show-pwd {
-    position: absolute;
-    right: 10px;
-    top: 7px;
-    font-size: 16px;
-    color: $dark_gray;
-    cursor: pointer;
-    user-select: none;
-  }
-
-  .thirdparty-button {
-    position: absolute;
-    right: 0;
-    bottom: 6px;
-  }
-
-  @media only screen and (max-width: 470px) {
-    .thirdparty-button {
-      display: none;
+    .captcha-form-item {
+      margin-bottom: 0;
+      ::v-deep .el-form-item__content {
+        display: flex;
+        .el-input {
+          flex: 1;
+        }
+        .captcha-box {
+          width: 160px;
+          height: 60px;
+          border-radius: 4px;
+          background: #eeeeee;
+          margin-left: 20px;
+        }
+      }
+    }
+    .user-box {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 40px;
+      .el-button {
+        padding: 0;
+      }
+    }
+    .login-btn-box {
+      .el-button {
+        width: 100%;
+        height: 70px;
+      }
+    }
+    .tips {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $color-info;
+      margin-top: 24px;
+      & > span {
+        color: $color-primary;
+        cursor: pointer;
+      }
+    }
+    .thirdparty-platform {
+      &-list {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 60px;
+      }
+      &-item {
+        width: 61px;
+        height: 61px;
+        background-color: red;
+        margin: 0 26px;
+      }
     }
   }
 }

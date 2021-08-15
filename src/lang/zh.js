@@ -73,13 +73,18 @@ export default {
     size: '布局大小'
   },
   login: {
-    title: '系统登录',
-    logIn: '登录',
-    username: '账号',
-    password: '密码',
-    any: '随便填',
-    thirdparty: '第三方登录',
-    thirdpartyTips: '本地不能模拟，请结合自己业务进行模拟！！！'
+    passwordTitle: '密码登录',
+    captchaTitle: '短信登录',
+    accountPlaceholder: '请输入您的邮箱/ID',
+    passwordPlaceholder: '请输入您的密码',
+    mobilePlaceholder: '请输入手机号',
+    captchaPlaceholder: '请输入验证码',
+    accountRegister: '新用户注册',
+    forgetPassword: '忘记密码',
+    agreementTips: '登录即代表您同意{0}和{1}',
+    accountAgreement: '《用户协议》',
+    privacyAgreement: '《隐私协议》',
+    logIn: '登录'
   },
   documentation: {
     documentation: '文档',
