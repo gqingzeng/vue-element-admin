@@ -10,6 +10,40 @@ const service = axios.create({
   timeout: 5000 // request timeout
 })
 
+const rebuildSendData = (config) => {
+  const {
+    data,
+    method,
+    params,
+    ...args
+  } = config
+  let newConfig = config
+
+  switch (method) {
+    case 'post':
+      newConfig = {
+        data: {
+          ...data,
+          access_token: ' 65116363208740d039ab8d0c8fb2d2d5'
+        },
+        method,
+        ...args
+      }
+      break
+    case 'get':
+      newConfig = {
+        params: {
+          ...params,
+          access_token: ' 65116363208740d039ab8d0c8fb2d2d5'
+        },
+        method,
+        ...args
+      }
+      break
+  }
+  return newConfig
+}
+
 // request interceptor
 service.interceptors.request.use(
   config => {
@@ -21,7 +55,8 @@ service.interceptors.request.use(
       // please modify it according to the actual situation
       config.headers['X-Token'] = getToken()
     }
-    return config
+
+    return rebuildSendData(config)
   },
   error => {
     // do something with request error

@@ -36,6 +36,14 @@ module.exports = {
       warnings: false,
       errors: true
     },
+    proxy: {
+      '/api': {
+        target: 'https://www.fastip.vip/api/index/index',
+        secure: false,
+        changeOrigin: true
+        // cookieDomainRewrite: 'localhost'
+      }
+    },
     before: require('./mock/mock-server.js')
   },
   css: {
@@ -98,7 +106,7 @@ module.exports = {
             .plugin('ScriptExtHtmlWebpackPlugin')
             .after('html')
             .use('script-ext-html-webpack-plugin', [{
-            // `runtime` must same as runtimeChunk name. default is `runtime`
+              // `runtime` must same as runtimeChunk name. default is `runtime`
               inline: /runtime\..*\.js$/
             }])
             .end()

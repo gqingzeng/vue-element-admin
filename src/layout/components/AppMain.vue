@@ -25,14 +25,16 @@ export default {
 <style lang="scss" scoped>
 .app-main {
   /* 50= navbar  50  */
-  min-height: calc(100vh - 50px);
+  min-height: calc(100vh - 70px);
   width: 100%;
   position: relative;
   overflow: hidden;
+  background-color: #F7F9FF;
 }
 
 .fixed-header+.app-main {
-  padding-top: 50px;
+  padding: 90px 20px 20px 20px;
+  box-sizing: border-box;
 }
 
 .hasTagsView {

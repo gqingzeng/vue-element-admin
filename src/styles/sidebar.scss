@@ -19,7 +19,7 @@
     left: 0;
     z-index: 1001;
     overflow: hidden;
-
+    box-shadow: 2px 0px 12px 0px rgba(198, 209, 255, 0.5);
     // reset element-ui css
     .horizontal-collapse-transition {
       transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
@@ -69,6 +69,16 @@
 
       &-item.is-active {
         font-weight: bold;
+        &::before {
+          content: "";
+          width: 4px;
+          height: 100%;
+          background-color: $color-primary;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+        }
       }
     }
 
