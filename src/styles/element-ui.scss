@@ -82,3 +82,45 @@
 .el-range-separator {
   box-sizing: content-box;
 }
+.el-card {
+  border: none;
+  border-radius: 0;
+  &__header {
+    padding: 36px 50px 15px 50px;
+    border-bottom: none;
+    color: $color-primary;
+    font-weight: bold;
+  }
+  &__body {
+    padding: 15px 50px 50px 50px;
+  }
+}
+
+.el-button [class*=el-icon-] + span {
+  margin-left: 10px;
+}
+
+.el-tabs__item {
+  height: 52px;
+  line-height: 52px;
+  font-weight: bold;
+  padding: 0 18px;
+}
+
+.el-table {
+  font-size: 16px;
+  
+  thead {
+    font-weight: normal;
+  }
+  th,
+  td {
+    padding: 18px 0;
+  }
+  &--striped .el-table__body tr.el-table__row--striped td {
+    background-color: rgba(26, 50, 159, 0.02);
+  }
+  &--border th {
+    border: none;
+  }
+}

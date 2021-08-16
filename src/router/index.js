@@ -84,6 +84,18 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/country_list',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/country_list/index'),
+        name: 'CountryListPage',
+        meta: { title: 'countryList', icon: 'guojiadaima-check', affix: true }
+      }
+    ]
+  },
+  {
     path: '/documentation',
     component: Layout,
     children: [

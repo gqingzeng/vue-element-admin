@@ -258,7 +258,6 @@ export default {
         flex: 1;
         text-align: center;
         font-size: 24px;
-        font-weight: bold;
         height: 100px;
         line-height: 100px;
       }

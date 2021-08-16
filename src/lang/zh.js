@@ -1,6 +1,7 @@
 export default {
   route: {
     dashboard: '首页',
+    countryList: '国家代码',
     documentation: '文档',
     guide: '引导页',
     permission: '权限测试页',
@@ -85,6 +86,17 @@ export default {
     accountAgreement: '《用户协议》',
     privacyAgreement: '《隐私协议》',
     logIn: '登录'
+  },
+  globalVar: {
+    search: '搜索'
+  },
+  countryList: {
+    searchBox: {
+      header: '国家代码查询',
+      placeholder: '请输入国家名称'
+    },
+    countryNameLabel: '国家或地区名称',
+    countryCodeLabel: '国家代码'
   },
   documentation: {
     documentation: '文档',

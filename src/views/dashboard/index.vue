@@ -1,5 +1,6 @@
 <template>
   <div class="dashboard-container">
+    <StatisticsCard />
     <component :is="currentRole" />
   </div>
 </template>
@@ -8,10 +9,11 @@
 import { mapGetters } from 'vuex'
 import adminDashboard from './admin'
 import editorDashboard from './editor'
+import StatisticsCard from './components/StatisticsCard'
 import { getIndexInfo } from '@/api/dashboard'
 export default {
   name: 'Dashboard',
-  components: { adminDashboard, editorDashboard },
+  components: { adminDashboard, editorDashboard, StatisticsCard },
   data() {
     return {
       currentRole: 'adminDashboard'
