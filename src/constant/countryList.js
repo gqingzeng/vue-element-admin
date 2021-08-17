@@ -1256,3 +1256,9 @@ export const COUNTRY_LIST = [
     ]
   }
 ]
+
+export const COUNTRY_MAP = COUNTRY_LIST.reduce((obj, item) => {
+  const { continent_name } = item
+  obj[continent_name] = item
+  return obj
+}, {})

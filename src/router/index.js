@@ -79,7 +79,7 @@ export const constantRoutes = [
         path: 'dashboard',
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
-        meta: { title: 'dashboard', icon: 'dashboard', affix: true }
+        meta: { title: 'dashboard', icon: 'shouye', affix: true }
       }
     ]
   },
@@ -92,6 +92,20 @@ export const constantRoutes = [
         component: () => import('@/views/country_list/index'),
         name: 'CountryListPage',
         meta: { title: 'countryList', icon: 'guojiadaima-check', affix: true }
+      }
+    ]
+  },
+  {
+    path: '/bill',
+    component: Layout,
+    redirect: '/bill/consume',
+    meta: { title: 'bill', icon: 'zhangdan-check' },
+    children: [
+      {
+        path: 'consume',
+        component: () => import('@/views/bill/consume'),
+        name: 'BillConsumePage',
+        meta: { title: 'bill-consume', affix: true }
       }
     ]
   },

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <SearchBox />
-    <el-card shadow="never">
-      <el-tabs v-model="activeName">
+    <SearchBox ref="searchBoxRef" @query="handleQuery" />
+    <ProCard>
+      <el-tabs v-model="activeName" @tab-click="handleContinentChange">
         <el-tab-pane
           v-for="item in COUNTRY_LIST"
           :key="item.continent_name"
@@ -29,18 +29,19 @@
           prop="country_code"
         />
       </el-table>
-    </el-card>
+    </ProCard>
   </div>
 </template>
 
 <script>
-import { COUNTRY_LIST } from '@/constant/countryList'
+import { COUNTRY_LIST, COUNTRY_MAP } from '@/constant/countryList'
 import SearchBox from './components/SearchBox'
-console.log(COUNTRY_LIST)
+import ProCard from '@/components/ProCard'
 export default {
   name: 'CountryListPage',
   components: {
-    SearchBox
+    SearchBox,
+    ProCard
   },
   data() {
     return {
@@ -50,7 +51,23 @@ export default {
     }
   },
   methods: {
-
+    handleContinentChange() {
+      this.$refs.searchBoxRef.resetQuery()
+      const { activeName } = this
+      this.tableData = COUNTRY_MAP[activeName].list
+    },
+    handleQuery(queryData) {
+      const { activeName } = this
+      const { keyWords } = queryData
+      if (keyWords) {
+        this.tableData = COUNTRY_MAP[activeName].list.filter(item => {
+          const { country_cname } = item
+          return country_cname.includes(keyWords)
+        })
+      } else {
+        this.tableData = COUNTRY_MAP[activeName].list
+      }
+    }
   }
 }
 </script>

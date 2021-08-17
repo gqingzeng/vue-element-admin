@@ -1,6 +1,8 @@
 export default {
   route: {
     dashboard: '首页',
+    bill: '账单',
+    'bill-consume': '消费记录',
     countryList: '国家代码',
     documentation: '文档',
     guide: '引导页',
@@ -88,7 +90,9 @@ export default {
     logIn: '登录'
   },
   globalVar: {
-    search: '搜索'
+    search: '搜索',
+    index: '序号',
+    loading: '加载中'
   },
   countryList: {
     searchBox: {
@@ -97,6 +101,11 @@ export default {
     },
     countryNameLabel: '国家或地区名称',
     countryCodeLabel: '国家代码'
+  },
+  bill: {
+    consume: {
+      title: '消费记录'
+    }
   },
   documentation: {
     documentation: '文档',

@@ -22,3 +22,11 @@ export function logout() {
     method: 'post'
   })
 }
+
+export function getUserConsume(params) {
+  return request({
+    url: '/api/user/consume',
+    method: 'get',
+    params
+  })
+}
