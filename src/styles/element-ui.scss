@@ -1,5 +1,5 @@
 // cover some element-ui styles
-
+@import './variables.scss';
 .el-breadcrumb__inner,
 .el-breadcrumb__inner a {
   font-weight: 400 !important;
@@ -52,6 +52,35 @@
   left: 0;
   position: relative;
   margin: 0 auto;
+  &__header {
+    height: 86px;
+    line-height: 86px;
+    padding: 0 50px;
+    position: relative;
+    &:after {
+      content: "";
+      left: 50px;
+      right: 50px;
+      bottom: 0px;
+      border-bottom: 1px solid $border-color;
+      position: absolute;
+    }
+  }
+  &__title {
+    color: $color-primary;
+    font-weight: bold;
+  }
+  &__headerbtn {
+    top: 50%;
+    transform: translateY(-50%);
+    color: $color-info;
+  }
+  &__body {
+    padding: 20px 50px;
+  }
+  &__footer {
+    text-align: center;
+  }
 }
 
 // refine element ui upload
@@ -96,6 +125,7 @@
   }
 }
 
+
 .el-button [class*=el-icon-] + span {
   margin-left: 10px;
 }
@@ -122,5 +152,58 @@
   }
   &--border th {
     border: none;
+  }
+}
+.el-pagination {
+  .el-input__inner,
+  span:not([class*=suffix]),
+  button {
+    line-height: 30px;
+    height: 30px;
+  }
+}
+
+.el-input--prefix {
+  .el-input__prefix {
+    left: 0;
+    width: 40px;
+    box-sizing: border-box;
+  }
+}
+.el-input--suffix {
+  .el-input__suffix {
+    right: 0;
+    width: 40px;
+    box-sizing: border-box;
+  }
+}
+
+
+.el-input {
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  }
+
+  input[type="number"] {
+  -moz-appearance: textfield;
+  }
+}
+
+.el-form {
+  &--label-top {
+    .el-form-item {
+      margin-bottom: 20px;
+      &__label {
+        font-size: 16px;
+        color: $color-info;
+        padding-left: 12px;
+        font-weight: normal;
+        padding-bottom: 0px;
+      }
+      &__content {
+        font-size: 16px;
+      }
+    }
   }
 }

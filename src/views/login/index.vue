@@ -182,11 +182,7 @@ export default {
       // this.$refs.loginForm.validate(valid => {
       // if (valid) {
       this.loading = true
-      const parasm = {
-        username: 'admin',
-        password: '111111'
-      }
-      this.$store.dispatch('user/login', parasm)
+      this.$store.dispatch('user/login', this.loginForm)
         .then(() => {
           this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
           this.loading = false

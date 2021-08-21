@@ -28,9 +28,9 @@ export default {
       type: Number,
       default: 1
     },
-    limit: {
+    pagesize: {
       type: Number,
-      default: 20
+      default: 10
     },
     pageSizes: {
       type: Array,
@@ -40,7 +40,7 @@ export default {
     },
     layout: {
       type: String,
-      default: 'total, sizes, prev, pager, next, jumper'
+      default: 'total, sizes, prev, pager, next'
     },
     background: {
       type: Boolean,
@@ -66,22 +66,22 @@ export default {
     },
     pageSize: {
       get() {
-        return this.limit
+        return this.pagesize
       },
       set(val) {
-        this.$emit('update:limit', val)
+        this.$emit('update:pagesize', val)
       }
     }
   },
   methods: {
     handleSizeChange(val) {
-      this.$emit('pagination', { page: this.currentPage, limit: val })
+      this.$emit('pagination', { page: this.currentPage, pagesize: val })
       if (this.autoScroll) {
         scrollTo(0, 800)
       }
     },
     handleCurrentChange(val) {
-      this.$emit('pagination', { page: val, limit: this.pageSize })
+      this.$emit('pagination', { page: val, pagesize: this.pageSize })
       if (this.autoScroll) {
         scrollTo(0, 800)
       }
@@ -90,11 +90,13 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .pagination-container {
   background: #fff;
-  padding: 32px 16px;
+  margin-top: 30px;
+  text-align: right;
 }
+
 .pagination-container.hidden {
   display: none;
 }

@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="app-container">
     <SearchBox ref="searchBoxRef" @query="handleQuery" />
-    <ProCard>
+    <ProCard class="table-container">
       <el-tabs v-model="activeName" @tab-click="handleContinentChange">
         <el-tab-pane
           v-for="item in COUNTRY_LIST"
@@ -73,7 +73,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.el-card {
+.table-container {
   margin-top: 20px;
   .el-table {
     margin-top: 5px;

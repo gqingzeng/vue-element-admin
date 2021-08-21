@@ -37,10 +37,13 @@ module.exports = {
       errors: true
     },
     proxy: {
-      '/api': {
-        target: 'https://www.fastip.vip/api/index/index',
+      '/dev-api': {
+        target: 'https://www.productedtest.cn',
         secure: false,
-        changeOrigin: true
+        changeOrigin: true,
+        pathRewrite: {
+          '^/dev-api': '/'
+        }
         // cookieDomainRewrite: 'localhost'
       }
     },

@@ -12,15 +12,19 @@ $--color-info: $color-info;
 $--font-size-base: 16px;
 $--input-placeholder-color: #D8DBE3;
 
+$--color-text-regular: $color-text-regular;
+$--pagination-font-size: 16px;
+
 $--button-padding-vertical: 11px;
 // $--button-font-weight: 400;
 
 // $--color-text-regular: #1f2d3d;
-$--border-color-light: #EEEEEE;
-$--border-color-lighter: #EEEEEE;
+$--border-color-light: $border-color;
+$--border-color-lighter: $border-color;
 $--table-header-background-color: $color-primary;
 $--table-header-font-color: #FFFFFF;
-$--table-font-color: #092C4D;
+
+$--dialog-padding-primary: 50px;
 // $--border-color-light: #dfe4ed;
 // $--border-color-lighter: #e6ebf5;
 

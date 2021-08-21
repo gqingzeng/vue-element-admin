@@ -84,6 +84,38 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/bill',
+    component: Layout,
+    redirect: '/bill/consume',
+    meta: { title: 'bill', icon: 'zhangdan-check' },
+    children: [
+      {
+        path: 'rech',
+        component: () => import('@/views/bill/rech'),
+        name: 'BillRechPage',
+        meta: { title: 'bill-rech', affix: true }
+      },
+      {
+        path: 'relist',
+        component: () => import('@/views/bill/relist'),
+        name: 'BillRelistPage',
+        meta: { title: 'bill-relist', affix: true }
+      },
+      {
+        path: 'consume',
+        component: () => import('@/views/bill/consume'),
+        name: 'BillConsumePage',
+        meta: { title: 'bill-consume', affix: true }
+      },
+      {
+        path: 'invoice',
+        component: () => import('@/views/bill/invoice'),
+        name: 'BillInvoicePage',
+        meta: { title: 'bill-invoice', affix: true }
+      }
+    ]
+  },
+  {
     path: '/country_list',
     component: Layout,
     children: [
@@ -96,16 +128,14 @@ export const constantRoutes = [
     ]
   },
   {
-    path: '/bill',
+    path: '/extension',
     component: Layout,
-    redirect: '/bill/consume',
-    meta: { title: 'bill', icon: 'zhangdan-check' },
     children: [
       {
-        path: 'consume',
-        component: () => import('@/views/bill/consume'),
-        name: 'BillConsumePage',
-        meta: { title: 'bill-consume', affix: true }
+        path: 'index',
+        component: () => import('@/views/extension/index'),
+        name: 'ExtensionPage',
+        meta: { title: 'extension', icon: 'jiangli-check', affix: true }
       }
     ]
   },
@@ -147,56 +177,7 @@ export const constantRoutes = [
         meta: { title: 'profile', icon: 'user', noCache: true }
       }
     ]
-  }
-]
-
-/**
- * asyncRoutes
- * the routes that need to be dynamically loaded based on user roles
- */
-export const asyncRoutes = [
-  {
-    path: '/permission',
-    component: Layout,
-    redirect: '/permission/page',
-    alwaysShow: true, // will always show the root menu
-    name: 'Permission',
-    meta: {
-      title: 'permission',
-      icon: 'lock',
-      roles: ['admin', 'editor'] // you can set roles in root nav
-    },
-    children: [
-      {
-        path: 'page',
-        component: () => import('@/views/permission/page'),
-        name: 'PagePermission',
-        meta: {
-          title: 'pagePermission',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      },
-      {
-        path: 'directive',
-        component: () => import('@/views/permission/directive'),
-        name: 'DirectivePermission',
-        meta: {
-          title: 'directivePermission'
-          // if do not set roles, means: this page does not require permission
-        }
-      },
-      {
-        path: 'role',
-        component: () => import('@/views/permission/role'),
-        name: 'RolePermission',
-        meta: {
-          title: 'rolePermission',
-          roles: ['admin']
-        }
-      }
-    ]
   },
-
   {
     path: '/icon',
     component: Layout,

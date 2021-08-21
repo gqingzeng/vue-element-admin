@@ -2,8 +2,12 @@ export default {
   route: {
     dashboard: '首页',
     bill: '账单',
+    'bill-rech': '在线充值',
     'bill-consume': '消费记录',
+    'bill-relist': '充值记录',
+    'bill-invoice': '发票管理',
     countryList: '国家代码',
+    'extension': '推广奖励',
     documentation: '文档',
     guide: '引导页',
     permission: '权限测试页',
@@ -92,7 +96,82 @@ export default {
   globalVar: {
     search: '搜索',
     index: '序号',
-    loading: '加载中'
+    loading: '加载中',
+    saveLoading: '保存中',
+    modifyLoading: '更新中',
+    refresh: '刷新',
+    modify: '修改',
+    createTime: '创建时间',
+    modifyTime: '修改时间',
+    cancel: '取消',
+    confirm: '确定',
+    saveSuccess: '保存成功',
+    modifySuccess: '修改成功',
+    orderNo: '订单号',
+    amountOfMoney: '金额',
+    refund: '退款',
+    goodsName: '商品名称',
+    orderStatus: '订单状态'
+  },
+  bill: {
+    rech: {
+      title: '在线充值',
+      amountPlaceholder: '请输入金额',
+      rechType: '充值类型',
+      presetLabel: '推荐',
+      CDKEY: '卡密',
+      CDKEYPlaceholder: '请输入卡密',
+      rechBtnText: '充值'
+    },
+    relist: {
+      title: '充值记录',
+      rechTime: '充值时间',
+      rechAmount: '充值金额'
+    },
+    consume: {
+      title: '消费记录',
+      consumeTime: '消费时间',
+      consumeAmount: '消费金额'
+    },
+    invoice: {
+      explain: {
+        title: '发票管理',
+        cycle: '开票周期',
+        cycleDesc: '每账号每月可开票一次，每次可选20张充值订单开票，目前为手动开票，提交最长一周可下载。',
+        type: '发票类型',
+        typeDesc: '只可开具新版OFD增值税普通电子发票（非字纸质、非PDF，同样为合法发票）。',
+        note: '特别说明',
+        noteDesc: '充值订单只有完结后才可开发票，一旦开局发票的充值订单不接受任何理由的退款。'
+      },
+      company: {
+        title: '开票信息',
+        companyName: '公司名称',
+        identifier: '纳税人识别号',
+        modifyTips: '一年可修改一次开票信息，\n\r我方不承担错误填写带来的损失。',
+        addCompanyBtn: '添加公司',
+        notCompanyDesc: '您还未添加公司',
+        editDialog: {
+          createTitle: '新增开票信息',
+          modifyTitle: '修改开票信息',
+          companyNameLabel: '名称',
+          companyNamePlaceholder: '请输入名称',
+          identifierLabel: '纳税人识别号',
+          identifierPlaceholder: '请输入纳税人识别号',
+          addressLabel: '地址',
+          addressPlaceholder: '请输入纳税人识别号',
+          phoneLabel: '电话',
+          phonePlaceholder: '请输入电话',
+          bankLabel: '开户行',
+          bankPlaceholder: '请输入开户行',
+          accountLabel: '账户',
+          accountPlaceholder: '请输入账户'
+        }
+      },
+      rechargeLog: {
+        title: '可开发票的充值',
+        invoiceAmount: '可开票金额'
+      }
+    }
   },
   countryList: {
     searchBox: {
@@ -102,10 +181,14 @@ export default {
     countryNameLabel: '国家或地区名称',
     countryCodeLabel: '国家代码'
   },
-  bill: {
-    consume: {
-      title: '消费记录'
+  extension: {
+    title: '推广奖励',
+    tabs: {
+      summary: '概述'
     }
+  },
+  profile: {
+    title: '个人信息'
   },
   documentation: {
     documentation: '文档',

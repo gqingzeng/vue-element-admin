@@ -6,15 +6,10 @@
 
     <div class="right-menu">
       <template v-if="device!=='mobile'">
-        <!-- <search id="header-search" class="right-menu-item" /> -->
 
         <error-log class="errLog-container right-menu-item hover-effect" />
 
         <screenfull id="screenfull" class="right-menu-item hover-effect" />
-
-        <!-- <el-tooltip :content="$t('navbar.size')" effect="dark" placement="bottom">
-          <size-select id="size-select" class="right-menu-item hover-effect" />
-        </el-tooltip> -->
 
         <lang-select class="right-menu-item hover-effect" />
 
@@ -22,8 +17,8 @@
 
       <el-dropdown class="user-info-container right-menu-item hover-effect" trigger="click">
         <div class="user-info-wrapper">
-          <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
-          <div class="user-name">{{ name }}</div>
+          <img :src="userInfo.avatar" class="user-avatar">
+          <div class="user-name">{{ userInfo.username }}</div>
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown">
@@ -60,9 +55,7 @@ import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 import ErrorLog from '@/components/ErrorLog'
 import Screenfull from '@/components/Screenfull'
-// import SizeSelect from '@/components/SizeSelect'
 import LangSelect from '@/components/LangSelect'
-// import Search from '@/components/HeaderSearch'
 
 export default {
   components: {
@@ -70,15 +63,12 @@ export default {
     Hamburger,
     ErrorLog,
     Screenfull,
-    // SizeSelect,
     LangSelect
-    // Search
   },
   computed: {
     ...mapGetters([
+      'userInfo',
       'sidebar',
-      'avatar',
-      'name',
       'device'
     ])
   },
@@ -157,6 +147,7 @@ export default {
         display: flex;
         align-items: center;
         cursor: pointer;
+        height: 100%;
 
         .user-avatar {
           width: 30px;

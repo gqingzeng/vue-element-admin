@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <ProCard :header="$t('bill.consume.title')">
+    <ProCard :header="$t('bill.relist.title')">
       <el-button plain @click="fetchData(true)">{{ $t('globalVar.refresh') }}</el-button>
       <ProTable :column="tableColumn" :data="listData" />
       <pagination
@@ -14,9 +14,9 @@
 <script>
 import requestListMixins from '@/mixins/requestList'
 import ProCard from '@/components/ProCard'
-import { getUserConsume } from '@/api/user'
+import { getUserRelist } from '@/api/user'
 export default {
-  name: 'BillConsumePage',
+  name: 'BillRelistPage',
   components: {
     ProCard
   },
@@ -35,24 +35,24 @@ export default {
           align: 'center'
         },
         {
+          label: this.$t('bill.rech.rechType'),
+          align: 'center'
+        },
+        {
           label: this.$t('globalVar.goodsName'),
           align: 'center'
         },
         {
-          label: this.$t('bill.consume.consumeAmount'),
+          label: this.$t('bill.relist.rechAmount'),
           align: 'center',
           prop: 'createtime_text'
         },
         {
-          label: this.$t('bill.consume.consumeTime'),
-          align: 'center'
-        },
-        {
-          label: this.$t('globalVar.orderStatus'),
+          label: this.$t('bill.relist.rechTime'),
           align: 'center'
         }
       ],
-      listFetchApi: getUserConsume
+      listFetchApi: getUserRelist
     }
   },
   created() {

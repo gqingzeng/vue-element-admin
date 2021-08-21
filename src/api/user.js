@@ -8,11 +8,10 @@ export function login(data) {
   })
 }
 
-export function getInfo(token) {
+export function getUserInfo() {
   return request({
-    url: '/vue-element-admin/user/info',
-    method: 'get',
-    params: { token }
+    url: '/api/user/user_get_user_info',
+    method: 'get'
   })
 }
 
@@ -30,3 +29,12 @@ export function getUserConsume(params) {
     params
   })
 }
+
+export function getUserRelist(params) {
+  return request({
+    url: '/api/user/relist',
+    method: 'get',
+    params
+  })
+}
+

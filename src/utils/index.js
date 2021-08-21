@@ -355,3 +355,24 @@ export function removeClass(ele, cls) {
     ele.className = ele.className.replace(reg, ' ')
   }
 }
+
+export const constantToMap = (sourceMap) => {
+  const result = Object.keys(sourceMap).reduce((obj, key) => {
+    obj[key] = sourceMap[key].key
+    return obj
+  }, {})
+  return Object.freeze(result)
+}
+
+export const constantToKeyMap = (sourceMap) => {
+  const result = Object.keys(sourceMap).reduce((obj, key) => {
+    obj[key] = sourceMap[key]
+    return obj
+  }, {})
+  return Object.freeze(result)
+}
+
+export const constantToList = (sourceMap) => {
+  const result = Object.values(sourceMap)
+  return Object.freeze(result)
+}

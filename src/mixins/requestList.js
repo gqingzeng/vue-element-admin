@@ -12,9 +12,9 @@ export default {
       listPage: {
         total: 0,
         page: 1,
-        pageSize: 20
+        pagesize: 1
       },
-      listDataFiled: 'list',
+      listDataFiled: 'rows',
       listFetchApi: () => { Promise.resolve() }
     }
   },
@@ -23,33 +23,42 @@ export default {
       if (isReset) {
         this.listPage.page = 1
       }
-      const loading = this.$loading(this.$t('globalVar.loading'))
+      const loading = this.$loading({
+        text: this.$t('globalVar.loading')
+      })
       try {
         const { total, list } = await this.listFetch()
-        loading.close()
         this.listData = list
         this.listPage.total = total
       } catch (error) {
         this.$message.error(error.message)
+      } finally {
         loading.close()
       }
     },
-    async listFetch() {
-      const { listDataFiled, listFetchApi, listQuery, listPage } = this
-      try {
-        const res = await listFetchApi({ ...listQuery, ...listPage })
-        const { [listDataFiled]: list, total } = res
-        return Promise.resolve({ list, total })
-      } catch (err) {
-        return Promise.reject(err)
-      }
+    listFetch() {
+      return new Promise((resolve, reject) => {
+        const { listDataFiled, listFetchApi, listQuery, listPage } = this
+        // eslint-disable-next-line
+        const { total, ...argsPage } = listPage
+        const params = {
+          ...argsPage,
+          ...listQuery
+        }
+        listFetchApi(params).then(res => {
+          const { data } = res
+          const { [listDataFiled]: list = [], total = 0 } = data || {}
+          resolve({ list, total })
+        }).catch(err => {
+          reject(err)
+        }).finally(() => {
+
+        })
+      })
     },
-    changeListPage(page) {
+    paginationChange({ page, pagesize }) {
       this.listPage.page = page
-      this.fetchData()
-    },
-    changeListPageSize(pageSize) {
-      this.listPage.pageSize = pageSize
+      this.listPage.pagesize = pagesize
       this.fetchData()
     }
   }
