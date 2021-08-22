@@ -1,6 +1,6 @@
 <template>
   <ProCard :header="$t('extension.withdraw.withdrawLog')">
-    <el-button plain @click="fetchData(true)">{{ $t('globalVar.refresh') }}</el-button>
+    <el-button plain icon="el-icon-refresh" @click="fetchData(true)">{{ $t('globalVar.refresh') }}</el-button>
     <ProTable :column="tableColumn" :data="listData" />
     <pagination
       v-bind="listPage"

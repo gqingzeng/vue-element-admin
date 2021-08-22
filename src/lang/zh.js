@@ -129,7 +129,8 @@ export default {
     withdrawSuccess: '提取成功',
     auditingLoading: '申请中',
     auditingSuccess: '申请成功',
-    time: '时间'
+    time: '时间',
+    remark: '描述'
   },
   bill: {
     rech: {
@@ -184,7 +185,13 @@ export default {
       },
       rechargeLog: {
         title: '可开发票的充值',
-        invoiceAmount: '可开票金额'
+        invoiceAmount: '可开票金额',
+        invoicingBtn: '开票',
+        selectedMoney: '选中金额',
+        selectedCount: '选中数量',
+        invoicingConfirmTitle: '请确认您的开票名称',
+        addInvoiceLoading: '开票中',
+        addInvoiceSuccess: '开票成功'
       }
     }
   },
@@ -227,10 +234,12 @@ export default {
       withdrawTotalTips: '目前您已累计提取',
       withdrawAlipay: '提取到支付宝',
       withdrawAlipayTips: '提款金额必须大于等于¥100。',
-      account: '账号',
-      accountPlaceholder: '支付宝账号',
-      name: '姓名',
-      namePlaceholder: '需要与支付宝实名认证一致',
+      alipayNo: '账号',
+      alipayNoPlaceholder: '支付宝账号',
+      alipayNoRequiredTips: '请输入姓名',
+      alipayName: '姓名',
+      alipayNamePlaceholder: '需要与支付宝实名认证一致',
+      alipayNameRequiredTips: '请输入姓名',
       AlipayBtnText: '支付宝提现',
       withdrawBalance: '提取到余额',
       withdrawBalanceTips: '提款到余额可为任意金额，一旦转移至余额，将无法再取出。\n提款到余额可获得对应的积分和经验。',

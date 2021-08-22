@@ -1,7 +1,14 @@
 <template>
   <ProCard :header="$t('extension.withdraw.withdrawLog')">
-    <el-button plain @click="fetchData(true)">{{ $t('globalVar.refresh') }}</el-button>
-    <ProTable :column="tableColumn" :data="listData" />
+    <el-button
+      plain
+      icon="el-icon-refresh"
+      @click="fetchData(true)"
+    >{{ $t('globalVar.refresh') }}</el-button>
+    <ProTable
+      :column="tableColumn"
+      :data="listData"
+    />
     <pagination
       v-bind="listPage"
       @pagination="paginationChange"
@@ -47,17 +54,22 @@ export default {
         {
           label: this.$t('globalVar.time'),
           align: 'center',
-          prop: 'addtime_text'
+          prop: 'createtime'
         },
         {
           label: this.$t('globalVar.amountOfMoney'),
           align: 'center',
-          prop: 'money'
+          prop: 'case_money'
         },
         {
           label: this.$t('globalVar.balance'),
           align: 'center',
-          prop: 'updatetime_text',
+          prop: 'updatetime_text'
+        },
+        {
+          label: this.$t('globalVar.remark'),
+          align: 'center',
+          prop: 'remark',
           empty: '--'
         }
       ],

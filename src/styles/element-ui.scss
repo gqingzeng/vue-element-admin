@@ -161,6 +161,16 @@
   &--border th {
     border: none;
   }
+  th.el-table-column--selection {
+    .el-checkbox__input {
+      &.is-indeterminate,
+      &.is-checked {
+        .el-checkbox__inner {
+          border-color: #FFFFFF;
+        }
+      }
+    }
+  }
 }
 .el-pagination {
   .el-input__inner,
@@ -222,4 +232,47 @@
 .el-alert--primary.is-light {
   background-color:  mix(#FFFFFF, $color-primary, 90%);
   color: $color-primary;
+}
+
+.el-message-box {
+  padding-bottom: 0;
+  width: 600px;
+  &__header {
+    height: 86px;
+    line-height: 86px;
+    padding: 0 50px;
+    position: relative;
+    &:after {
+      content: "";
+      left: 50px;
+      right: 50px;
+      bottom: 0px;
+      border-bottom: 1px solid $border-color;
+      position: absolute;
+    }
+  }
+  &__title {
+    font-weight: bold;
+    line-height: 86px;
+  }
+  &__headerbtn {
+    top: 50%;
+    transform: translateY(-50%);
+    color: $color-info;
+  }
+  &__content {
+    padding: 25px 50px;
+    text-align: center;
+  }
+  &__message p {
+    line-height: 26px;
+  }
+  &__btns {
+    text-align: center;
+    padding: 50px;
+    .el-button {
+      height: 50px;
+      width: 240px;
+    }
+  }
 }

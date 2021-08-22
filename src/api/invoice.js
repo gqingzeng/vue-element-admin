@@ -31,3 +31,12 @@ export function addCompanyInfor(data) {
     data
   })
 }
+
+export function addInvoice(data) {
+  return request({
+    url: '/api/invoice/addInvoice',
+    method: 'post',
+    data
+  })
+}
+

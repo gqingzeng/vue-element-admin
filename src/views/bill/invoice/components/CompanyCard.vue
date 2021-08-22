@@ -1,5 +1,5 @@
 <template>
-  <ProCard v-loading="loading">
+  <ProCard>
     <template #header>
       <span>{{ $t('bill.invoice.company.title') }}</span>
       <el-button
@@ -61,7 +61,6 @@
 
 <script>
 import ProCard from '@/components/ProCard'
-import { getUserCompanyInfo } from '@/api/invoice'
 import EditCompanyInfoDialog from './EditCompanyInfoDialog'
 export default {
   name: 'CompanyCard',
@@ -69,25 +68,17 @@ export default {
     ProCard,
     EditCompanyInfoDialog
   },
-  data() {
-    return {
-      companyInfo: null,
-      loading: false
+  props: {
+    companyInfo: {
+      type: Object,
+      default: null
     }
   },
-  created() {
-    this.getUserCompanyInfo()
+  data() {
+    return {
+    }
   },
   methods: {
-    getUserCompanyInfo() {
-      this.loading = true
-      getUserCompanyInfo().then(res => {
-        const { data } = res
-        this.companyInfo = data
-      }).finally(() => {
-        this.loading = false
-      })
-    },
     openEditDialog() {
       this.$refs.editCompanyInfoDialog.dialogVisible = true
     }

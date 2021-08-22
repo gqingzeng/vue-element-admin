@@ -12,7 +12,7 @@ export default {
       listPage: {
         total: 0,
         page: 1,
-        pagesize: 1
+        pagesize: 10
       },
       listDataFiled: 'rows',
       listFetchApi: () => { Promise.resolve() }

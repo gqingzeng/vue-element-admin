@@ -16,12 +16,12 @@
         label-position="top"
         inline
       >
-        <el-form-item :label="$t('extension.withdraw.account')">
-          <el-input :placeholder="$t('extension.withdraw.accountPlaceholder')" />
+        <el-form-item :label="$t('extension.withdraw.alipayNo')" prop="alipay_no">
+          <el-input v-model="formData.alipay_no" :placeholder="$t('extension.withdraw.alipayNoPlaceholder')" />
           <div class="tips"><i class="el-icon-warning" />{{ $t('extension.withdraw.withdrawAlipayTips') }}</div>
         </el-form-item>
-        <el-form-item :label="$t('extension.withdraw.name')">
-          <el-input :placeholder="$t('extension.withdraw.namePlaceholder')" />
+        <el-form-item :label="$t('extension.withdraw.alipayName')" prop="alipay_name">
+          <el-input v-model="formData.alipay_no" :placeholder="$t('extension.withdraw.alipayNamePlaceholder')" />
         </el-form-item>
         <el-button type="primary" @click="handleWithdraw('1')">
           <svg-icon icon-class="a-ziyuan1" />
@@ -61,10 +61,16 @@ export default {
     return {
       WITHDRAW_TYPE,
       formData: {
-
+        alipayNo: '',
+        alipayName: ''
       },
       formRules: {
-
+        alipay_no: [
+          { required: true, message: this.$t('extension.withdraw.alipayNoRequiredTips'), trigger: 'blur' }
+        ],
+        alipay_name: [
+          { required: true, message: this.$t('extension.withdraw.alipayNameRequiredTips'), trigger: 'blur' }
+        ]
       }
     }
   },
@@ -84,7 +90,7 @@ export default {
         type,
         ...formData
       }
-      await userWithday(params).then(res => {
+      userWithday(params).then(res => {
         this.$message.success(this.$t('globalVar.auditingSuccess'))
       }).finally(() => {
         loading.close()

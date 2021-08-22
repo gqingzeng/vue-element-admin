@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <ProCard :header="$t('bill.consume.title')">
-      <el-button plain @click="fetchData(true)">{{ $t('globalVar.refresh') }}</el-button>
+      <el-button plain icon="el-icon-refresh" @click="fetchData(true)">{{ $t('globalVar.refresh') }}</el-button>
       <ProTable :column="tableColumn" :data="listData" />
       <pagination
         v-bind="listPage"
