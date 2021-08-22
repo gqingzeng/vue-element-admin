@@ -75,8 +75,5 @@ export default {
 <style scoped lang="scss">
 .table-container {
   margin-top: 20px;
-  .el-table {
-    margin-top: 5px;
-  }
 }
 </style>

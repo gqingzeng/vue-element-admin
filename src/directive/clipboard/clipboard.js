@@ -1,4 +1,6 @@
 // Inspired by https://github.com/Inndy/vue-clipboard2
+import i18n from '@/lang'
+import { Message } from 'element-ui'
 const Clipboard = require('clipboard')
 if (!Clipboard) {
   throw new Error('you should npm install `clipboard` --save at first ')
@@ -17,6 +19,7 @@ export default {
       })
       clipboard.on('success', e => {
         const callback = el._v_clipboard_success
+        Message.success(i18n.t('globalVar.copySuccessTips'))
         callback && callback(e) // eslint-disable-line
       })
       clipboard.on('error', e => {

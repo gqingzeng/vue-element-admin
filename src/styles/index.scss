@@ -193,3 +193,16 @@ aside {
 .tab-pane-label {
   padding: 0 20px;
 }
+
+$colors: (
+  primary: $color-primary,
+  warning: $color-warning,
+  info: $color-info,
+  regular: $color-text-regular,
+  danger: $color-danger,
+);
+@each $status, $color in $colors {
+  .color-#{$status} {
+    color: $color;
+  }
+}

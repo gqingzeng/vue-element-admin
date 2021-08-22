@@ -2,10 +2,11 @@
 
 $color-primary: #1A329F;
 $color-info: #90A0AF;
-$color-yellow: #FA8C16;
-
+$color-warning: #FA8C16;
+$color-danger: #FE5B5A;
+$color-secondary:#D8DBE3;
 $border-color: #EEEEEE;
-$border-color-secondary: #D8DBE3;
+$border-color-secondary: $color-secondary;
 
 $color-text-regular: #092C4D;
 
@@ -15,7 +16,7 @@ $red:#C03639;
 $pink: #E65D6E;
 $green: #30B08F;
 $tiffany: #4AB7BD;
-$yellow:#FEC171;
+$yellow: $color-warning;
 $panGreen: #30B08F;
 
 // sidebar

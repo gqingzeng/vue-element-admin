@@ -4,12 +4,12 @@
       <el-form label-position="top">
         <el-form-item
           v-if="formData.type === RECH_TYPE.CDKEY"
-          :label="$t('bill.rech.CDKEY')"
+          :label="$t('globalVar.CDKEY')"
         >
           <el-input
             v-model.number="formData.CDKEY"
             class="money-input"
-            :placeholder="$t('bill.rech.CDKEYPlaceholder')"
+            :placeholder="$t('globalVar.CDKEYPlaceholder')"
           />
         </el-form-item>
         <el-form-item
@@ -20,14 +20,14 @@
             v-model.number="formData.money"
             class="money-input"
             type="number"
-            :placeholder="$t('bill.rech.amountPlaceholder')"
+            :placeholder="$t('globalVar.amountOfMoneyPlaceholder')"
           >
-            <i
+            <span
               slot="prefix"
               class="el-input__icon"
             >
-              $
-            </i>
+              ￥
+            </span>
           </el-input>
           <div class="preset-box">
             <div class="preset-label">
@@ -43,7 +43,7 @@
                 }"
                 @click="setRechMoney(money)"
               >
-                ${{ money }}
+                ￥{{ money }}
               </div>
             </div>
           </div>
@@ -63,7 +63,7 @@
                 <svg-icon :icon-class="item.icon" />
               </div>
               <div class="rech-icon">
-                {{ item.name }}
+                {{ $t(`globalVar.${item.name}`) }}
               </div>
             </div>
           </div>
@@ -139,9 +139,9 @@ export default {
     margin: 0 3px;
     cursor: pointer;
     &.active {
-      color: $color-yellow;
-      border-color: $color-yellow;
-      background-color: mix(#ffffff, $color-yellow, 90%);
+      color: $color-warning;
+      border-color: $color-warning;
+      background-color: mix(#ffffff, $color-warning, 90%);
     }
   }
 }
@@ -165,9 +165,9 @@ export default {
     margin-bottom: 20px;
     margin-right: 110px;
     &.active {
-      color: $color-yellow;
-      border-color: $color-yellow;
-      background-color: mix(#ffffff, $color-yellow, 90%);
+      color: $color-warning;
+      border-color: $color-warning;
+      background-color: mix(#ffffff, $color-warning, 90%);
     }
   }
   &-icon {

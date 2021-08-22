@@ -20,6 +20,9 @@ import './utils/error-log' // error log
 
 import * as filters from './filters' // global filters
 import '@/assets/iconfont/iconfont'
+
+import Clipboard from '@/directive/clipboard'
+
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api
@@ -41,6 +44,8 @@ Vue.use(Element, {
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])
 })
+
+Vue.use(Clipboard)
 
 Vue.config.productionTip = false
 

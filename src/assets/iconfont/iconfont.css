@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 2746107 */
-  src: url('iconfont.woff2?t=1629534052838') format('woff2'),
-       url('iconfont.woff?t=1629534052838') format('woff'),
-       url('iconfont.ttf?t=1629534052838') format('truetype');
+  src: url('iconfont.woff2?t=1629619394723') format('woff2'),
+       url('iconfont.woff?t=1629619394723') format('woff'),
+       url('iconfont.ttf?t=1629619394723') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,10 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-a-ziyuan1:before {
+  content: "\e66c";
 }
 
 .icon-kami:before {
@@ -151,10 +155,6 @@
 
 .icon-zhankai:before {
   content: "\e63d";
-}
-
-.icon-zhifubao:before {
-  content: "\e62f";
 }
 
 .icon-qqzhanghu:before {

@@ -109,18 +109,33 @@ export default {
     modifySuccess: '修改成功',
     orderNo: '订单号',
     amountOfMoney: '金额',
+    amountOfMoneyPlaceholder: '请输入金额',
     refund: '退款',
     goodsName: '商品名称',
-    orderStatus: '订单状态'
+    orderStatus: '订单状态',
+    WeChat: '微信',
+    Alipay: '支付宝',
+    CDKEY: '卡密',
+    CDKEYPlaceholder: '请输入卡密',
+    inactiveStatus: '未激活',
+    activeStatus: '已激活',
+    status: '状态',
+    percentage: '比例',
+    open: '打开',
+    copyLink: '复制链接',
+    copySuccessTips: '复制成功',
+    balance: '余额',
+    withdrawProgress: '提取中',
+    withdrawSuccess: '提取成功',
+    auditingLoading: '申请中',
+    auditingSuccess: '申请成功',
+    time: '时间'
   },
   bill: {
     rech: {
       title: '在线充值',
-      amountPlaceholder: '请输入金额',
       rechType: '充值类型',
       presetLabel: '推荐',
-      CDKEY: '卡密',
-      CDKEYPlaceholder: '请输入卡密',
       rechBtnText: '充值'
     },
     relist: {
@@ -147,7 +162,7 @@ export default {
         title: '开票信息',
         companyName: '公司名称',
         identifier: '纳税人识别号',
-        modifyTips: '一年可修改一次开票信息，\n\r我方不承担错误填写带来的损失。',
+        modifyTips: '一年可修改一次开票信息，\n我方不承担错误填写带来的损失。',
         addCompanyBtn: '添加公司',
         notCompanyDesc: '您还未添加公司',
         editDialog: {
@@ -183,8 +198,46 @@ export default {
   },
   extension: {
     title: '推广奖励',
+    status: {
+      inactive: '申请激活',
+      auditing: '审核中',
+      active: '激活成功',
+      auditFailed: '审核失败'
+    },
     tabs: {
-      summary: '概述'
+      summary: '概述',
+      withdraw: '提取推广奖励',
+      settlementLog: '结算记录',
+      unsettled: '未结算记录',
+      invalidLog: '无效记录'
+    },
+    summary: {
+      extractable: '可提取',
+      unsettled: '未结算',
+      monthExtensionTotal: '月推广额',
+      monthExtensionTotalTips: '（近三十日的有效推广）',
+      weekExtensionTotal: '周推广额',
+      weekExtensionTotalTips: '（近七日的有效推广）',
+      chainTotal: '周环比',
+      chainTotalTips: '（近七日与上七日比）',
+      extensionLinkTitle: '参数访问',
+      copyLinkTips: '您只需要在本站任何URL上，加上参数{0}，值为{1}。'
+    },
+    withdraw: {
+      withdrawTotalTips: '目前您已累计提取',
+      withdrawAlipay: '提取到支付宝',
+      withdrawAlipayTips: '提款金额必须大于等于¥100。',
+      account: '账号',
+      accountPlaceholder: '支付宝账号',
+      name: '姓名',
+      namePlaceholder: '需要与支付宝实名认证一致',
+      AlipayBtnText: '支付宝提现',
+      withdrawBalance: '提取到余额',
+      withdrawBalanceTips: '提款到余额可为任意金额，一旦转移至余额，将无法再取出。\n提款到余额可获得对应的积分和经验。',
+      withdrawLog: '提款记录',
+      withdrawTime: '提取时间',
+      paymentTime: '支付时间',
+      withdrawType: '目标'
     }
   },
   profile: {

@@ -15,7 +15,8 @@ const state = {
     nickname: '',
     price: 0,
     score: 0,
-    username: ''
+    username: '',
+    ref: ''
   }
 }
 

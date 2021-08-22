@@ -36,17 +36,6 @@ module.exports = {
       warnings: false,
       errors: true
     },
-    proxy: {
-      '/dev-api': {
-        target: 'https://www.productedtest.cn',
-        secure: false,
-        changeOrigin: true,
-        pathRewrite: {
-          '^/dev-api': '/'
-        }
-        // cookieDomainRewrite: 'localhost'
-      }
-    },
     before: require('./mock/mock-server.js')
   },
   css: {

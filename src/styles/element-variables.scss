@@ -5,12 +5,15 @@
 @import './variables.scss';
 /* theme color */
 $--color-primary: $color-primary;
+$--color-warning: $color-warning;
+$--color-danger: $color-danger;
+
 // $--color-success: #13ce66;
 // $--color-warning: #ffba00;
 // $--color-danger: #ff4949;
 $--color-info: $color-info;
 $--font-size-base: 16px;
-$--input-placeholder-color: #D8DBE3;
+$--input-placeholder-color: $color-secondary;
 
 $--color-text-regular: $color-text-regular;
 $--pagination-font-size: 16px;
@@ -19,12 +22,16 @@ $--button-padding-vertical: 11px;
 // $--button-font-weight: 400;
 
 // $--color-text-regular: #1f2d3d;
+$--border-color-base:  $border-color;
 $--border-color-light: $border-color;
 $--border-color-lighter: $border-color;
 $--table-header-background-color: $color-primary;
 $--table-header-font-color: #FFFFFF;
 
 $--dialog-padding-primary: 50px;
+$--alert-title-font-size: 16px;
+$--alert-close-font-size: 14px;
+$--alert-padding: 10px 32px;
 // $--border-color-light: #dfe4ed;
 // $--border-color-lighter: #e6ebf5;
 

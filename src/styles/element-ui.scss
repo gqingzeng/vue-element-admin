@@ -125,18 +125,26 @@
   }
 }
 
-
-.el-button [class*=el-icon-] + span {
-  margin-left: 10px;
+.el-button {
+  &.is-round {
+    padding: 11px 20px;
+  }
+  [class*=el-icon-] + span {
+    margin-left: 10px;
+  }
 }
 
-.el-tabs__item {
-  height: 52px;
-  line-height: 52px;
-  font-weight: bold;
-  padding: 0 18px;
+.el-tabs {
+  &__header {
+    margin-bottom: 20px;
+  }
+  &__item {
+    height: 52px;
+    line-height: 52px;
+    font-weight: bold;
+    padding: 0 18px;
+  }
 }
-
 .el-table {
   font-size: 16px;
   
@@ -206,4 +214,12 @@
       }
     }
   }
+}
+
+.el-alert__title {
+  line-height: 20px;
+}
+.el-alert--primary.is-light {
+  background-color:  mix(#FFFFFF, $color-primary, 90%);
+  color: $color-primary;
 }

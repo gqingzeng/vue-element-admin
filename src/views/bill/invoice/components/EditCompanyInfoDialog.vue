@@ -154,7 +154,7 @@ export default {
           const loading = this.$loading({
             text: this.$t(`globalVar.${id ? 'modifyLoading' : 'saveLoading'}`)
           })
-          const fetchApi = id === '' ? updateCompanyInfor : addCompanyInfor
+          const fetchApi = id ? updateCompanyInfor : addCompanyInfor
           fetchApi(formData).then(res => {
             this.$message.success(this.$t(`globalVar.${id ? 'modifySuccess' : 'saveSuccess'}`))
           }).finally(() => {

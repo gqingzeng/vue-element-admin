@@ -376,3 +376,7 @@ export const constantToList = (sourceMap) => {
   const result = Object.values(sourceMap)
   return Object.freeze(result)
 }
+
+export const getLocationHost = () => {
+  return process.env.VUE_APP_HOST
+}

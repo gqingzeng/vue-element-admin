@@ -1,25 +1,23 @@
-import { constantToMap, constantToKeyMap, constantToList } from '@/utils'
+import { constantToMap, constantToList } from '@/utils'
 
 const rechTypeSourceMap = {
   WECHART: {
-    key: 'wechart',
-    name: '微信',
+    key: 'WeChat',
+    name: 'WeChat',
     icon: 'weixin'
   },
   ALIPAY: {
-    key: 'alipay',
-    name: '支付宝',
+    key: 'Alipay',
+    name: 'Alipay',
     icon: 'zhifubao1'
   },
   CDKEY: {
     key: 'CDKEY',
-    name: '卡密',
+    name: 'CDKEY',
     icon: 'kami'
   }
 }
 
 export const RECH_TYPE = constantToMap(rechTypeSourceMap)
-
-export const RECH_TYPE_MAP = constantToKeyMap(rechTypeSourceMap)
 
 export const RECH_TYPE_LIST = constantToList(rechTypeSourceMap)
