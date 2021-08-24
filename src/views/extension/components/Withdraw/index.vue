@@ -25,7 +25,7 @@
         </el-form-item>
         <el-button type="primary" @click="handleWithdraw('1')">
           <svg-icon icon-class="a-ziyuan1" />
-          {{ $t('extension.withdraw.AlipayBtnText') }}
+          {{ $t('extension.withdraw.alipayBtnText') }}
         </el-button>
       </el-form>
       <div class="withdraw-type-title">

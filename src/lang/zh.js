@@ -6,6 +6,9 @@ export default {
     'bill-consume': '消费记录',
     'bill-relist': '充值记录',
     'bill-invoice': '发票管理',
+    certification: '实名认证',
+    'certification-personal': '个人认证',
+    'certification-enterprise': '企业认证',
     countryList: '国家代码',
     'extension': '推广奖励',
     documentation: '文档',
@@ -130,7 +133,10 @@ export default {
     auditingLoading: '申请中',
     auditingSuccess: '申请成功',
     time: '时间',
-    remark: '描述'
+    remark: '描述',
+    recommend: '推荐',
+    preStep: '上一步',
+    checkLoading: '校验中'
   },
   bill: {
     rech: {
@@ -195,6 +201,43 @@ export default {
       }
     }
   },
+  certification: {
+    personal: {
+      title: '个人实名',
+      step1: '填写基本信息',
+      step2: '选择认证方式',
+      step3: '认证完成',
+      submitBtnText: '提交校验',
+      basicInfo: {
+        country: '地区',
+        countryPlaceholder: '中国大陆（暂不支持非大陆地区实名认证）',
+        name: '姓名',
+        namePlaceholder: '请输入姓名',
+        idCardNo: '身份证号码',
+        idCardNoPlaceholder: '身份证号码',
+        mobile: '认证手机号',
+        mobilePlaceholder: '认证手机号',
+        captcha: '验证码',
+        captchaPlaceholder: '请输入验证码',
+        getCaptchaBtnText: '获取验证码',
+        checkLoading: '校验中'
+      },
+      checkMethod: {
+        tips: '您的信息已基本核实，请选择一种方式完成后续认证',
+        alipayCheckTitle: '支付宝认证',
+        alipayCheckSubTitle: '（即时完成）',
+        alipayCheckTips: '打开支付宝扫描二维码完成认证',
+        idImageCheckTitle: '身份证认证',
+        idImageCheckSubTitle: '（24小时内完成）',
+        idImageCheckTips: '需要上传${}手持二代身份证照片+身份证正反面照片',
+        backBasicInfo: '返回修改基本信息',
+        alipayQrcodeTips: '请{0}打开支付宝扫描二维码完成认证'
+      }
+    },
+    enterprise: {
+      title: '企业实名'
+    }
+  },
   countryList: {
     searchBox: {
       header: '国家代码查询',
@@ -240,7 +283,7 @@ export default {
       alipayName: '姓名',
       alipayNamePlaceholder: '需要与支付宝实名认证一致',
       alipayNameRequiredTips: '请输入姓名',
-      AlipayBtnText: '支付宝提现',
+      alipayBtnText: '支付宝提现',
       withdrawBalance: '提取到余额',
       withdrawBalanceTips: '提款到余额可为任意金额，一旦转移至余额，将无法再取出。\n提款到余额可获得对应的积分和经验。',
       withdrawLog: '提款记录',

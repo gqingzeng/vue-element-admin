@@ -77,7 +77,7 @@ export default {
           label: this.$t('bill.invoice.rechargeLog.invoiceAmount'),
           align: 'center',
           prop: 'money',
-          prepend: '$'
+          prepend: '￥'
         }
         // {
         //   label: this.$t('globalVar.amountOfMoney'),

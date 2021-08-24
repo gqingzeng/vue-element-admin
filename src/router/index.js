@@ -116,6 +116,25 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/certification',
+    component: Layout,
+    meta: { title: 'certification', icon: 'shimingrenzheng-check', affix: true },
+    children: [
+      {
+        path: 'personal',
+        component: () => import('@/views/certification/personal'),
+        name: 'CertificationPersonalPage',
+        meta: { title: 'certification-personal', affix: true }
+      },
+      {
+        path: 'enterprise',
+        component: () => import('@/views/certification/enterprise'),
+        name: 'CertificationEnterprisePage',
+        meta: { title: 'certification-enterprise', affix: true }
+      }
+    ]
+  },
+  {
     path: '/country_list',
     component: Layout,
     children: [

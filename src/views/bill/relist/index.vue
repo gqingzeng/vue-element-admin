@@ -45,11 +45,13 @@ export default {
         {
           label: this.$t('bill.relist.rechAmount'),
           align: 'center',
-          prop: 'createtime_text'
+          prop: 'money',
+          repend: '￥'
         },
         {
           label: this.$t('bill.relist.rechTime'),
-          align: 'center'
+          align: 'center',
+          prop: 'createtime'
         }
       ],
       listFetchApi: getUserRelist

@@ -55,7 +55,7 @@ const actions = {
         if (!data) {
           reject('Verification failed, please Login again.')
         }
-        commit('SET_ACCESS_TOKEN', data.access_token)
+        // commit('SET_ACCESS_TOKEN', data.access_token)
         commit('SET_USER_INFO', data)
         resolve(data)
       }).catch(error => {
