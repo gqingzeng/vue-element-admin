@@ -6,7 +6,7 @@
       :title="$t('certification.personal.checkMethod.tips')"
     />
     <div class="container">
-      <template v-if="!activeType">
+      <template v-if="!showCheckComponent">
         <div class="check-type-box">
           <div
             class="check-type-box-item"
@@ -52,7 +52,9 @@
         <component
           :is="checkComponent"
           :form-data="formData"
+          :qr-code="base64"
           @back="handlePreStep"
+          @submit="aliyunVerify"
         />
       </template>
     </div>
@@ -60,13 +62,14 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import { CHECK_TYPE } from '@/constant/certification'
-import { aliyunVeriday } from '@/api/aliyun'
+import { aliyunVerify, aliyunResultInfor } from '@/api/aliyun'
 const checkComponentMap = {
   [CHECK_TYPE.ID]: () => import('./IDCheck'),
   [CHECK_TYPE.ALIPAY]: () => import('./AlipayCheck')
 }
-// TODO: 接入支付宝和人工验证
+
 export default {
   name: 'CheckMethod',
   components: {
@@ -81,23 +84,58 @@ export default {
   data() {
     return {
       CHECK_TYPE,
-      activeType: ''
+      activeType: '',
+      base64: '',
+      certify_id: '',
+      timerId: null
     }
   },
   computed: {
     checkComponent() {
       const { activeType } = this
       return checkComponentMap[activeType]
+    },
+    showCheckComponent() {
+      const { activeType, certify_id } = this
+      if (!activeType) {
+        return false
+      }
+      if (activeType === CHECK_TYPE.ID) {
+        return true
+      }
+      if (activeType === CHECK_TYPE.ALIPAY && certify_id) {
+        return true
+      }
+      return false
     }
   },
+  beforeDestroy() {
+    this.stopPolling()
+  },
   methods: {
+    ...mapActions('user', ['getUserInfo']),
     setActiveType(type) {
+      this.activeType = type
+      if (CHECK_TYPE.ALIPAY === type) {
+        this.aliyunVerify(type)
+      }
+    },
+    aliyunVerify(type) {
       const loading = this.$loading({
         text: this.$t('globalVar.checkLoading')
       })
       const { formData } = this
-      aliyunVeriday({ ...formData, type }).then(res => {
-        this.activeType = type
+      // eslint-disable-next-line
+      const { captcha, ...args } = formData
+      aliyunVerify({ ...args, type }).then(res => {
+        const { base64, certify_id } = res.data
+        this.base64 = base64
+        this.certify_id = certify_id
+        if (CHECK_TYPE.ALIPAY === type) {
+          this.startPolling()
+        } else {
+          this.getUserInfo()
+        }
       }).finally(() => {
         loading.close()
       })
@@ -107,6 +145,23 @@ export default {
     },
     handlePreStep() {
       this.activeType = ''
+    },
+    startPolling() {
+      this.timerId = setTimeout(() => {
+        const { certify_id } = this
+        aliyunResultInfor({ certify_id }).then(res => {
+          this.$message.success(this.$t('globalVar.checkSuccess'))
+          this.stopPolling()
+          this.$emit('updateStep', 3)
+          this.getUserInfo()
+        }).catch(() => {
+          this.startPolling()
+        })
+      }, 1000)
+    },
+    stopPolling() {
+      const { timerId } = this
+      timerId && clearTimeout(timerId)
     }
   }
 }

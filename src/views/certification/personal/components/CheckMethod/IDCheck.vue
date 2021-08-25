@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- TODO:图片上传 -->
     <div class="footer">
       <el-button @click="handlePreStep">{{ $t('globalVar.preStep') }}</el-button>
       <el-button
@@ -27,7 +28,7 @@ export default {
       this.$emit('back')
     },
     handleSubmit() {
-
+      this.$emit('submit')
     }
   }
 }

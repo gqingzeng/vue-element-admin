@@ -16,10 +16,19 @@ export function aliyunSend(data) {
   })
 }
 
-export function aliyunVeriday(data) {
+export function aliyunVerify(data) {
   return request({
-    url: '/api/aliyun/veriday',
+    url: '/api/aliyun/verify',
     method: 'post',
     data
+  })
+}
+
+export function aliyunResultInfor(data) {
+  return request({
+    url: '/api/aliyun/resultInfor',
+    method: 'post',
+    data,
+    __tips: false
   })
 }

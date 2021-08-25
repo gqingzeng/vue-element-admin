@@ -136,7 +136,8 @@ export default {
     remark: '描述',
     recommend: '推荐',
     preStep: '上一步',
-    checkLoading: '校验中'
+    checkLoading: '校验中',
+    checkSuccess: '校验成功'
   },
   bill: {
     rech: {
@@ -228,7 +229,7 @@ export default {
         alipayCheckSubTitle: '（即时完成）',
         alipayCheckTips: '打开支付宝扫描二维码完成认证',
         idImageCheckTitle: '身份证认证',
-        idImageCheckSubTitle: '（24小时内完成）',
+        idImageCheckSubTitle: '（即时完成）',
         idImageCheckTips: '需要上传${}手持二代身份证照片+身份证正反面照片',
         backBasicInfo: '返回修改基本信息',
         alipayQrcodeTips: '请{0}打开支付宝扫描二维码完成认证'

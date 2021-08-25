@@ -19,7 +19,8 @@ import { ProSteps, ProStep } from '@/components/ProSteps'
 
 const componentMaps = {
   1: () => import('./components/BasicInfo'),
-  2: () => import('./components/CheckMethod')
+  2: () => import('./components/CheckMethod'),
+  3: () => import('./components/CheckSuccess')
 }
 
 export default {
