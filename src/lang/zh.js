@@ -137,7 +137,9 @@ export default {
     recommend: '推荐',
     preStep: '上一步',
     checkLoading: '校验中',
-    checkSuccess: '校验成功'
+    checkSuccess: '校验成功',
+    uploadError: '上传失败',
+    uploadSizeError: '上传大小不能超过'
   },
   bill: {
     rech: {
@@ -232,7 +234,18 @@ export default {
         idImageCheckSubTitle: '（即时完成）',
         idImageCheckTips: '需要上传${}手持二代身份证照片+身份证正反面照片',
         backBasicInfo: '返回修改基本信息',
-        alipayQrcodeTips: '请{0}打开支付宝扫描二维码完成认证'
+        alipayQrcodeTips: '请{0}打开支付宝扫描二维码完成认证',
+        idImageCheckCautions: '注意事项',
+        idImageCheckCautionsTips: `1.您提供的证件信息将受到严格保护，仅用于身份验证，未经本人许可不会用于其他用途
+          2.证件照不清晰或与输入的信息不匹配，将导致实名认证被驳回
+          3.需本人手持二代身份证照片+身份证正反面照片
+          4.证件必须在有效期内，有效期需在一个月以上
+          5.本人手持正面露脸，五官清晰可辨
+          6.证件照上信息需完整且清晰可辨（无反光、遮挡、水印、证件套、logo等）
+          7.申请人填写的“真实姓名”和“证件号码”需和提交证件照片信息一致
+          8.证件照必须真实拍摄，不能使用复印件
+          9.确保照片完整（不缺边角），证件周围不允许加上边框（如：加上红框等）
+        `
       }
     },
     enterprise: {

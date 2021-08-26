@@ -226,12 +226,17 @@
   }
 }
 
-.el-alert__title {
+.el-alert {
   line-height: 20px;
-}
-.el-alert--primary.is-light {
-  background-color:  mix(#FFFFFF, $color-primary, 90%);
-  color: $color-primary;
+  &--primary.is-light {
+    background-color:  mix(#FFFFFF, $color-primary, 90%);
+    color: $color-primary;
+  }
+  .el-alert {
+    &__description {
+      font-size: 14px
+    }
+  }
 }
 
 .el-message-box {
