@@ -120,14 +120,14 @@ export default {
         this.aliyunVerify(type)
       }
     },
-    aliyunVerify(type) {
+    aliyunVerify(type, otherFormData = {}) {
       const loading = this.$loading({
         text: this.$t('globalVar.checkLoading')
       })
       const { formData } = this
       // eslint-disable-next-line
       const { captcha, ...args } = formData
-      aliyunVerify({ ...args, type }).then(res => {
+      aliyunVerify({ ...args, type, ...otherFormData }).then(res => {
         const { base64, certify_id } = res.data
         this.base64 = base64
         this.certify_id = certify_id

@@ -7,48 +7,63 @@
       :description="$t('certification.personal.checkMethod.idImageCheckCautionsTips')"
     />
     <div class="upload-wrap">
-      <UploadImage
-        class="upload-box"
-        :on-success="(...args) => uploadSuccess('idCardNoHand', ...args)"
-      >
-        <el-image
-          v-if="formData.idCardNoHand"
-          :src="formData.idCardNoHand"
-          fit="contain"
-        />
-        <i
-          v-else
-          class="el-icon-plus"
-        />
-      </UploadImage>
-      <UploadImage
-        class="upload-box"
-        :on-success="(...args) => uploadSuccess('idCardNoPositive', ...args)"
-      >
-        <el-image
-          v-if="formData.idCardNoPositive"
-          :src="formData.idCardNoPositive"
-          fit="contain"
-        />
-        <i
-          v-else
-          class="el-icon-plus"
-        />
-      </UploadImage>
-      <UploadImage
-        class="upload-box"
-        :on-success="(...args) => uploadSuccess('idCardNoBack', ...args)"
-      >
-        <el-image
-          v-if="formData.idCardNoBack"
-          :src="formData.idCardNoBack"
-          fit="contain"
-        />
-        <i
-          v-else
-          class="el-icon-plus"
-        />
-      </UploadImage>
+      <div class="upload-wrap-item">
+        <div class="color-regular title">{{ $t('certification.personal.checkMethod.idCardNoHandPlaceholder') }}</div>
+        <div class="color-danger sub-title">{{ $t('certification.personal.checkMethod.uploadImageTips') }}</div>
+        <UploadImage
+          class="upload-box"
+          :size="tenM"
+          :on-success="(...args) => uploadSuccess('idCardNoHand', ...args)"
+        >
+          <el-image
+            v-if="formData.idCardNoHand"
+            :src="formData.idCardNoHand"
+            fit="contain"
+          />
+          <i
+            v-else
+            class="el-icon-plus"
+          />
+        </UploadImage>
+      </div>
+      <div class="upload-wrap-item">
+        <div class="color-regular">{{ $t('certification.personal.checkMethod.idCardNoPositivePlaceholder') }}</div>
+        <div class="color-danger sub-title">{{ $t('certification.personal.checkMethod.uploadImageTips') }}</div>
+        <UploadImage
+          class="upload-box"
+          :size="tenM"
+          :on-success="(...args) => uploadSuccess('idCardNoPositive', ...args)"
+        >
+          <el-image
+            v-if="formData.idCardNoPositive"
+            :src="formData.idCardNoPositive"
+            fit="contain"
+          />
+          <i
+            v-else
+            class="el-icon-plus"
+          />
+        </UploadImage>
+      </div>
+      <div class="upload-wrap-item">
+        <div class="color-regular">{{ $t('certification.personal.checkMethod.idCardNoBackPlaceholder') }}</div>
+        <div class="color-danger sub-title">{{ $t('certification.personal.checkMethod.uploadImageTips') }}</div>
+        <UploadImage
+          class="upload-box"
+          :size="tenM"
+          :on-success="(...args) => uploadSuccess('idCardNoBack', ...args)"
+        >
+          <el-image
+            v-if="formData.idCardNoBack"
+            :src="formData.idCardNoBack"
+            fit="contain"
+          />
+          <i
+            v-else
+            class="el-icon-plus"
+          />
+        </UploadImage>
+      </div>
     </div>
     <div class="footer">
       <el-button @click="handlePreStep">{{ $t('globalVar.preStep') }}</el-button>
@@ -63,8 +78,7 @@
 
 <script>
 import UploadImage from '@/components/UploadImage'
-// TODO:
-// 提交校验
+import { CHECK_TYPE } from '@/constant/certification'
 export default {
   name: 'IDCheck',
   components: {
@@ -72,6 +86,7 @@ export default {
   },
   data() {
     return {
+      tenM: 10 * 1024 * 1024,
       formData: {
         idCardNoPositive: '',
         idCardNoBack: '',
@@ -87,7 +102,13 @@ export default {
       this.$emit('back')
     },
     handleSubmit() {
-      this.$emit('submit')
+      const { formData } = this
+      const notFillKey = Object.keys(formData).find(key => !formData[key])
+      if (notFillKey) {
+        this.$message.error(this.$t(`certification.personal.checkMethod.${notFillKey}Placeholder`))
+        return
+      }
+      this.$emit('submit', CHECK_TYPE.ID, formData)
     }
   }
 }
@@ -102,6 +123,15 @@ export default {
   align-items: center;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: 20px;
+  &-item {
+    font-size: 14px;
+    text-align: center;
+    .sub-title {
+      margin: 8px 0;
+    }
+  }
+
   .upload-box {
     margin: 0 10px;
     border: 1px dashed $border-color;

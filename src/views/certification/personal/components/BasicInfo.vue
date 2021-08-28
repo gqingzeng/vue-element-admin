@@ -100,7 +100,6 @@ export default {
   },
   methods: {
     handleSubmit() {
-      this.$emit('updateStep', 2)
       this.$refs.formRule.validate((valid) => {
         if (valid) {
           const { formData } = this

@@ -245,7 +245,11 @@ export default {
           7.申请人填写的“真实姓名”和“证件号码”需和提交证件照片信息一致
           8.证件照必须真实拍摄，不能使用复印件
           9.确保照片完整（不缺边角），证件周围不允许加上边框（如：加上红框等）
-        `
+        `,
+        idCardNoHandPlaceholder: '请上传手持身份证头像面照片',
+        idCardNoPositivePlaceholder: '请上传身份证头像面照片',
+        idCardNoBackPlaceholder: '请上传手持身份证国辉面照片',
+        uploadImageTips: '图片格式要求：jpg、jpeg、png，不超过10M'
       }
     },
     enterprise: {
