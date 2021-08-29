@@ -1,4 +1,4 @@
-import { logout, getUserInfo } from '@/api/user'
+import { login, mobilelogin, thirdlogin, logout, getUserInfo } from '@/api/user'
 import { getAccessToken, setAccessToken, removeAccessToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 
@@ -31,22 +31,48 @@ const mutations = {
 
 const actions = {
   // user login
-  login({ commit }, userInfo) {
-    // const { username, password } = userInfo
+  login({ commit }, loginForm) {
     return new Promise((resolve, reject) => {
-      const access_token = '052c94ce6403c595c328d78488132c11'
-      // login({ username: username.trim(), password: password }).then(response => {
-      //   const { data } = response
-      commit('SET_ACCESS_TOKEN', access_token)
-      setAccessToken(access_token)
-      //   resolve()
-      // }).catch(error => {
-      //   reject(error)
-      // })
-      resolve()
+      login(loginForm).then(response => {
+        const { data } = response
+        const { userinfo } = data
+        const { token } = userinfo
+        commit('SET_ACCESS_TOKEN', token)
+        setAccessToken(token)
+        resolve()
+      }).catch(error => {
+        reject(error)
+      })
     })
   },
-
+  mobilelogin({ commit }, loginForm) {
+    return new Promise((resolve, reject) => {
+      mobilelogin(loginForm).then(response => {
+        const { data } = response
+        const { userinfo } = data
+        const { token } = userinfo
+        commit('SET_ACCESS_TOKEN', token)
+        setAccessToken(token)
+        resolve()
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  thirdlogin({ commit }, loginForm) {
+    return new Promise((resolve, reject) => {
+      thirdlogin(loginForm).then(response => {
+        const { data } = response
+        const { userinfo } = data
+        const { token } = userinfo
+        commit('SET_ACCESS_TOKEN', token)
+        setAccessToken(token)
+        resolve()
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
   // get user info
   getUserInfo({ commit }) {
     return new Promise((resolve, reject) => {

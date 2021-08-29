@@ -1,14 +1,15 @@
-const localStorage = window.localStorage
-const TokenKey = 'access_token'
+import { getItem, setItem, removeItem } from './localStorage'
+
+const tokenKey = 'access_token'
 
 export function getAccessToken() {
-  return localStorage.getItem(TokenKey)
+  return getItem(tokenKey)
 }
 
 export function setAccessToken(token) {
-  return localStorage.setItem(TokenKey, token)
+  return setItem(tokenKey, token)
 }
 
 export function removeAccessToken() {
-  return localStorage.removeItem(TokenKey)
+  return removeItem(tokenKey)
 }

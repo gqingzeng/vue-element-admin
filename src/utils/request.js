@@ -22,29 +22,37 @@ const rebuildSendData = (config) => {
   let newConfig = config
 
   const access_token = store.getters.access_token
-
   switch (method) {
     case 'post':
-    case 'put':
+    case 'put': {
+      const newData = {
+        ...data
+      }
+
+      if (access_token) {
+        newData.access_token = access_token
+      }
       newConfig = {
-        data: qs.stringify({
-          ...data,
-          access_token
-        }),
+        data: qs.stringify(newData),
         method,
         ...args
       }
       break
-    case 'get':
+    }
+    case 'get': {
+      const newParams = {
+        ...params
+      }
+      if (access_token) {
+        newParams.access_token = access_token
+      }
       newConfig = {
-        params: {
-          ...params,
-          access_token
-        },
+        params: newParams,
         method,
         ...args
       }
       break
+    }
   }
   return newConfig
 }

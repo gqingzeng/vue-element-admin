@@ -15,7 +15,10 @@
         label-position="left"
       >
         <el-tabs v-model="loginModel">
-          <el-tab-pane :label="$t('login.passwordTitle')" name="password">
+          <el-tab-pane
+            :label="$t('login.passwordTitle')"
+            name="password"
+          >
             <template v-if="loginModel === 'password'">
               <el-form-item prop="account">
                 <el-input
@@ -49,7 +52,10 @@
               </el-form-item>
             </template>
           </el-tab-pane>
-          <el-tab-pane :label="$t('login.captchaTitle')" name="captcha">
+          <el-tab-pane
+            :label="$t('login.captchaTitle')"
+            name="captcha"
+          >
             <template v-if="loginModel === 'captcha'">
               <el-form-item prop="mobile">
                 <el-input
@@ -58,23 +64,36 @@
                   prefix-icon="el-icon-mobile-phone"
                 />
               </el-form-item>
-              <el-form-item prop="captcha">
+              <el-form-item
+                prop="captcha"
+                class="captcha-form-item"
+              >
                 <el-input
                   v-model="loginForm.captcha"
                   :placeholder="$t('login.captchaPlaceholder')"
                   prefix-icon="el-icon-circle-check"
                   @keyup.enter.native="handleLogin"
                 />
+                <el-button
+                  type="warning"
+                  :loading="captchaLoading"
+                  :disabled="countDown > 0"
+                  @click="getCaptcha"
+                >{{ countDown ? `${countDown} s` : $t('certification.personal.basicInfo.getCaptchaBtnText') }}</el-button>
               </el-form-item>
             </template>
           </el-tab-pane>
         </el-tabs>
         <div class="user-box">
-          <el-button type="text">{{ $t('login.accountRegister') }}</el-button>
+          <router-link to="./register" class="el-link el-link--primary is-underline">{{ $t('login.accountRegister') }}</router-link>
           <el-button type="text">{{ $t('login.forgetPassword') }}</el-button>
         </div>
         <div class="login-btn-box">
-          <el-button :loading="loading" type="primary" @click="handleLogin">{{ $t('login.logIn') }}</el-button>
+          <el-button
+            :loading="loading"
+            type="primary"
+            @click="handleLogin"
+          >{{ $t('login.logIn') }}</el-button>
         </div>
         <i18n
           class="tips"
@@ -85,11 +104,12 @@
           <span>{{ $t('login.privacyAgreement') }}</span>
         </i18n>
         <div class="thirdparty-platform-list">
-          <div
-            v-for="platform in thirdpartyPlatform"
-            :key="platform"
-            class="thirdparty-platform-item"
-          >{{ platform }}</div>
+          <svg-icon
+            v-for="item in thirdpartyPlatform"
+            :key="item.value"
+            :icon-class="item.icon"
+            @click.native="handleThirdpartyLogin(item)"
+          />
         </div>
       </el-form>
     </div>
@@ -97,9 +117,28 @@
 </template>
 
 <script>
+import { setItem, getItem, getLocalStorageKey } from '@/utils/localStorage'
 import LangSelect from '@/components/LangSelect'
-
-const thirdpartyPlatform = ['qq', '微信', '支付']
+import { sendSms, getThirdUrl } from '@/api/user'
+import openWindow from '@/utils/open-window'
+import { getQueryObject } from '@/utils'
+const thirdpartyPlatform = [
+  {
+    label: 'QQ',
+    value: 'qq',
+    icon: 'qqzhanghu'
+  },
+  {
+    label: '支付宝',
+    value: 'aliyun',
+    icon: 'zhifubaozhanghu'
+  },
+  {
+    label: '微信',
+    value: 'wechat',
+    icon: 'weixinzhanghu'
+  }
+]
 
 export default {
   name: 'Login',
@@ -147,9 +186,9 @@ export default {
       thirdpartyPlatform,
       loginModel: 'password',
       loginForm: {
-        account: '',
-        password: '',
-        webCaptcha: '',
+        account: 'aniutest',
+        password: '123123.0',
+        webCaptcha: 'xxx',
         mobile: '',
         captcha: ''
       },
@@ -161,6 +200,8 @@ export default {
         captcha: [{ required: true, trigger: 'blur', validator: validateCaptcha }]
       },
       loading: false,
+      captchaLoading: false,
+      countDown: 0,
       redirect: undefined,
       otherQuery: {}
     }
@@ -177,21 +218,45 @@ export default {
       immediate: true
     }
   },
+  created() {
+    window.addEventListener('storage', this.handleThirdlogin)
+  },
+  destroyed() {
+    window.removeEventListener('storage', this.handleThirdlogin)
+  },
   methods: {
     handleLogin() {
-      // this.$refs.loginForm.validate(valid => {
-      // if (valid) {
-      this.loading = true
-      this.$store.dispatch('user/login', this.loginForm)
-        .then(() => {
-          this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
-          this.loading = false
-        })
-        .catch(() => {
-          this.loading = false
-        })
-        // }
-      // })
+      this.$refs.loginForm.validate(valid => {
+        if (valid) {
+          this.loading = true
+          const { loginModel, loginForm, redirect, otherQuery } = this
+          const {
+            account,
+            password,
+            webCaptcha,
+            mobile,
+            captcha
+          } = loginForm
+          console.log(webCaptcha)
+          let params = {
+            account,
+            password
+          }
+          let dispatchUrl = 'user/login'
+          if (loginModel === 'captcha') {
+            params = {
+              mobile,
+              captcha
+            }
+            dispatchUrl = 'user/mobilelogin'
+          }
+          this.$store.dispatch(dispatchUrl, params).then(() => {
+            this.$router.push({ path: redirect || '/', query: otherQuery })
+          }).finally(() => {
+            this.loading = false
+          })
+        }
+      })
     },
     getOtherQuery(query) {
       return Object.keys(query).reduce((acc, cur) => {
@@ -200,6 +265,66 @@ export default {
         }
         return acc
       }, {})
+    },
+    getCaptcha() {
+      this.$refs.loginForm.validateField('mobile', (errMsg) => {
+        if (!errMsg) {
+          this.captchaLoading = true
+          const { loginForm } = this
+          const { mobile } = loginForm
+          sendSms({ mobile, event: 'mobilelogin' }).then(res => {
+            this.countDown = 60
+            this.startTimer()
+          }).finally(() => {
+            this.captchaLoading = false
+          })
+        }
+      })
+    },
+    startTimer() {
+      this.stopTimer()
+      const { countDown } = this
+      if (countDown) {
+        this.countDown = countDown - 1
+        setTimeout(() => {
+          this.startTimer()
+        }, 1000)
+      }
+    },
+    stopTimer() {
+      const { timerId } = this
+      timerId && clearTimeout(timerId)
+    },
+    handleThirdpartyLogin(item) {
+      const { value: platform } = item
+      const loading = this.$loading({
+        text: this.$t('globalVar.loading')
+      })
+      getThirdUrl({ platform }).then(res => {
+        const { data } = res
+        const { url } = data
+        setItem('thirdpartLoginPlatform', platform)
+        openWindow(url, platform, 540, 540)
+      }).catch(() => {
+      }).finally(() => {
+        loading.close()
+      })
+    },
+    handleThirdlogin(event) {
+      if (event.key === getLocalStorageKey('thirdpartLoginPlatformHash')) {
+        const { redirect, otherQuery } = this
+        const { auth_code: code } = getQueryObject(event.newValue)
+        const platform = getItem('thirdpartLoginPlatform')
+        const params = {
+          code,
+          platform
+        }
+        this.$store.dispatch('user/thirdlogin', params).then(() => {
+          this.$router.push({ path: redirect || '/', query: otherQuery })
+        }).finally(() => {
+          this.loading = false
+        })
+      }
     }
   }
 }
@@ -215,7 +340,6 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 0px 4px 4px 0px;
   position: relative;
   .set-language {
     position: absolute;
@@ -257,9 +381,6 @@ export default {
         height: 100px;
         line-height: 100px;
       }
-      &__content {
-        margin-bottom: 26px;
-      }
     }
 
     .el-form-item {
@@ -272,13 +393,18 @@ export default {
 
     ::v-deep .el-input {
       font-size: 20px;
+      .el-input__suffix {
+        right: 0;
+        width: 60px;
+      }
       .el-input__prefix {
         left: 0;
+        width: 60px;
       }
       .el-input__inner {
         height: 60px;
         line-height: 60px;
-        padding-left: 60px;
+        padding: 0 60px;
       }
       .el-input__icon {
         width: 60px;
@@ -288,9 +414,10 @@ export default {
       }
     }
     .captcha-form-item {
-      margin-bottom: 0;
+      margin-bottom: 26px;
       ::v-deep .el-form-item__content {
         display: flex;
+        align-content: center;
         .el-input {
           flex: 1;
         }
@@ -300,6 +427,10 @@ export default {
           border-radius: 4px;
           background: #eeeeee;
           margin-left: 20px;
+        }
+        .el-button {
+          margin-left: 10px;
+          width: 150px;
         }
       }
     }
@@ -328,18 +459,15 @@ export default {
         cursor: pointer;
       }
     }
-    .thirdparty-platform {
-      &-list {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 60px;
-      }
-      &-item {
-        width: 61px;
-        height: 61px;
-        background-color: red;
+    .thirdparty-platform-list {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 60px;
+      .svg-icon {
+        font-size: 60px;
         margin: 0 26px;
+        cursor: pointer;
       }
     }
   }

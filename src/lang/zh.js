@@ -1,6 +1,7 @@
 export default {
   route: {
     dashboard: '首页',
+    'proxy-create': '创建代理',
     bill: '账单',
     'bill-rech': '在线充值',
     'bill-consume': '消费记录',

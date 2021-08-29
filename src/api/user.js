@@ -2,7 +2,23 @@ import request from '@/utils/request'
 
 export function login(data) {
   return request({
-    url: '/vue-element-admin/user/login',
+    url: '/api/user/login',
+    method: 'post',
+    data
+  })
+}
+
+export function mobilelogin(data) {
+  return request({
+    url: '/api/user/mobilelogin',
+    method: 'post',
+    data
+  })
+}
+
+export function thirdlogin(data) {
+  return request({
+    url: 'api/user/third',
     method: 'post',
     data
   })
@@ -17,8 +33,8 @@ export function getUserInfo() {
 
 export function logout() {
   return request({
-    url: '/vue-element-admin/user/logout',
-    method: 'post'
+    url: '/api/user/logout',
+    method: 'get'
   })
 }
 
@@ -38,3 +54,18 @@ export function getUserRelist(params) {
   })
 }
 
+export function sendSms(params) {
+  return request({
+    url: '/api/user/send_sms',
+    method: 'get',
+    params
+  })
+}
+
+export function getThirdUrl(params) {
+  return request({
+    url: '/api/user/thirdUrl',
+    method: 'get',
+    params
+  })
+}

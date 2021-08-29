@@ -61,6 +61,12 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/register',
+    name: 'Register',
+    component: () => import('@/views/register'),
+    hidden: true
+  },
+  {
     path: '/404',
     component: () => import('@/views/error-page/404'),
     hidden: true
@@ -84,10 +90,23 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/proxy',
+    component: Layout,
+    redirect: '/proxy/create',
+    children: [
+      {
+        path: 'create',
+        component: () => import('@/views/proxy/create'),
+        name: 'ProxyCreatePage',
+        meta: { title: 'proxy-create', icon: 'chuangjiandaili' }
+      }
+    ]
+  },
+  {
     path: '/bill',
     component: Layout,
     redirect: '/bill/consume',
-    meta: { title: 'bill', icon: 'zhangdan-check' },
+    meta: { title: 'bill', icon: 'zhangdan' },
     children: [
       {
         path: 'rech',
@@ -118,7 +137,7 @@ export const constantRoutes = [
   {
     path: '/certification',
     component: Layout,
-    meta: { title: 'certification', icon: 'shimingrenzheng-check', affix: true },
+    meta: { title: 'certification', icon: 'shimingrenzheng', affix: true },
     children: [
       {
         path: 'personal',
@@ -142,7 +161,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/country_list/index'),
         name: 'CountryListPage',
-        meta: { title: 'countryList', icon: 'guojiadaima-check', affix: true }
+        meta: { title: 'countryList', icon: 'guojiadaima', affix: true }
       }
     ]
   },
@@ -154,7 +173,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/extension/index'),
         name: 'ExtensionPage',
-        meta: { title: 'extension', icon: 'jiangli-check', affix: true }
+        meta: { title: 'extension', icon: 'jiangli', affix: true }
       }
     ]
   },

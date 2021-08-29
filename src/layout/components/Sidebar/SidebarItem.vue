@@ -1,16 +1,35 @@
 <template>
   <div v-if="!item.hidden">
     <template v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow">
-      <app-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
-        <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown':!isNest}">
-          <item :icon="onlyOneChild.meta.icon||(item.meta&&item.meta.icon)" :title="generateTitle(onlyOneChild.meta.title)" />
+      <app-link
+        v-if="onlyOneChild.meta"
+        :to="resolvePath(onlyOneChild.path)"
+      >
+        <el-menu-item
+          ref="menuItem"
+          :index="resolvePath(onlyOneChild.path)"
+          :class="{'submenu-title-noDropdown':!isNest}"
+        >
+          <item
+            :icon="getIcon"
+            :title="generateTitle(onlyOneChild.meta.title)"
+          />
         </el-menu-item>
       </app-link>
     </template>
 
-    <el-submenu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
+    <el-submenu
+      v-else
+      ref="subMenu"
+      :index="resolvePath(item.path)"
+      popper-append-to-body
+    >
       <template slot="title">
-        <item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="generateTitle(item.meta.title)" />
+        <item
+          v-if="item.meta"
+          :icon="getIcon"
+          :title="generateTitle(item.meta.title)"
+        />
       </template>
       <sidebar-item
         v-for="child in item.children"
@@ -36,6 +55,7 @@ export default {
   name: 'SidebarItem',
   components: { Item, AppLink },
   mixins: [FixiOSBug],
+  inject: ['sideBar'],
   props: {
     // route object
     item: {
@@ -55,7 +75,28 @@ export default {
     // To fix https://github.com/PanJiaChen/vue-admin-template/issues/237
     // TODO: refactor with render function
     this.onlyOneChild = null
-    return {}
+    return {
+      isActive: false
+    }
+  },
+  computed: {
+    getIcon() {
+      const { onlyOneChild, item, isActive } = this
+      const icon = onlyOneChild?.meta?.icon || item?.meta?.icon
+      if (isActive && icon) {
+        return `${icon}-check`
+      }
+      return icon
+    }
+  },
+  created() {
+    this.sideBar.$on('setActive', this.setActive)
+  },
+  mounted() {
+    this.setActive()
+  },
+  beforeDestroy() {
+    this.sideBar.$off('setActive', this.setActive)
   },
   methods: {
     hasOneShowingChild(children = [], parent) {
@@ -76,7 +117,7 @@ export default {
 
       // Show parent if there are no child router to display
       if (showingChildren.length === 0) {
-        this.onlyOneChild = { ... parent, path: '', noShowingChildren: true }
+        this.onlyOneChild = { ...parent, path: '', noShowingChildren: true }
         return true
       }
 
@@ -92,7 +133,13 @@ export default {
       return path.resolve(this.basePath, routePath)
     },
 
-    generateTitle
+    generateTitle,
+
+    setActive() {
+      this.$nextTick(() => {
+        this.isActive = (this.$refs.subMenu || this.$refs.menuItem)?.active
+      })
+    }
   }
 }
 </script>
