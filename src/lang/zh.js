@@ -1,8 +1,8 @@
 export default {
   route: {
     dashboard: '首页',
-    'proxy-create': '创建代理',
-    bill: '账单',
+    'proxy-create': '创建向导',
+    bill: '账单管理',
     'bill-rech': '在线充值',
     'bill-consume': '消费记录',
     'bill-relist': '充值记录',
@@ -11,7 +11,7 @@ export default {
     'certification-personal': '个人认证',
     'certification-enterprise': '企业认证',
     countryList: '国家代码',
-    'extension': '推广奖励',
+    'extension': '合伙人计划',
     documentation: '文档',
     guide: '引导页',
     permission: '权限测试页',
@@ -140,7 +140,25 @@ export default {
     checkLoading: '校验中',
     checkSuccess: '校验成功',
     uploadError: '上传失败',
-    uploadSizeError: '上传大小不能超过'
+    uploadSizeError: '上传大小不能超过',
+    more: '更多',
+    close: '关闭'
+  },
+  dashboard: {
+    balance: {
+      title: '金币',
+      goRecharge: '去充值',
+      createGuideTips: `不知道买什么代理，快使用创建向导试试吧~`,
+      createGuide: '创建引导',
+      extensionGuideTips: '郑重的邀请您一起分享蜘蛛IP的发展成果。',
+      extensionGuide: '合伙人计划'
+    },
+    notice: {
+      title: '通知栏'
+    },
+    help: {
+      title: '使用教程'
+    }
   },
   bill: {
     rech: {

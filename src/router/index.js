@@ -85,7 +85,7 @@ export const constantRoutes = [
         path: 'dashboard',
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
-        meta: { title: 'dashboard', icon: 'shouye', affix: true }
+        meta: { title: 'dashboard', icon: 'shouye', activeIcon: 'shouye-check', affix: true }
       }
     ]
   },
@@ -98,7 +98,7 @@ export const constantRoutes = [
         path: 'create',
         component: () => import('@/views/proxy/create'),
         name: 'ProxyCreatePage',
-        meta: { title: 'proxy-create', icon: 'chuangjiandaili' }
+        meta: { title: 'proxy-create', icon: 'chuangjiandaili', activeIcon: 'chuangjiandaili-check' }
       }
     ]
   },
@@ -106,7 +106,7 @@ export const constantRoutes = [
     path: '/bill',
     component: Layout,
     redirect: '/bill/consume',
-    meta: { title: 'bill', icon: 'zhangdan' },
+    meta: { title: 'bill', icon: 'zhangdan', activeIcon: 'zhangdan-check' },
     children: [
       {
         path: 'rech',
@@ -137,7 +137,7 @@ export const constantRoutes = [
   {
     path: '/certification',
     component: Layout,
-    meta: { title: 'certification', icon: 'shimingrenzheng', affix: true },
+    meta: { title: 'certification', icon: 'shimingrenzheng', activeIcon: 'shimingrenzheng-check', affix: true },
     children: [
       {
         path: 'personal',
@@ -161,7 +161,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/country_list/index'),
         name: 'CountryListPage',
-        meta: { title: 'countryList', icon: 'guojiadaima', affix: true }
+        meta: { title: 'countryList', icon: 'guojiadaima', activeIcon: 'guojiadaima-check', affix: true }
       }
     ]
   },
@@ -173,7 +173,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/extension/index'),
         name: 'ExtensionPage',
-        meta: { title: 'extension', icon: 'jiangli', affix: true }
+        meta: { title: 'extension', icon: 'jiangli', activeIcon: 'jiangli-check', affix: true }
       }
     ]
   },

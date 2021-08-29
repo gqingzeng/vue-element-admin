@@ -82,9 +82,10 @@ export default {
   computed: {
     getIcon() {
       const { onlyOneChild, item, isActive } = this
+      const activeIcon = onlyOneChild?.meta?.activeIcon || item?.meta?.activeIcon
       const icon = onlyOneChild?.meta?.icon || item?.meta?.icon
-      if (isActive && icon) {
-        return `${icon}-check`
+      if (isActive && activeIcon) {
+        return activeIcon
       }
       return icon
     }
