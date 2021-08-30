@@ -5,7 +5,6 @@ export function getItem(key) {
 }
 
 export function setItem(key, val) {
-  console.log(key)
   return window.localStorage.setItem(getLocalStorageKey(key), val)
 }
 

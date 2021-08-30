@@ -56,6 +56,9 @@ module.exports = {
       alias: {
         '@': resolve('src')
       }
+    },
+    externals: {
+      initGeetest: 'initGeetest'
     }
   },
   chainWebpack(config) {

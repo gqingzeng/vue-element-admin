@@ -8,3 +8,19 @@ export function getArticle(params) {
     params
   })
 }
+
+export function geetestStart(params) {
+  return request({
+    url: '/api/common/geetestStart',
+    method: 'get',
+    params
+  })
+}
+
+export function geetestValibile(params) {
+  return request({
+    url: '/api/common/geetestValibile',
+    method: 'get',
+    params
+  })
+}

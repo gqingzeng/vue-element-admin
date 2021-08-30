@@ -73,6 +73,7 @@ export default {
       text-align: center;
       border-radius: 50%;
       margin-right: 4px;
+      margin-bottom: 4px;
     }
   }
   .el-button {

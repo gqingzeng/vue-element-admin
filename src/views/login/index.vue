@@ -40,15 +40,7 @@
                 prop="webCaptcha"
                 class="captcha-form-item"
               >
-                <el-input
-                  v-model="loginForm.webCaptcha"
-                  prefix-icon="el-icon-circle-check"
-                  :placeholder="$t('login.captchaPlaceholder')"
-                  @keyup.enter.native="handleLogin"
-                />
-                <div class="captcha-box">
-                  xxx
-                </div>
+                <GeetestBox />
               </el-form-item>
             </template>
           </el-tab-pane>
@@ -85,7 +77,10 @@
           </el-tab-pane>
         </el-tabs>
         <div class="user-box">
-          <router-link to="./register" class="el-link el-link--primary is-underline">{{ $t('login.accountRegister') }}</router-link>
+          <router-link
+            to="./register"
+            class="el-link el-link--primary is-underline"
+          >{{ $t('login.accountRegister') }}</router-link>
           <el-button type="text">{{ $t('login.forgetPassword') }}</el-button>
         </div>
         <div class="login-btn-box">
@@ -119,9 +114,11 @@
 <script>
 import { setItem, getItem, getLocalStorageKey } from '@/utils/localStorage'
 import LangSelect from '@/components/LangSelect'
+import GeetestBox from '@/components/GeetestBox'
 import { sendSms, getThirdUrl } from '@/api/user'
 import openWindow from '@/utils/open-window'
 import { getQueryObject } from '@/utils'
+
 const thirdpartyPlatform = [
   {
     label: 'QQ',
@@ -142,7 +139,7 @@ const thirdpartyPlatform = [
 
 export default {
   name: 'Login',
-  components: { LangSelect },
+  components: { LangSelect, GeetestBox },
   data() {
     const validateAccount = (rule, value, callback) => {
       if (!value) {
@@ -415,22 +412,44 @@ export default {
     }
     .captcha-form-item {
       margin-bottom: 26px;
+
       ::v-deep .el-form-item__content {
         display: flex;
         align-content: center;
+        .captcha-box,
         .el-input {
           flex: 1;
-        }
-        .captcha-box {
-          width: 160px;
-          height: 60px;
-          border-radius: 4px;
-          background: #eeeeee;
-          margin-left: 20px;
         }
         .el-button {
           margin-left: 10px;
           width: 150px;
+        }
+      }
+
+      ::v-deep .geetest_holder.geetest_wind {
+        height: 60px;
+        .geetest_radar_btn,
+        .geetest_success_btn {
+          border-radius: 4px;
+          border-color: #EEEEEE;
+        }
+        .geetest_radar {
+          margin: 15px;
+        }
+        .geetest_radar_tip,
+        .geetest_success_radar_tip {
+          height: 60px;
+          line-height: 60px;
+          padding: 0 60px;
+        }
+        .geetest_logo,
+        .geetest_success_logo {
+          top: 20px;
+          right: 20px;
+        }
+        .geetest_success_btn .geetest_success_box {
+          top: 18px;
+          left: 18px;
         }
       }
     }
