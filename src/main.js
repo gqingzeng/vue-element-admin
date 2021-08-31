@@ -22,7 +22,10 @@ import * as filters from './filters' // global filters
 import '@/assets/iconfont/iconfont'
 
 import Clipboard from '@/directive/clipboard'
-
+import dayjs from 'dayjs'
+import 'dayjs/locale/zh-cn'
+import 'dayjs/locale/en'
+import dayjsLocaleData from 'dayjs/plugin/localeData'
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api
@@ -40,6 +43,8 @@ Vue.use(Element, {
   i18n: (key, value) => i18n.t(key, value)
 })
 
+dayjs.extend(dayjsLocaleData)
+dayjs.locale(i18n.locale)
 // register global utility filters
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])

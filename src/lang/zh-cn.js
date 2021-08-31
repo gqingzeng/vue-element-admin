@@ -158,6 +158,10 @@ export default {
     },
     help: {
       title: '使用教程'
+    },
+    flow: {
+      globalDynamicHouse: '全球动态住宅流量使用',
+      staticHouse: '静态住宅流量使用'
     }
   },
   bill: {

@@ -4,7 +4,7 @@
 
 <script>
 import initGeetest from 'initGeetest'
-import { geetestStart, geetestValibile } from '@/api/common'
+import { geetestStart } from '@/api/common'
 import { mapGetters } from 'vuex'
 export default {
   name: 'GeetestBox',
@@ -56,19 +56,20 @@ export default {
         })
         captchaObj.onSuccess(() => {
           const result = this.getValidate()
-          const {
-            geetest_challenge,
-            geetest_seccode,
-            geetest_validate
-          } = result
-          const params = {
-            challenge: geetest_challenge,
-            seccode: geetest_seccode,
-            validate: geetest_validate
-          }
-          geetestValibile(params).then(res => {
-            console.log(res)
-          })
+          // const {
+          //   geetest_challenge,
+          //   geetest_seccode,
+          //   geetest_validate
+          // } = result
+          // const params = {
+          //   challenge: geetest_challenge,
+          //   seccode: geetest_seccode,
+          //   validate: geetest_validate
+          // }
+          // console.log(JSON.stringify(params))
+          // geetestValibile(params).then(res => {
+          //   console.log(res)
+          // })
           this.$emit('success', result)
         })
         captchaObj.onError(() => {

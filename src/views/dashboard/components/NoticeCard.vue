@@ -2,15 +2,11 @@
   <ProCard>
     <template #header>
       {{ $t('dashboard.notice.title') }}
-      <a
-        class="more-btn"
-        href="#"
-        target="_blank"
-      >{{ $t('globalVar.more') }}</a>
+      <div class="more-btn">{{ $t('globalVar.more') }}</div>
     </template>
     <ul class="notice-list">
       <li
-        v-for="(item, idx) in nothceList"
+        v-for="(item, idx) in listData"
         :key="idx"
         @click="openArticleDetail(item)"
       >
@@ -18,7 +14,10 @@
         <i class="el-icon-arrow-right" />
       </li>
     </ul>
-    <RichTextPreviewDialog ref="richTextPreviewDialogRef" :title="$t('dashboard.notice.title')" />
+    <RichTextPreviewDialog
+      ref="richTextPreviewDialogRef"
+      :title="$t('dashboard.notice.title')"
+    />
   </ProCard>
 </template>
 
@@ -26,27 +25,26 @@
 import ProCard from '@/components/ProCard'
 import { getArticle } from '@/api/common'
 import RichTextPreviewDialog from '@/components/RichTextPreviewDialog'
+import requestListMixins from '@/mixins/requestList'
 export default {
   name: 'NoticeCard',
   components: {
     ProCard,
     RichTextPreviewDialog
   },
+  mixins: [requestListMixins],
   data() {
     return {
-      nothceList: []
+      listFetchApi: getArticle,
+      listQuery: {
+        type: 0
+      }
     }
   },
   created() {
-    this.getArticle()
+    this.fetchData()
   },
   methods: {
-    getArticle() {
-      getArticle({ type: 0 }).then(res => {
-        const { data = [] } = res
-        this.nothceList = data
-      })
-    },
     openArticleDetail(item) {
       this.$refs.richTextPreviewDialogRef.openDialog(item.content)
     }
@@ -55,7 +53,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+.el-card {
+  margin-top: 20px;
+}
 ::v-deep .el-card__header {
   display: flex;
   align-items: center;
@@ -90,7 +90,7 @@ export default {
       background-color: $color-primary;
     }
     & > span {
-      flex: 1 ;
+      flex: 1;
       padding: 0 8px;
       display: block;
     }

@@ -26,11 +26,10 @@
 </template>
 
 <script>
+import dayjs from 'dayjs'
 const languageTextMap = {
-  zh: '中文',
-  en: 'English',
-  es: 'Español',
-  ja: '日本語'
+  'zh-cn': '中文',
+  en: 'English'
 }
 export default {
   name: 'LangSelect',
@@ -54,8 +53,8 @@ export default {
   },
   methods: {
     handleSetLanguage(lang) {
-      console.log(lang)
       this.$i18n.locale = lang
+      dayjs.locale(lang)
       this.$store.dispatch('app/setLanguage', lang)
       this.$message({
         message: 'Switch Language Success',

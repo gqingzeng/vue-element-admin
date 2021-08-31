@@ -55,7 +55,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+.el-card {
+  margin-top: 20px;
+}
 ::v-deep .el-card__header {
   display: flex;
   align-items: center;

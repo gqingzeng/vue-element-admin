@@ -69,3 +69,11 @@ export function getThirdUrl(params) {
     params
   })
 }
+
+export function getAccountFlowList(params) {
+  return request({
+    url: '/api/user/account_flow_list',
+    method: 'get',
+    params
+  })
+}
