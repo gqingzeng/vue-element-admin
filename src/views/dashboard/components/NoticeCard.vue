@@ -1,19 +1,31 @@
 <template>
-  <ProCard>
+  <ProCard v-loading="loading">
     <template #header>
       {{ $t('dashboard.notice.title') }}
-      <div class="more-btn">{{ $t('globalVar.more') }}</div>
+      <div
+        class="more-btn"
+        @click="showMore = true"
+      >{{ $t('globalVar.more') }}</div>
     </template>
     <ul class="notice-list">
-      <li
-        v-for="(item, idx) in listData"
-        :key="idx"
-        @click="openArticleDetail(item)"
-      >
-        <span>{{ item.title }}</span>
-        <i class="el-icon-arrow-right" />
-      </li>
+      <template v-for="(item, idx) in listData">
+        <li
+          v-if="idx < 3 || showMore"
+          :key="idx"
+          @click="openArticleDetail(item)"
+        >
+          <span>{{ item.title }}</span>
+          <i class="el-icon-arrow-right" />
+        </li>
+      </template>
     </ul>
+    <pagination
+      v-if="showMore"
+      v-bind="listPage"
+      layout="total, prev, pager, next"
+      :auto-scroll="false"
+      @pagination="paginationChange"
+    />
     <RichTextPreviewDialog
       ref="richTextPreviewDialogRef"
       :title="$t('dashboard.notice.title')"
@@ -38,7 +50,13 @@ export default {
       listFetchApi: getArticle,
       listQuery: {
         type: 0
-      }
+      },
+      listPage: {
+        total: 0,
+        page: 1,
+        pagesize: 5
+      },
+      showMore: false
     }
   },
   created() {

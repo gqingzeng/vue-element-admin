@@ -6,6 +6,7 @@
       @click="fetchData(true)"
     >{{ $t('globalVar.refresh') }}</el-button>
     <ProTable
+      v-loading="loading"
       :column="tableColumn"
       :data="listData"
     />

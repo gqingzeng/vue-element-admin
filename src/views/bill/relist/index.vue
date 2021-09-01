@@ -2,7 +2,7 @@
   <div class="app-container">
     <ProCard :header="$t('bill.relist.title')">
       <el-button plain icon="el-icon-refresh" @click="fetchData(true)">{{ $t('globalVar.refresh') }}</el-button>
-      <ProTable :column="tableColumn" :data="listData" />
+      <ProTable v-loading="loading" :column="tableColumn" :data="listData" />
       <pagination
         v-bind="listPage"
         @pagination="paginationChange"

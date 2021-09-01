@@ -161,7 +161,9 @@ export default {
     },
     flow: {
       globalDynamicHouse: '全球动态住宅流量使用',
-      staticHouse: '静态住宅流量使用'
+      staticHouse: '静态住宅流量使用',
+      xAxisName: '天数（日）',
+      yAxisName: '流量（GB）'
     }
   },
   bill: {

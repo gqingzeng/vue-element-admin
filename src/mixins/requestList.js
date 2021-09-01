@@ -7,6 +7,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       listQuery: {},
       listData: [],
       listPage: {
@@ -23,9 +24,7 @@ export default {
       if (isReset) {
         this.listPage.page = 1
       }
-      const loading = this.$loading({
-        text: this.$t('globalVar.loading')
-      })
+      this.loading = true
       try {
         const { total, list } = await this.listFetch()
         this.listData = list
@@ -33,7 +32,7 @@ export default {
       } catch (error) {
         this.$message.error(error.message)
       } finally {
-        loading.close()
+        this.loading = false
       }
     },
     listFetch() {

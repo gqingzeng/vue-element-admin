@@ -10,6 +10,7 @@
     </template>
     <ProTable
       ref="table"
+      v-loading="loading"
       row-key="id"
       :column="tableColumn"
       :data="listData"

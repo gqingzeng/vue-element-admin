@@ -1,5 +1,8 @@
 <template>
-  <div ref="captchaBox" class="captcha-box" />
+  <div
+    ref="captchaBox"
+    class="captcha-box"
+  />
 </template>
 
 <script>
@@ -13,6 +16,18 @@ export default {
     width: {
       type: String,
       default: '100%'
+    },
+    challenge: {
+      type: String,
+      default: ''
+    },
+    seccode: {
+      type: String,
+      default: ''
+    },
+    validate: {
+      type: String,
+      default: ''
     }
   },
   data() {
@@ -56,11 +71,11 @@ export default {
         })
         captchaObj.onSuccess(() => {
           const result = this.getValidate()
-          // const {
-          //   geetest_challenge,
-          //   geetest_seccode,
-          //   geetest_validate
-          // } = result
+          const {
+            geetest_challenge,
+            geetest_seccode,
+            geetest_validate
+          } = result
           // const params = {
           //   challenge: geetest_challenge,
           //   seccode: geetest_seccode,
@@ -71,6 +86,9 @@ export default {
           //   console.log(res)
           // })
           this.$emit('success', result)
+          this.$emit('update:challenge', geetest_challenge)
+          this.$emit('update:seccode', geetest_seccode)
+          this.$emit('update:validate', geetest_validate)
         })
         captchaObj.onError(() => {
           this.$emit('error')

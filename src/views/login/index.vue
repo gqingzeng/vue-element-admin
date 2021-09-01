@@ -37,10 +37,14 @@
                 />
               </el-form-item>
               <el-form-item
-                prop="webCaptcha"
+                prop="challenge"
                 class="captcha-form-item"
               >
-                <GeetestBox />
+                <GeetestBox
+                  :challenge.sync="loginForm.challenge"
+                  :seccode.sync="loginForm.seccode"
+                  :validate.sync="loginForm.validate"
+                />
               </el-form-item>
             </template>
           </el-tab-pane>
@@ -185,14 +189,16 @@ export default {
       loginForm: {
         account: 'aniutest',
         password: '123123.0',
-        webCaptcha: 'xxx',
+        challenge: '',
+        seccode: '',
+        validate: '',
         mobile: '',
         captcha: ''
       },
       loginRules: {
         account: [{ required: true, trigger: 'blur', validator: validateAccount }],
         password: [{ required: true, trigger: 'blur', validator: validatePassword }],
-        webCaptcha: [{ required: true, trigger: 'blur', validator: validateWebCaptcha }],
+        challenge: [{ required: true, trigger: 'blur', validator: validateWebCaptcha }],
         mobile: [{ required: true, trigger: 'blur', validator: validateMobile }],
         captcha: [{ required: true, trigger: 'blur', validator: validateCaptcha }]
       },
@@ -230,14 +236,18 @@ export default {
           const {
             account,
             password,
-            webCaptcha,
+            challenge,
+            seccode,
+            validate,
             mobile,
             captcha
           } = loginForm
-          console.log(webCaptcha)
           let params = {
             account,
-            password
+            password,
+            challenge,
+            seccode,
+            validate
           }
           let dispatchUrl = 'user/login'
           if (loginModel === 'captcha') {
@@ -431,7 +441,7 @@ export default {
         .geetest_radar_btn,
         .geetest_success_btn {
           border-radius: 4px;
-          border-color: #EEEEEE;
+          border-color: #eeeeee;
         }
         .geetest_radar {
           margin: 15px;

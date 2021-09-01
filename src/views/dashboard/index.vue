@@ -11,13 +11,10 @@
         <FlowCard type="staticHouse" />
       </el-col>
     </el-row>
-    <component :is="currentRole" />
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import adminDashboard from './admin'
 import BalanceCard from './components/BalanceCard'
 import HelpCard from './components/HelpCard'
 import NoticeCard from './components/NoticeCard'
@@ -25,7 +22,6 @@ import FlowCard from './components/FlowCard'
 export default {
   name: 'Dashboard',
   components: {
-    adminDashboard,
     BalanceCard,
     NoticeCard,
     HelpCard,
@@ -33,13 +29,7 @@ export default {
   },
   data() {
     return {
-      currentRole: 'adminDashboard'
     }
-  },
-  computed: {
-    ...mapGetters([
-      'roles'
-    ])
   },
   created() {
   }

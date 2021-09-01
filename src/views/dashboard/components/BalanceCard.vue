@@ -16,11 +16,15 @@
     <div class="footer">
       <div class="box warning">
         <div class="tips">{{ $t('dashboard.balance.createGuideTips') }}</div>
-        <el-button type="warning">{{ $t('dashboard.balance.createGuide') }}</el-button>
+        <router-link :to="{name: 'ProxyCreatePage'}">
+          <el-button type="warning">{{ $t('dashboard.balance.createGuide') }}</el-button>
+        </router-link>
       </div>
       <div class="box info">
         <div class="tips">{{ $t('dashboard.balance.extensionGuideTips') }}</div>
-        <el-button type="info">{{ $t('dashboard.balance.extensionGuide') }}</el-button>
+        <router-link :to="{name: 'ExtensionPage'}">
+          <el-button type="info">{{ $t('dashboard.balance.extensionGuide') }}</el-button>
+        </router-link>
       </div>
     </div>
   </ProCard>
