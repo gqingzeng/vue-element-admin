@@ -1,5 +1,5 @@
 <template>
-  <ProCard>
+  <ProCard v-loading="loading">
     <template #header>
       {{ $t(`dashboard.flow.${type}`) }}
       <div class="date-box">
@@ -52,7 +52,8 @@ export default {
   data() {
     return {
       time: dayjs().format('YYYY-MM'),
-      chart: null
+      chart: null,
+      loading: false
     }
   },
   created() {
@@ -72,6 +73,7 @@ export default {
         type: typeMap[type],
         time
       }
+      this.loading = true
       getAccountFlowList(params).then(res => {
         const { data = {}} = res
         const { rows = [] } = data
@@ -80,6 +82,8 @@ export default {
           return [time, flow]
         })
         this.setOptions(seriesData)
+      }).finally(() => {
+        this.loading = false
       })
     },
     setOptions(seriesData) {
