@@ -166,6 +166,31 @@ export default {
       yAxisName: '流量（GB）'
     }
   },
+  proxy: {
+    create: {
+      documentation: {
+        title: '说明文档导航'
+      },
+      search: {
+        title: '创建代理',
+        businessType: '业务类型',
+        useCase: '使用场景',
+        targetWebSiteName: '目标网站名',
+        purpose: '用途',
+        ipTime: 'IP时长',
+        quantityPerDay: '每天需要的数量',
+        useDevice: '使用设备',
+        onlineQuantity: '同时在线数量',
+        createProxyBtn: '创建代理信息'
+      },
+      recommend: {
+        title: '根据您的业务需求，推荐您使用',
+        proxyType: '代理类型',
+        chargingType: '计费方式',
+        otherRecommendTitle: '您也可以尝试其他的代理产品'
+      }
+    }
+  },
   bill: {
     rech: {
       title: '在线充值',

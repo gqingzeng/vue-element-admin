@@ -21,7 +21,7 @@
 
 <script>
 import * as echarts from 'echarts/core'
-import { GridComponent } from 'echarts/components'
+import { GridComponent, TooltipComponent } from 'echarts/components'
 import { LineChart } from 'echarts/charts'
 import { CanvasRenderer } from 'echarts/renderers'
 import dayjs from 'dayjs'
@@ -31,7 +31,7 @@ import variables from '@/styles/variables.scss'
 import resizeChartMixins from '@/mixins/resizeChart'
 
 echarts.use(
-  [GridComponent, LineChart, CanvasRenderer]
+  [GridComponent, TooltipComponent, LineChart, CanvasRenderer]
 )
 const typeMap = {
   globalDynamicHouse: 0,

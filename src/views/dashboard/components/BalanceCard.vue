@@ -17,13 +17,19 @@
       <div class="box warning">
         <div class="tips">{{ $t('dashboard.balance.createGuideTips') }}</div>
         <router-link :to="{name: 'ProxyCreatePage'}">
-          <el-button type="warning">{{ $t('dashboard.balance.createGuide') }}</el-button>
+          <el-button type="warning">
+            {{ $t('dashboard.balance.createGuide') }}
+            <i class="el-icon-arrow-right" />
+          </el-button>
         </router-link>
       </div>
       <div class="box info">
         <div class="tips">{{ $t('dashboard.balance.extensionGuideTips') }}</div>
         <router-link :to="{name: 'ExtensionPage'}">
-          <el-button type="info">{{ $t('dashboard.balance.extensionGuide') }}</el-button>
+          <el-button type="info">
+            {{ $t('dashboard.balance.extensionGuide') }}
+            <i class="el-icon-arrow-right" />
+          </el-button>
         </router-link>
       </div>
     </div>

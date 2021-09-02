@@ -24,3 +24,11 @@ export function geetestValibile(params) {
     params
   })
 }
+
+export function guideList(params) {
+  return request({
+    url: '/api/common/guideList',
+    method: 'get',
+    params
+  })
+}
