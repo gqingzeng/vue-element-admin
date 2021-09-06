@@ -311,7 +311,7 @@ export default {
         const { data } = res
         const { url } = data
         setItem('thirdpartLoginPlatform', platform)
-        openWindow(url, platform, 540, 540)
+        openWindow(url, platform, 600, 600)
       }).catch(() => {
       }).finally(() => {
         loading.close()

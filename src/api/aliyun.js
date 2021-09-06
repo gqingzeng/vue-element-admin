@@ -32,3 +32,11 @@ export function aliyunResultInfor(data) {
     __tips: false
   })
 }
+
+export function aliyunVerifyOwner(data) {
+  return request({
+    url: '/api/aliyun/verifyOwner',
+    method: 'post',
+    data
+  })
+}

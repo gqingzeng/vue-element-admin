@@ -1,5 +1,6 @@
 <template>
   <el-upload
+    v-loading="loading"
     :action="action"
     :show-file-list="showFileList"
     :accept="accept"
@@ -8,7 +9,7 @@
       access_token
     }"
     :on-success="handleSuccess"
-    :on-error="onError"
+    :on-error="handleError"
     :before-upload="beforeUpload"
     v-bind="$attrs"
     v-on="$listeners"
@@ -62,7 +63,7 @@ export default {
   },
   data() {
     return {
-
+      loading: false
     }
   },
   computed: {
@@ -79,17 +80,24 @@ export default {
         this.$message.error(msg || this.$t('globalVar.uploadError'))
         onError && onError(msg, file, fileList)
       }
+      this.loading = false
+    },
+    handleError(err, file, fileList) {
+      const { onError } = this
+      onError && onError(err, file, fileList)
+      this.loading = false
     },
     beforeUpload(file) {
       const { size } = this
       if (size) {
-        const isStandard = file.size <= size
+        const illegal = file.size > size
         const mUnit = size / 1024 / 1024
-        if (isStandard) {
+        if (illegal) {
           this.$message.error(`${this.$t('globalVar.uploadSizeError')} ${mUnit}M!`)
           return false
         }
       }
+      this.loading = true
       return true
     }
   }

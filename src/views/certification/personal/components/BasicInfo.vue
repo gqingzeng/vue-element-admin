@@ -104,7 +104,7 @@ export default {
         if (valid) {
           const { formData } = this
           const loading = this.$loading({
-            text: this.$t('certification.personal.basicInfo.checkLoading')
+            text: this.$t('globalVar.checkLoading')
           })
           aliyunCheck(formData).then(res => {
             this.$emit('updateStep', 2, formData)

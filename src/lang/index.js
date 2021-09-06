@@ -4,7 +4,6 @@ import Cookies from 'js-cookie'
 import elementZhLocale from 'element-ui/lib/locale/lang/zh-CN'// element-ui lang
 import elementEnLocale from 'element-ui/lib/locale/lang/en' // element-ui lang
 import zhLocale from './zh-cn'
-import enLocale from './en'
 
 Vue.use(VueI18n)
 
@@ -14,7 +13,6 @@ const messages = {
     ...elementZhLocale
   },
   en: {
-    ...enLocale,
     ...elementEnLocale
   }
 }

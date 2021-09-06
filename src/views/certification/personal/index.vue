@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <ProCard :header="$t('certification.personal.title')">
-      <ProSteps :active="activeStep" simple>
+      <ProSteps :active="activeStep">
         <ProStep :title="$t('certification.personal.step1')" />
         <ProStep :title="$t('certification.personal.step2')" />
         <ProStep :title="$t('certification.personal.step3')" />
