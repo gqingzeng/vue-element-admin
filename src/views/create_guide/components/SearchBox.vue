@@ -71,7 +71,7 @@
 
 <script>
 import ProCard from '@/components/ProCard'
-import { guideList } from '@/api/common'
+import { getGuideList } from '@/api/common'
 export default {
   name: 'SearchBox',
   components: {
@@ -94,12 +94,12 @@ export default {
     }
   },
   created() {
-    this.guideList()
+    this.getGuideList()
   },
   methods: {
-    guideList() {
+    getGuideList() {
       this.loading = true
-      guideList().then(res => {
+      getGuideList().then(res => {
         const { data = [] } = res
         this.purposeTreeList = data
       }).finally(() => {

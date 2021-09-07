@@ -129,6 +129,15 @@ export default {
       otherRecommendTitle: '您也可以尝试其他的代理产品'
     }
   },
+  product: {
+    globalDynamicHouse: {
+      title: '全球动态住宅',
+      tab: {
+        flow: '流量计费',
+        month: '包月'
+      }
+    }
+  },
   bill: {
     rech: {
       title: '在线充值',

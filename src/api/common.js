@@ -25,9 +25,17 @@ export function geetestValibile(params) {
   })
 }
 
-export function guideList(params) {
+export function getGuideList(params) {
   return request({
     url: '/api/common/guideList',
+    method: 'get',
+    params
+  })
+}
+
+export function getStatics(params) {
+  return request({
+    url: '/api/common/statics',
     method: 'get',
     params
   })
