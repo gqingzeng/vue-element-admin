@@ -139,6 +139,12 @@ export const constantRoutes = [
         meta: { title: 'bill-rech', affix: true }
       },
       {
+        path: 'rech-redirect',
+        component: () => import('@/views/bill/rech/redirect'),
+        name: 'RechRedirectPage',
+        hidden: true
+      },
+      {
         path: 'relist',
         component: () => import('@/views/bill/relist'),
         name: 'BillRelistPage',

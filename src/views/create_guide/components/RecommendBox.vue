@@ -1,50 +1,56 @@
 <template>
   <ProCard :header="$t('createGuide.recommend.title')">
-    <div class="field-item">
-      <div class="field-item-label">
-        {{ $t('createGuide.recommend.proxyType') }}：
-      </div>
-      <div class="field-item-content">
-        <div class="select-list">
-          <div
-            v-for="item in proxyTypeList"
-            :key="item"
-            class="select-item"
-            :class="{
-              active: formData.proxyType === item
-            }"
-            @click="handleSetFormData(item,'proxyType')"
-          >{{ item }}</div>
+    <template v-if="proxyTypeList.length">
+      <div class="field-item">
+        <div class="field-item-label">
+          {{ $t('createGuide.recommend.proxyType') }}：
+        </div>
+        <div class="field-item-content">
+          <div class="select-list">
+            <div
+              v-for="item in proxyTypeList"
+              :key="item.key"
+              class="select-item"
+              :class="{
+                active: formData.type === item.key
+              }"
+              @click="handleSetFormData(item.key,'type')"
+            >{{ $t(`createGuide.recommend.${item.name}`) }}</div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="field-item">
-      <div class="field-item-label">
-        {{ $t('createGuide.recommend.chargingType') }}：
-      </div>
-      <div class="field-item-content">
-        <div class="select-list">
-          <div
-            v-for="item in chargingTypeList"
-            :key="item"
-            class="select-item"
-            :class="{
-              active: formData.chargingType === item
-            }"
-            @click="handleSetFormData(item,'chargingType')"
-          >{{ item }}</div>
+      <div class="field-item">
+        <div class="field-item-label">
+          {{ $t('createGuide.recommend.chargingType') }}：
+        </div>
+        <div class="field-item-content">
+          <div class="select-list">
+            <div
+              v-for="item in proxyStatusList"
+              :key="item.key"
+              class="select-item"
+              :class="{
+                active: formData.status === item.key
+              }"
+              @click="handleSetFormData(item.key,'chargingType')"
+            >{{ $t(`createGuide.recommend.${item.name}`) }}</div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="package-list">
-      <div class="package-item">
-        xxx
+      <div class="package-list">
+        <div class="package-item">
+          xxx
+        </div>
       </div>
-    </div>
+    </template>
     <div class="field-item other-recommend">
       <div class="field-item-label">{{ $t('createGuide.recommend.otherRecommendTitle') }}：</div>
       <div class="field-item-content">
-        <el-button v-for="item in chargingTypeList" :key="item" type="primary">{{ item }}</el-button>
+        <el-button
+          v-for="item in chargingTypeList"
+          :key="item"
+          type="primary"
+        >{{ item }}</el-button>
       </div>
     </div>
   </ProCard>
@@ -52,11 +58,11 @@
 
 <script>
 import ProCard from '@/components/ProCard'
-const proxyTypeList = [
-  '全球动态住宅',
-  '全球静态住宅',
-  '全球数据中心'
-]
+import {
+  PROXY_TYPE_LIST,
+  PROXY_STATUS_LIST
+} from '@/constant/proxy'
+
 const chargingTypeList = [
   '按时间计费',
   '按流量计费',
@@ -66,17 +72,45 @@ export default {
   components: {
     ProCard
   },
+  props: {
+    type: {
+      type: Array,
+      default: () => []
+    },
+    status: {
+      type: Array,
+      default: () => []
+    }
+  },
   data() {
     return {
-      proxyTypeList,
       chargingTypeList,
       formData: {
-        proxyType: '全球动态住宅',
-        chargingType: '按时间计费'
+        type: '',
+        status: ''
       }
     }
   },
+  computed: {
+    proxyTypeList() {
+      const { type = [] } = this
+      return PROXY_TYPE_LIST.filter(item => type.includes(item.key))
+    },
+    proxyStatusList() {
+      const { status = [] } = this
+      return PROXY_STATUS_LIST.filter(item => status.includes(item.key))
+    }
+  },
   methods: {
+    initData() {
+      this.$nextTick(() => {
+        const { proxyTypeList, proxyStatusList } = this
+        const [defaultTypeObj = {}] = proxyTypeList
+        const [defaultStatusObj = {}] = proxyStatusList
+        this.formData.type = defaultTypeObj.key
+        this.formData.status = defaultStatusObj.key
+      })
+    },
     handleSetFormData(val, key) {
       this.formData[key] = val
     }
@@ -126,9 +160,11 @@ export default {
     }
   }
 }
+.package-list {
+  border-bottom: 1px solid $border-color;
+}
 .other-recommend {
   height: 80px;
-  border-top: 1px solid $border-color;
   .field-item-label {
     color: $color-primary;
     font-weight: bold;

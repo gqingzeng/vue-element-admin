@@ -5,7 +5,7 @@ export default {
     product: '代理产品',
     'product-globalDynamicHouse': '全球动态住宅',
     'product-globalStaticHouse': '全球静态住宅',
-    'product-globalComputerRoom': '全球静态机房IP',
+    'product-globalComputerRoom': '全球数据中心',
     'product-chinaStatic': '中国静态IP',
     bill: '账单管理',
     'bill-rech': '在线充值',
@@ -120,13 +120,26 @@ export default {
       quantityPerDay: '每天需要的IP数量',
       useDevice: '使用设备',
       onlineQuantity: '同时在线IP数量',
-      createProxyBtn: '创建代理信息'
+      createProxyBtn: '创建代理信息',
+      flow: '每月使用的流量',
+      purposePlaceholder: '请选择用途',
+      ipTimePlaceholder: '请输入IP时长',
+      quantityPerDayPlaceholder: '请输入每天需要的IP数量',
+      useDevicePlaceholder: '请选择用途使用设备',
+      onlineQuantityPlaceholder: '请输入同时在线IP数量',
+      flowPlaceholder: '请输入每月使用的流量'
     },
     recommend: {
       title: '根据您的业务需求，推荐您使用',
       proxyType: '代理类型',
       chargingType: '计费方式',
-      otherRecommendTitle: '您也可以尝试其他的代理产品'
+      otherRecommendTitle: '您也可以尝试其他的代理产品',
+      globalDynamicHouse: '全球动态住宅',
+      globalStaticHouse: '全球静态住宅',
+      globalComputerRoom: '全球数据中心',
+      flow: '按流量计费',
+      time: '按时间计费',
+      ipNum: '按IP数量计费'
     }
   },
   product: {

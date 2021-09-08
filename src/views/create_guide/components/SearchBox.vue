@@ -4,62 +4,91 @@
     :header="$t('createGuide.search.title')"
   >
     <el-form
+      ref="formRule"
       label-position="top"
       inline
+      :model="formData"
+      :rules="formRules"
     >
       <div class="form-item-group">
         <el-form-item
           :label="$t('createGuide.search.purpose')"
-          prop="businessType"
+          prop="guide_id"
           class="purpose-form-item"
-          required
         >
           <el-cascader
-            v-model="formData.businessType"
+            v-model="formData.guide_id"
             :options="purposeTreeList"
             :props="{
               children: 'tree',
               value: 'id',
-              label: 'name'
+              label: 'name',
+              emitPath: false,
             }"
           />
         </el-form-item>
         <el-form-item
-          :label="$t('createGuide.search.targetWebSiteName')"
-          prop="targetWebSiteName"
+          :label="$t('createGuide.search.ipTime')"
+          prop="ip_timelen"
         >
-          <el-input v-model="formData.targetWebSiteName" />
+          <el-input
+            v-model="formData.ip_timelen"
+            type="number"
+          />
         </el-form-item>
         <el-form-item
-          :label="$t('createGuide.search.ipTime')"
-          prop="ipTime"
+          :label="$t('createGuide.search.quantityPerDay')"
+          prop="ip_num"
         >
-          <el-input v-model="formData.ipTime" />
+          <el-input
+            v-model="formData.ip_num"
+            type="number"
+          />
+        </el-form-item>
+        <el-form-item
+          :label="$t('createGuide.search.flow')"
+          prop="bill"
+        >
+          <el-input
+            v-model="formData.bill"
+            type="number"
+          />
         </el-form-item>
       </div>
       <div class="form-item-group">
         <el-form-item
-          :label="$t('createGuide.search.quantityPerDay')"
-          prop="quantityPerDay"
+          :label="$t('createGuide.search.onlineQuantity')"
+          prop="ip_online"
         >
-          <el-input v-model="formData.quantityPerDay" />
+          <el-input
+            v-model="formData.ip_online"
+            type="number"
+          />
         </el-form-item>
         <el-form-item
           :label="$t('createGuide.search.useDevice')"
-          prop="useDevice"
+          prop="device"
         >
-          <el-select v-model="formData.useDevice" />
+          <el-select v-model="formData.device">
+            <el-option
+              v-for="item in deviceList"
+              :key="item"
+              :label="item"
+              :value="item"
+            />
+          </el-select>
         </el-form-item>
         <el-form-item
-          :label="$t('createGuide.search.onlineQuantity')"
-          prop="onlineQuantity"
+          :label="$t('createGuide.search.targetWebSiteName')"
+          prop="name"
         >
-          <el-input v-model="formData.onlineQuantity" />
+          <el-input v-model="formData.name" />
         </el-form-item>
         <el-form-item label=" ">
           <el-button
             type="primary"
             class="el-icon-search"
+            @click="handleSumbit"
           >
             {{ $t('createGuide.search.createProxyBtn') }}
           </el-button>
@@ -72,6 +101,7 @@
 <script>
 import ProCard from '@/components/ProCard'
 import { getGuideList } from '@/api/common'
+import { userGuide } from '@/api/set_meal'
 export default {
   name: 'SearchBox',
   components: {
@@ -81,16 +111,36 @@ export default {
     return {
       loading: false,
       formData: {
-        businessType: '',
-        useCase: '',
-        targetWebSiteName: '',
-        purpose: '',
-        ipTime: '',
-        quantityPerDay: '',
-        useDevice: '',
-        onlineQuantity: ''
+        guide_id: '',
+        name: '',
+        ip_timelen: '',
+        ip_num: '',
+        device: '',
+        ip_online: '',
+        bill: ''
       },
-      purposeTreeList: []
+      formRules: {
+        guide_id: [
+          { required: true, message: this.$t('createGuide.search.purposePlaceholder'), trigger: 'blur' }
+        ],
+        ip_timelen: [
+          { required: true, message: this.$t('createGuide.search.ipTimePlaceholder'), trigger: 'blur' }
+        ],
+        ip_num: [
+          { required: true, message: this.$t('createGuide.search.quantityPerDayPlaceholder'), trigger: 'blur' }
+        ],
+        device: [
+          { required: true, message: this.$t('createGuide.search.useDevicePlaceholder'), trigger: 'blur' }
+        ],
+        ip_online: [
+          { required: true, message: this.$t('createGuide.search.onlineQuantityPlaceholder'), trigger: 'blur' }
+        ],
+        bill: [
+          { required: true, message: this.$t('createGuide.search.flowPlaceholder'), trigger: 'blur' }
+        ]
+      },
+      purposeTreeList: [],
+      deviceList: []
     }
   },
   created() {
@@ -100,10 +150,27 @@ export default {
     getGuideList() {
       this.loading = true
       getGuideList().then(res => {
-        const { data = [] } = res
-        this.purposeTreeList = data
+        const { data = {}} = res
+        const { guide = [], device = [] } = data
+        this.purposeTreeList = guide
+        this.deviceList = device
       }).finally(() => {
         this.loading = false
+      })
+    },
+    handleSumbit() {
+      this.$refs.formRule.validate((valid) => {
+        if (valid) {
+          const { formData } = this
+          this.loading = true
+          userGuide(formData).then(res => {
+            const { data } = res
+            const { type = [], status = [] } = data
+            this.$emit('confirm', { type, status })
+          }).finally(() => {
+            this.loading = false
+          })
+        }
       })
     }
   }
@@ -131,9 +198,9 @@ export default {
     margin-left: 20px;
   }
 
-  &.purpose-form-item {
+  /* &.purpose-form-item {
     width: calc((100% - 20px) / 2);
-  }
+  } */
   .el-cascader,
   .el-button,
   .el-input,

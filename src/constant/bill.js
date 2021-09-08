@@ -2,17 +2,17 @@ import { constantToMap, constantToList } from '@/utils'
 
 const rechTypeSourceMap = {
   WECHART: {
-    key: 'WeChat',
+    key: 0,
     name: 'WeChat',
     icon: 'weixin'
   },
   ALIPAY: {
-    key: 'Alipay',
+    key: 1,
     name: 'Alipay',
     icon: 'zhifubao1'
   },
   CDKEY: {
-    key: 'CDKEY',
+    key: 2,
     name: 'CDKEY',
     icon: 'kami'
   }

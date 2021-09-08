@@ -77,3 +77,12 @@ export function getAccountFlowList(params) {
     params
   })
 }
+
+export function wechatAliyun(data) {
+  return request({
+    url: '/api/user/wechatAliyun',
+    method: 'post',
+    data
+  })
+}
+

@@ -1,13 +1,21 @@
 <template>
   <div class="app-container">
-    <SearchBox />
-    <RecommendBox />
+    <SearchBox @confirm="handleConfirm" />
+    <RecommendBox
+      ref="recommendBoxRef"
+      :type="type"
+      :status="status"
+    />
     <div class="documentation-nav">
       <div class="documentation-nav-title">
         {{ $t('createGuide.documentation.title') }}
       </div>
       <div class="documentation-nav-list">
-        <div v-for="item in documentationNavList" :key="item" class="documentation-nav-item">
+        <div
+          v-for="item in documentationNavList"
+          :key="item"
+          class="documentation-nav-item"
+        >
           {{ item }}
         </div>
       </div>
@@ -29,11 +37,17 @@ export default {
       documentationNavList: [
         '关于在线充值的说明',
         '关于全球静态住宅的说明'
-      ]
+      ],
+      type: [],
+      status: []
     }
   },
   methods: {
-
+    handleConfirm({ type, status }) {
+      this.type = type
+      this.status = status
+      this.$refs.recommendBoxRef.initData()
+    }
   }
 }
 </script>

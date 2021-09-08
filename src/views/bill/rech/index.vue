@@ -1,13 +1,18 @@
 <template>
   <div class="app-container">
     <ProCard :header="$t('bill.rech.title')">
-      <el-form label-position="top">
+      <el-form
+        ref="formRule"
+        label-position="top"
+        :model="formData"
+        :rules="formRules"
+      >
         <el-form-item
           v-if="formData.type === RECH_TYPE.CDKEY"
           :label="$t('globalVar.CDKEY')"
         >
           <el-input
-            v-model.number="formData.CDKEY"
+            v-model.number="formData.cardno"
             class="money-input"
             :placeholder="$t('globalVar.CDKEYPlaceholder')"
           />
@@ -70,8 +75,10 @@
         </el-form-item>
       </el-form>
       <el-button
+        :loading="loading"
         type="primary"
         class="rech-btn"
+        @click="handleSubmit"
       >{{ $t('bill.rech.rechBtnText') }}</el-button>
     </ProCard>
   </div>
@@ -80,6 +87,8 @@
 <script>
 import ProCard from '@/components/ProCard'
 import { RECH_TYPE, RECH_TYPE_LIST } from '@/constant/bill'
+import { wechatAliyun } from '@/api/user'
+import openWindow from '@/utils/open-window'
 export default {
   name: 'BillRechPage',
   components: {
@@ -91,10 +100,19 @@ export default {
       RECH_TYPE_LIST,
       presetMoneyList: [20, 30, 40, 100, 150],
       formData: {
-        CDKEY: '',
         money: 30,
+        cardno: '',
         type: RECH_TYPE.WECHART
-      }
+      },
+      formRules: {
+        money: [
+          { required: true, message: this.$t('globalVar.amountOfMoneyPlaceholder'), trigger: 'blur' }
+        ],
+        cardno: [
+          { required: true, message: this.$t('globalVar.CDKEYPlaceholder'), trigger: 'blur' }
+        ]
+      },
+      loading: false
     }
   },
   created() {
@@ -105,6 +123,25 @@ export default {
     },
     setRechType(type) {
       this.formData.type = type
+    },
+    handleSubmit() {
+      this.$refs.formRule.validate((valid) => {
+        if (valid) {
+          const { formData } = this
+          this.loading = true
+          wechatAliyun(formData).then(res => {
+            console.log(res)
+            const { type } = formData
+            if (type !== RECH_TYPE.CDKEY) {
+              const { data } = res
+              const { code_url } = data
+              openWindow(code_url, 700, 700)
+            }
+          }).finally(() => {
+            this.loading = false
+          })
+        }
+      })
     }
   }
 }
