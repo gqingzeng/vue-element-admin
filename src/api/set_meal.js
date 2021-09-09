@@ -8,9 +8,9 @@ export function userGuide(data) {
   })
 }
 
-export function recharge(data) {
+export function getPackageSelect(data) {
   return request({
-    url: '/api/set_meal/recharge',
+    url: '/api/set_meal/packageSelect',
     method: 'post',
     data
   })

@@ -138,8 +138,9 @@ export default {
       globalStaticHouse: '全球静态住宅',
       globalComputerRoom: '全球数据中心',
       flow: '按流量计费',
-      time: '按时间计费',
-      ipNum: '按IP数量计费'
+      time: '包月计费',
+      ipNum: '按IP数量计费',
+      ipTotalDesc: '9800w+ip池'
     }
   },
   product: {

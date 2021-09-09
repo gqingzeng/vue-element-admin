@@ -1,15 +1,15 @@
 import { constantToMap, constantToList } from '@/utils'
 
 const proxyTypeSourceMap = {
-  globalDynamicHouse: {
+  GLOBAL_DYNAMIC_HOUSE: {
     key: 0,
     name: 'globalDynamicHouse'
   },
-  globalStaticHouse: {
+  GLOBAL_STATIC_HOUSE: {
     key: 1,
     name: 'globalStaticHouse'
   },
-  globalComputerRoom: {
+  GLOBAL_COMPUTER_ROOM: {
     key: 2,
     name: 'globalComputerRoom'
   }
@@ -20,15 +20,15 @@ export const PROXY_TYPE = constantToMap(proxyTypeSourceMap)
 export const PROXY_TYPE_LIST = constantToList(proxyTypeSourceMap)
 
 const proxyStatusSourceMap = {
-  flow: {
+  FLOW: {
     key: 0,
     name: 'flow'
   },
-  time: {
+  TIME: {
     key: 1,
     name: 'time'
   },
-  ipNum: {
+  IP_NUM: {
     key: 2,
     name: 'ipNum'
   }
