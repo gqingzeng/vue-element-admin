@@ -12,7 +12,7 @@
           :label="$t('globalVar.CDKEY')"
         >
           <el-input
-            v-model.number="formData.cardno"
+            v-model="formData.cardno"
             class="money-input"
             :placeholder="$t('globalVar.CDKEYPlaceholder')"
           />
@@ -85,10 +85,13 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import ProCard from '@/components/ProCard'
 import { RECH_TYPE, RECH_TYPE_LIST } from '@/constant/bill'
 import { wechatAliyun } from '@/api/user'
 import openWindow from '@/utils/open-window'
+import { getLocalStorageKey } from '@/utils/localStorage'
+import { getQueryObject, getLocationHost } from '@/utils'
 export default {
   name: 'BillRechPage',
   components: {
@@ -102,7 +105,9 @@ export default {
       formData: {
         money: 30,
         cardno: '',
-        type: RECH_TYPE.WECHART
+        type: RECH_TYPE.WECHART,
+        method: 'web',
+        returnurl: `${getLocationHost()}${this.$router.resolve({ name: 'RechRedirectPage' }).href}`
       },
       formRules: {
         money: [
@@ -116,8 +121,13 @@ export default {
     }
   },
   created() {
+    window.addEventListener('storage', this.handleRechargeCallback)
+  },
+  destroyed() {
+    window.removeEventListener('storage', this.handleRechargeCallback)
   },
   methods: {
+    ...mapActions('user', ['getUserInfo']),
     setRechMoney(money) {
       this.formData.money = money
     },
@@ -130,18 +140,30 @@ export default {
           const { formData } = this
           this.loading = true
           wechatAliyun(formData).then(res => {
-            console.log(res)
             const { type } = formData
-            if (type !== RECH_TYPE.CDKEY) {
+            if (type === RECH_TYPE.CDKEY) {
+              this.$message.success(this.$t('bill.rech.rechSuccess'))
+              this.getUserInfo()
+            } else {
               const { data } = res
-              const { code_url } = data
-              openWindow(code_url, 700, 700)
+              const { url } = data
+              openWindow(url, this.$t('bill.rech.title'), 900, 650)
             }
           }).finally(() => {
             this.loading = false
           })
         }
       })
+    },
+    handleRechargeCallback(event) {
+      if (event.key === getLocalStorageKey('rechRedirectPageCallback')) {
+        console.log(getQueryObject(event.newValue))
+        const { orderid } = getQueryObject(event.newValue)
+        if (orderid) {
+          this.$message.success(this.$t('bill.rech.rechSuccess'))
+          this.getUserInfo()
+        }
+      }
     }
   }
 }

@@ -5,7 +5,7 @@
     :rules="formRules"
     label-position="top"
   >
-    <el-form-item :label="$t('certification.personal.basicInfo.country')">
+    <el-form-item :label="$t('globalVar.country')">
       <el-input
         readonly
         :value="$t('certification.personal.basicInfo.countryPlaceholder')"

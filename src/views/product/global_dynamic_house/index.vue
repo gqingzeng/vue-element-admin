@@ -1,6 +1,17 @@
 <template>
   <div class="app-container">
-    <ProCard :header="$t('product.globalDynamicHouse.title')">
+    <ProCard class="pro-card">
+      <template #header>
+        {{ $t('product.globalDynamicHouse.title') }}
+        <el-button
+          type="warning"
+          size="mini"
+          round
+        >
+          {{ $t('product.globalDynamicHouse.titleBuyBtnText') }}
+          <i class="el-icon-right" />
+        </el-button>
+      </template>
       <el-tabs v-model="activeName">
         <el-tab-pane
           v-for="(item, key) in componentsMap"
@@ -21,7 +32,7 @@
 import ProCard from '@/components/ProCard'
 const componentsMap = {
   flow: () => import('./components/flow'),
-  month: () => import('./components/month')
+  time: () => import('./components/time')
 }
 export default {
   name: 'ProductGlobalDynamicHousePage',
@@ -47,4 +58,36 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.pro-card {
+  ::v-deep .el-card {
+    &__header {
+      .el-button {
+        padding-right: 34px;
+        position: relative;
+        margin-left: 55px;
+        .el-icon-right {
+          position: absolute;
+          top: 4px;
+          right: 5px;
+          width: 18px;
+          height: 18px;
+          background-color: #ffffff;
+          display: inline-block;
+          border-radius: 50%;
+          color: $color-warning;
+          line-height: 18px;
+          text-align: center;
+          font-size: 12px;
+          font-weight: bold;
+        }
+      }
+    }
+    &__body {
+      padding-bottom: 0;
+      .el-tabs__header {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
 </style>

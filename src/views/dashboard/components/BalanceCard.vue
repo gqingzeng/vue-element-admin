@@ -6,9 +6,10 @@
       </div>
       <el-button
         type="primary"
+        size="small"
         round
       >
-        <span>{{ $t('dashboard.balance.goRecharge') }}</span>
+        {{ $t('dashboard.balance.goRecharge') }}
         <i class="el-icon-right" />
       </el-button>
     </div>
@@ -87,17 +88,12 @@ export default {
     }
   }
   .el-button {
-    height: 32px;
-    width: 110px;
-    padding: 0 4px 0 14px;
-    box-sizing: border-box;
-    & > ::v-deep span {
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+    padding-right: 59px;
+    position: relative;
+
     .el-icon-right {
+      position: absolute;
+      right: 15px;
       width: 24px;
       height: 24px;
       background-color: #ffffff;

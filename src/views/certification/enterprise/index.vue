@@ -47,7 +47,6 @@ export default {
     handleEnterpriseAuthRedirectSuccess(event) {
       if (event.key === getLocalStorageKey('enterpriseAuthRedirectHash')) {
         const { status } = getQueryObject(event.newValue)
-        console.log(status)
         if (status === '1') {
           this.activeStep = 2
         }

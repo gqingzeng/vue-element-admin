@@ -15,3 +15,20 @@ export function getPackageSelect(data) {
     data
   })
 }
+
+export function buyBill(data) {
+  return request({
+    url: '/api/set_meal/buyBill',
+    method: 'post',
+    data
+  })
+}
+
+export function setMealplaceOrder(data) {
+  return request({
+    url: '/api/set_meal/setMealplaceOrder',
+    method: 'post',
+    data
+  })
+}
+

@@ -1,15 +1,39 @@
 <template>
   <div>
-    ProductGlobalDynamicHousePage
-    <AreaCascader type="0" />
+    <ProCard>
+      <SearchBox />
+    </ProCard>
+    <ProductTableListCard />
+    <SubAccountTableListCard />
+    <el-row :gutter="20">
+      <el-col :span="12">
+        <FlowStatisticsCard />
+        <HelpCard />
+      </el-col>
+      <el-col :span="12">
+        <FlowChatCard />
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
-import AreaCascader from '@/components/AreaCascader'
+import ProCard from '@/components/ProCard'
+import SearchBox from './components/SearchBox'
+import ProductTableListCard from './components/ProductTableListCard'
+import SubAccountTableListCard from './components/SubAccountTableListCard'
+import FlowStatisticsCard from './components/FlowStatisticsCard'
+import HelpCard from './components/HelpCard'
+import FlowChatCard from './components/FlowChatCard'
 export default {
   components: {
-    AreaCascader
+    ProCard,
+    SearchBox,
+    ProductTableListCard,
+    SubAccountTableListCard,
+    FlowStatisticsCard,
+    HelpCard,
+    FlowChatCard
   },
   data() {
     return {

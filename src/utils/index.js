@@ -378,5 +378,5 @@ export const constantToList = (sourceMap) => {
 }
 
 export const getLocationHost = () => {
-  return process.env.VUE_APP_HOST
+  return `${location.protocol}//${location.host}/`
 }

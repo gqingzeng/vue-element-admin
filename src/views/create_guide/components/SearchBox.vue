@@ -14,7 +14,6 @@
         <el-form-item
           :label="$t('createGuide.search.purpose')"
           prop="guide_id"
-          class="purpose-form-item"
         >
           <el-cascader
             v-model="formData.guide_id"
@@ -198,9 +197,6 @@ export default {
     margin-left: 20px;
   }
 
-  /* &.purpose-form-item {
-    width: calc((100% - 20px) / 2);
-  } */
   .el-cascader,
   .el-button,
   .el-input,

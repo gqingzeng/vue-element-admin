@@ -88,13 +88,14 @@ export default {
           props={props}
           scopedSlots={{
             default: (columnProps) => {
-              return btnList.map(({ text = '', onClick, ...btnProps }) => {
+              return btnList.map(({ text = '', onClick, className, ...btnProps }) => {
                 return (
                   <ElButton
                     props={btnProps}
                     onClick={() => {
                       onClick && onClick(columnProps)
                     }}
+                    class={className}
                   >
                     {{ text }}
                   </ElButton>

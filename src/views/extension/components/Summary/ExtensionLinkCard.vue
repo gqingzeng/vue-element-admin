@@ -37,7 +37,7 @@ export default {
     link() {
       const { userInfo } = this
       const { ref } = userInfo
-      return `${getLocationHost()}?ref=${ref}`
+      return `${getLocationHost()}${this.$router.resolve('/').href}?ref=${ref}`
     }
   },
   methods: {

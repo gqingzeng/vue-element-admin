@@ -21,7 +21,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { uploadAction } from '@/api/common'
-import { getLocationHost } from '@/utils'
+import { apiHost } from '@/constant/globalVar'
 export default {
   name: 'UploadImage',
   components: {
@@ -31,7 +31,7 @@ export default {
     action: {
       type: String,
       default: () => {
-        return `${getLocationHost()}${uploadAction}`
+        return `${apiHost}${uploadAction}`
       }
     },
     showFileList: {

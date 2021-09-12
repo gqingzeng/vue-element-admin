@@ -6,7 +6,6 @@ export default {
     'product-globalDynamicHouse': '全球动态住宅',
     'product-globalStaticHouse': '全球静态住宅',
     'product-globalComputerRoom': '全球数据中心',
-    'product-chinaStatic': '中国静态IP',
     bill: '账单管理',
     'bill-rech': '在线充值',
     'bill-consume': '消费记录',
@@ -23,20 +22,6 @@ export default {
     dashboard: '首页',
     logOut: '退出登录',
     profile: '个人中心'
-  },
-  login: {
-    passwordTitle: '密码登录',
-    captchaTitle: '短信登录',
-    accountPlaceholder: '请输入您的邮箱/ID',
-    passwordPlaceholder: '请输入您的密码',
-    mobilePlaceholder: '请输入手机号',
-    captchaPlaceholder: '请输入验证码',
-    accountRegister: '新用户注册',
-    forgetPassword: '忘记密码',
-    agreementTips: '登录即代表您同意{0}和{1}',
-    accountAgreement: '《用户协议》',
-    privacyAgreement: '《隐私协议》',
-    logIn: '登录'
   },
   globalVar: {
     search: '搜索',
@@ -84,7 +69,45 @@ export default {
     uploadSizeError: '上传大小不能超过',
     more: '更多',
     close: '关闭',
-    submit: '提交'
+    submit: '提交',
+    operate: '操作',
+    renew: '续费',
+    batchRenew: '批量续费',
+    ip: 'IP',
+    port: '端口',
+    account: '账号',
+    password: '密码',
+    country: '地区',
+    protocol: '协议',
+    delete: '删除',
+    flowStatistics: '流量统计',
+    useHelp: '使用教程',
+    flowChat: '流量统计图'
+  },
+  components: {
+    productBox: {
+      ipTotalDesc: '9800w+ip池',
+      subAccountNum: '子账号数量{0}个',
+      subAccountThread: '子账号线程{0}个',
+      infiniteFlow: '无限流量',
+      week: '周',
+      month: '月',
+      quarter: '季度'
+    }
+  },
+  login: {
+    passwordTitle: '密码登录',
+    captchaTitle: '短信登录',
+    accountPlaceholder: '请输入您的邮箱/ID',
+    passwordPlaceholder: '请输入您的密码',
+    mobilePlaceholder: '请输入手机号',
+    captchaPlaceholder: '请输入验证码',
+    accountRegister: '新用户注册',
+    forgetPassword: '忘记密码',
+    agreementTips: '登录即代表您同意{0}和{1}',
+    accountAgreement: '《用户协议》',
+    privacyAgreement: '《隐私协议》',
+    logIn: '登录'
   },
   dashboard: {
     balance: {
@@ -97,9 +120,6 @@ export default {
     },
     notice: {
       title: '通知栏'
-    },
-    help: {
-      title: '使用教程'
     },
     flow: {
       globalDynamicHouse: '全球动态住宅流量使用',
@@ -138,17 +158,33 @@ export default {
       globalStaticHouse: '全球静态住宅',
       globalComputerRoom: '全球数据中心',
       flow: '按流量计费',
-      time: '包月计费',
+      time: '按时间计费',
       ipNum: '按IP数量计费',
-      ipTotalDesc: '9800w+ip池'
+      ipTotalDesc: '9800w+ip池',
+      subAccountNum: '子账号数量{0}个',
+      subAccountThread: '子账号线程{0}个',
+      infiniteFlow: '无限流量'
     }
   },
   product: {
+    purchasedProduct: '已购买套餐',
+    productName: '套餐名称',
+    purchaseTime: '购买时间',
+    generateSubAccountNum: '可生成子账号数量',
+    subAccountThread: '子账号线程',
+    expirationTime: '到期时间',
+    whetherFilter: '是否去重',
+    modifySubAccount: '修改子账号',
+    batchExportSubAccount: '批量导出子账号信息',
+    flowUsage: '共计{0}GB，已用{1}GB',
+    residualFlow: '可用剩余流量{0}GB',
     globalDynamicHouse: {
       title: '全球动态住宅',
+      titleBuyBtnText: '购买动态住宅流量包',
+      subAccountList: '全球动态住宅子账号列表',
       tab: {
         flow: '流量计费',
-        month: '包月'
+        time: '时间计费'
       }
     }
   },
@@ -157,7 +193,8 @@ export default {
       title: '在线充值',
       rechType: '充值类型',
       presetLabel: '推荐',
-      rechBtnText: '充值'
+      rechBtnText: '充值',
+      rechSuccess: '充值成功'
     },
     relist: {
       title: '充值记录',
@@ -223,7 +260,6 @@ export default {
       step3: '认证完成',
       submitBtnText: '提交校验',
       basicInfo: {
-        country: '地区',
         countryPlaceholder: '中国大陆（暂不支持非大陆地区实名认证）',
         name: '姓名',
         namePlaceholder: '请输入姓名',

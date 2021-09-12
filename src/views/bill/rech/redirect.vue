@@ -5,7 +5,7 @@ export default {
   name: 'RechRedirectPage',
   created() {
     const hash = window.location.hash
-    setItem('thirdpartLoginPlatformHash', hash)
+    setItem('rechRedirectPageCallbackHash', hash)
     window.close()
   },
   render: function(h) {
