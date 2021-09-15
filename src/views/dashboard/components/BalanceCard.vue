@@ -93,6 +93,8 @@ export default {
 
     .el-icon-right {
       position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
       right: 15px;
       width: 24px;
       height: 24px;

@@ -87,12 +87,17 @@ export default {
   components: {
     productBox: {
       ipTotalDesc: '9800w+ip池',
-      subAccountNum: '子账号数量{0}个',
-      subAccountThread: '子账号线程{0}个',
+      flowInfo: '可使用流量：{0}GB',
+      subAccountNum: '子账号数量：{0}个',
+      subAccountThread: '子账号线程：{0}个',
       infiniteFlow: '无限流量',
-      week: '周',
-      month: '月',
-      quarter: '季度'
+      infiniteTime: '不限制使用时间',
+      infiniteSubAccountNun: '不限制子账号数量',
+      infiniteSubAccountThread: '不限制子账号线程',
+      ipUnitPrice: '￥{0}/个',
+      originalPrice: '原价￥{0}/IP',
+      discountPrice: '套餐折扣价￥{0}/IP',
+      globalStaticHouseTimeTips: '购买数量达到套餐要求，自动获得套餐折扣价'
     }
   },
   login: {

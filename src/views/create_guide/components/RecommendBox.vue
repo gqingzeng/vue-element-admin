@@ -43,20 +43,11 @@
           </div>
         </div>
       </div>
-      <div class="product-list">
-        <ProductBox
-          v-for="item in packageList"
-          :key="item.id"
-          :name="item.name"
-          :num="item.num"
-          :money="item.money"
-          :is-hot="item.is_hot"
-          :timelen="item.timelen"
-          :type="formData.type"
-          :status="formData.status"
-          @buy="handleBuyPackage(item)"
-        />
-      </div>
+      <ProductBox
+        :product-list="packageList"
+        :type="formData.type"
+        :status="formData.status"
+      />
     </template>
     <div class="field-item other-recommend">
       <div class="field-item-label">{{ $t('createGuide.recommend.otherRecommendTitle') }}：</div>
@@ -96,10 +87,6 @@ const productListPage = [
   {
     name: 'ProductGlobalComputerRoomPage',
     title: 'product-globalComputerRoom'
-  },
-  {
-    name: 'ProductChinaStatic',
-    title: 'product-chinaStatic'
   }
 ]
 export default {
@@ -123,8 +110,8 @@ export default {
       PROXY_STATUS,
       productListPage,
       formData: {
-        type: '',
-        status: ''
+        type: 0,
+        status: 0
       },
       loading: false,
       packageList: []
@@ -213,10 +200,7 @@ export default {
     }
   }
 }
-.product-list {
-  border-bottom: 1px solid $border-color;
-  padding: 60px 0;
-}
+
 .other-recommend {
   height: 80px;
   .field-item-label {
