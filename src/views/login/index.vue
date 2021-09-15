@@ -320,10 +320,10 @@ export default {
     handleThirdlogin(event) {
       if (event.key === getLocalStorageKey('thirdpartLoginPlatformHash')) {
         const { redirect, otherQuery } = this
-        const { auth_code: code } = getQueryObject(event.newValue)
+        const { auth_code, code } = getQueryObject(event.newValue)
         const platform = getItem('thirdpartLoginPlatform')
         const params = {
-          code,
+          code: (auth_code || code),
           platform
         }
         this.$store.dispatch('user/thirdlogin', params).then(() => {
