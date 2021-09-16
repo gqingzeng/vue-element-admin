@@ -24,7 +24,7 @@
                 <el-input
                   v-model="loginForm.account"
                   :placeholder="$t('login.accountPlaceholder')"
-                  prefix-icon="el-icon-message"
+                  prefix-icon="el-icon-user"
                 />
               </el-form-item>
               <el-form-item prop="password">
@@ -82,7 +82,7 @@
         </el-tabs>
         <div class="user-box">
           <router-link
-            to="./register"
+            :to="{path: './register', query: route.query}"
             class="el-link el-link--primary is-underline"
           >{{ $t('login.accountRegister') }}</router-link>
           <el-button type="text">{{ $t('login.forgetPassword') }}</el-button>
@@ -171,7 +171,7 @@ export default {
 
     const validateMobile = (rule, value, callback) => {
       if (!value) {
-        callback(new Error(this.$t('login.captchaPlaceholder')))
+        callback(new Error(this.$t('login.mobilePlaceholder')))
       } else {
         callback()
       }

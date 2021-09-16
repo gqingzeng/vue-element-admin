@@ -1,4 +1,4 @@
-import { login, mobilelogin, thirdlogin, logout, getUserInfo } from '@/api/user'
+import { login, mobilelogin, thirdlogin, logout, getUserInfo, register } from '@/api/user'
 import { getAccessToken, setAccessToken, removeAccessToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 
@@ -62,6 +62,20 @@ const actions = {
   thirdlogin({ commit }, loginForm) {
     return new Promise((resolve, reject) => {
       thirdlogin(loginForm).then(response => {
+        const { data } = response
+        const { userinfo } = data
+        const { token } = userinfo
+        commit('SET_ACCESS_TOKEN', token)
+        setAccessToken(token)
+        resolve()
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  register({ commit }, formData) {
+    return new Promise((resolve, reject) => {
+      register(formData).then(response => {
         const { data } = response
         const { userinfo } = data
         const { token } = userinfo

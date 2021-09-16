@@ -72,9 +72,9 @@ export default {
         captchaObj.onSuccess(() => {
           const result = this.getValidate()
           const {
-            geetest_challenge,
-            geetest_seccode,
-            geetest_validate
+            geetest_challenge: challenge,
+            geetest_seccode: seccode,
+            geetest_validate: validate
           } = result
           // const params = {
           //   challenge: geetest_challenge,
@@ -85,10 +85,10 @@ export default {
           // geetestValibile(params).then(res => {
           //   console.log(res)
           // })
-          this.$emit('success', result)
-          this.$emit('update:challenge', geetest_challenge)
-          this.$emit('update:seccode', geetest_seccode)
-          this.$emit('update:validate', geetest_validate)
+          this.$emit('success', { challenge, seccode, validate })
+          this.$emit('update:challenge', challenge)
+          this.$emit('update:seccode', seccode)
+          this.$emit('update:validate', validate)
         })
         captchaObj.onError(() => {
           this.$emit('error')

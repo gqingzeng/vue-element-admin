@@ -24,6 +24,14 @@ export function thirdlogin(data) {
   })
 }
 
+export function register(data) {
+  return request({
+    url: 'api/user/register',
+    method: 'post',
+    data
+  })
+}
+
 export function getUserInfo() {
   return request({
     url: '/api/user/user_get_user_info',
@@ -57,6 +65,14 @@ export function getUserRelist(params) {
 export function sendSms(params) {
   return request({
     url: '/api/user/send_sms',
+    method: 'get',
+    params
+  })
+}
+
+export function sendEmail(params) {
+  return request({
+    url: '/api/user/send_email',
     method: 'get',
     params
   })

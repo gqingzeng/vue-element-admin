@@ -102,7 +102,7 @@ export default {
   },
   login: {
     passwordTitle: '密码登录',
-    captchaTitle: '短信登录',
+    captchaTitle: '验证码登录',
     accountPlaceholder: '请输入您的邮箱/ID',
     passwordPlaceholder: '请输入您的密码',
     mobilePlaceholder: '请输入手机号',
@@ -113,6 +113,25 @@ export default {
     accountAgreement: '《用户协议》',
     privacyAgreement: '《隐私协议》',
     logIn: '登录'
+  },
+  register: {
+    mobileRegister: '手机号注册',
+    emailRegister: '邮箱注册',
+    usernamePlaceholder: '请输入用户名',
+    passwordPlaceholder: '请设置较复杂的密码',
+    passwordConfirmPlaceholder: '请再次确认密码',
+    emailPlaceholder: '请输入邮箱',
+    emailErrorPlaceholder: '请输入正确的邮箱',
+    mobilePlaceholder: '请输入手机号',
+    mobileErrorPlaceholder: '请输入正确的手机号',
+    codePlaceholder: '请输入验证码',
+    registerBtn: '注册',
+    refPlaceholder: '推广ref',
+    agreementTips: '注册即代表您同意{0}和{1}',
+    accountAgreement: '《用户协议》',
+    privacyAgreement: '《隐私协议》',
+    hasAccount: '已有账号？',
+    goLogin: '去登录'
   },
   dashboard: {
     balance: {
