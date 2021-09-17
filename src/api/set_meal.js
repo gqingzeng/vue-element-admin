@@ -24,6 +24,22 @@ export function buyBill(data) {
   })
 }
 
+export function buyNum(data) {
+  return request({
+    url: '/api/set_meal/buyNum',
+    method: 'post',
+    data
+  })
+}
+
+export function buyTime(data) {
+  return request({
+    url: '/api/set_meal/buyTime',
+    method: 'post',
+    data
+  })
+}
+
 export function setMealplaceOrder(data) {
   return request({
     url: '/api/set_meal/setMealplaceOrder',

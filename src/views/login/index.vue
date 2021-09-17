@@ -82,7 +82,7 @@
         </el-tabs>
         <div class="user-box">
           <router-link
-            :to="{path: './register', query: route.query}"
+            :to="{path: './register', query: $route.query}"
             class="el-link el-link--primary is-underline"
           >{{ $t('login.accountRegister') }}</router-link>
           <el-button type="text">{{ $t('login.forgetPassword') }}</el-button>

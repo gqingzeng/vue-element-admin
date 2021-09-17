@@ -82,7 +82,8 @@ export default {
     delete: '删除',
     flowStatistics: '流量统计',
     useHelp: '使用教程',
-    flowChat: '流量统计图'
+    flowChat: '流量统计图',
+    tips: '提示'
   },
   components: {
     productBox: {
@@ -97,7 +98,10 @@ export default {
       ipUnitPrice: '￥{0}/个',
       originalPrice: '原价￥{0}/IP',
       discountPrice: '套餐折扣价￥{0}/IP',
-      globalStaticHouseTimeTips: '购买数量达到套餐要求，自动获得套餐折扣价'
+      globalStaticHouseTimeTips: '购买数量达到套餐要求，自动获得套餐折扣价',
+      buyBtnText: '去购买',
+      buyMessage: '您确定要购买{0}吗？',
+      buySuccess: '购买成功'
     }
   },
   login: {

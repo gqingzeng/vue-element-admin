@@ -1,5 +1,8 @@
 <template>
-  <div class="product-list">
+  <div
+    v-loading="loading"
+    class="product-list"
+  >
     <div
       v-for="item in productList"
       :key="item.id"
@@ -81,15 +84,18 @@
         >
           {{ item.originalPrice }}
         </i18n>
-        <div v-if="showGlobalStaticHouseTimeTips" class="product-info-item">
+        <div
+          v-if="showGlobalStaticHouseTimeTips"
+          class="product-info-item"
+        >
           {{ $t('components.productBox.globalStaticHouseTimeTips') }}
         </div>
       </div>
       <div
         class="product-footer"
-        @click="handlePurchase"
+        @click="handlePurchase(item)"
       >
-        去购买
+        {{ $t('components.productBox.buyBtnText') }}
       </div>
     </div>
   </div>
@@ -100,6 +106,11 @@ import {
   PROXY_TYPE,
   PROXY_STATUS
 } from '@/constant/proxy'
+import {
+  buyBill,
+  buyNum,
+  buyTime
+} from '@/api/set_meal'
 export default {
   name: 'ProductBox',
   props: {
@@ -119,7 +130,8 @@ export default {
   data() {
     return {
       PROXY_TYPE,
-      PROXY_STATUS
+      PROXY_STATUS,
+      loading: false
     }
   },
   computed: {
@@ -173,12 +185,49 @@ export default {
     },
     showGlobalStaticHouseTimeTips() {
       const { type, status } = this
-      return [PROXY_TYPE.GLOBAL_STATIC_HOUSE, PROXY_TYPE.GLOBAL_COMPUTER_ROOM].includes(type) && status === PROXY_STATUS.TI
+      return [PROXY_TYPE.GLOBAL_STATIC_HOUSE, PROXY_TYPE.GLOBAL_COMPUTER_ROOM].includes(type) && status === PROXY_STATUS.TIME
+    },
+    previewOnly() {
+      const { type, status } = this
+      if (type === PROXY_TYPE.GLOBAL_STATIC_HOUSE && [PROXY_STATUS.TIME, PROXY_STATUS.IP_NUM].includes(status)) {
+        return true
+      }
+      return type === PROXY_TYPE.GLOBAL_COMPUTER_ROOM && status === PROXY_STATUS.TIME
     }
   },
   methods: {
-    handlePurchase() {
-      this.$emit('purchase')
+    handlePurchase(item) {
+      const { previewOnly, type, status } = this
+      if (previewOnly) {
+        if (type === PROXY_TYPE.GLOBAL_STATIC_HOUSE) {
+          this.$router.push({ name: 'ProductGlobalStaticHousePage', query: { status }})
+        } else {
+          this.$router.push({ name: 'ProductGlobalComputerRoomPage', query: { status }})
+        }
+      }
+
+      const message = `
+        <p>${this.$t('components.productBox.buyMessage', [`<span class="color-danger">${item.name}</span>`])}</p>
+        <p class="color-danger" style="font-size: 30px;margin-top:20px">￥${item.money}</p>
+      `
+
+      this.$confirm(message, this.$t('globalVar.tips'), {
+        dangerouslyUseHTMLString: true
+      }).then(() => {
+        let fetchApi = buyBill
+        if (status === PROXY_STATUS.IP_NUM) {
+          fetchApi = buyNum
+        } else {
+          fetchApi = buyTime
+        }
+
+        this.loading = true
+        fetchApi({ id: item.id }).then(res => {
+          this.$message.success(this.$t('components.productBox.buySuccess'))
+        }).finally(() => {
+          this.loading = false
+        })
+      })
     }
   }
 }
