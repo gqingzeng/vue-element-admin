@@ -204,6 +204,7 @@ export default {
         } else {
           this.$router.push({ name: 'ProductGlobalComputerRoomPage', query: { status }})
         }
+        return
       }
 
       const message = `
@@ -217,7 +218,7 @@ export default {
         let fetchApi = buyBill
         if (status === PROXY_STATUS.IP_NUM) {
           fetchApi = buyNum
-        } else {
+        } else if (status === PROXY_STATUS.TIME) {
           fetchApi = buyTime
         }
 
@@ -236,7 +237,6 @@ export default {
 <style scoped lang="scss">
 .product {
   &-list {
-    border-bottom: 1px solid $border-color;
     padding: 60px 0;
     display: flex;
     flex-wrap: wrap;

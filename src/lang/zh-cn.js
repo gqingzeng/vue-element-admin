@@ -6,6 +6,7 @@ export default {
     'product-globalDynamicHouse': '全球动态住宅',
     'product-globalStaticHouse': '全球静态住宅',
     'product-globalComputerRoom': '全球数据中心',
+    'product-buy': '购买套餐',
     bill: '账单管理',
     'bill-rech': '在线充值',
     'bill-consume': '消费记录',
@@ -83,7 +84,8 @@ export default {
     flowStatistics: '流量统计',
     useHelp: '使用教程',
     flowChat: '流量统计图',
-    tips: '提示'
+    tips: '提示',
+    batchDelete: '批量删除'
   },
   components: {
     productBox: {

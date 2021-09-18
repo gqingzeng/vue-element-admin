@@ -6,7 +6,7 @@
           {{ $t('product.batchExportSubAccount') }}
         </el-button>
         <el-button plain>
-          {{ $t('globalVar.batchRenew') }}
+          {{ $t('globalVar.batchDelete') }}
         </el-button>
       </div>
       <el-button
@@ -32,6 +32,8 @@
 <script>
 import ProCard from '@/components/ProCard'
 import requestListMixins from '@/mixins/requestList'
+import { getAccountList } from '@/api/device'
+import { PROXY_TYPE } from '@/constant/proxy'
 export default {
   name: 'ProductTableListCard',
   components: {
@@ -40,7 +42,6 @@ export default {
   mixins: [requestListMixins],
   data() {
     return {
-      listData: [{}],
       tableColumn: [
         {
           type: 'selection',
@@ -55,35 +56,45 @@ export default {
         },
         {
           label: this.$t('globalVar.createTime'),
-          align: 'center'
+          align: 'center',
+          prop: 'createTime'
         },
         {
           label: this.$t('globalVar.ip'),
-          align: 'center'
+          align: 'center',
+          prop: 'ip'
         },
         {
           label: this.$t('globalVar.port'),
-          align: 'center'
+          align: 'center',
+          prop: 'port'
         },
         {
           label: this.$t('globalVar.account'),
-          align: 'center'
+          align: 'center',
+          prop: 'username'
         },
         {
           label: this.$t('globalVar.password'),
-          align: 'center'
+          align: 'center',
+          prop: 'password'
         },
         {
           label: this.$t('globalVar.country'),
-          align: 'center'
+          align: 'center',
+          prop: 'country'
         },
         {
           label: this.$t('globalVar.protocol'),
-          align: 'center'
+          align: 'center',
+          prop: 'protocol'
         },
         {
           label: this.$t('product.whetherFilter'),
-          align: 'center'
+          align: 'center',
+          formatter(row) {
+            return row.is_diff === 1 ? '是' : '否'
+          }
         },
         {
           label: this.$t('globalVar.operate'),
@@ -101,8 +112,15 @@ export default {
             }
           ]
         }
-      ]
+      ],
+      listQuery: {
+        type: PROXY_TYPE.GLOBAL_DYNAMIC_HOUSE
+      },
+      listFetchApi: getAccountList
     }
+  },
+  created() {
+    this.fetchData(true)
   },
   methods: {
 

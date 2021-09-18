@@ -1,4 +1,4 @@
-import { constantToMap, constantToList } from '@/utils'
+import { constantToMap, constantToKeyMap, constantToList } from '@/utils'
 
 const proxyTypeSourceMap = {
   GLOBAL_DYNAMIC_HOUSE: {
@@ -16,6 +16,8 @@ const proxyTypeSourceMap = {
 }
 
 export const PROXY_TYPE = constantToMap(proxyTypeSourceMap)
+
+export const PROXY_TYPE_MAP = constantToKeyMap(proxyTypeSourceMap)
 
 export const PROXY_TYPE_LIST = constantToList(proxyTypeSourceMap)
 
@@ -35,5 +37,7 @@ const proxyStatusSourceMap = {
 }
 
 export const PROXY_STATUS = constantToMap(proxyStatusSourceMap)
+
+export const PROXY_STATUS_MAP = constantToKeyMap(proxyStatusSourceMap)
 
 export const PROXY_STATUS_LIST = constantToList(proxyStatusSourceMap)

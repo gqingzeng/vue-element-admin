@@ -3,14 +3,16 @@
     <ProCard class="pro-card">
       <template #header>
         {{ $t('product.globalDynamicHouse.title') }}
-        <el-button
-          type="warning"
-          size="mini"
-          round
-        >
-          {{ $t('product.globalDynamicHouse.titleBuyBtnText') }}
-          <i class="el-icon-right" />
-        </el-button>
+        <router-link :to="{name: 'ProductBuyPage'}">
+          <el-button
+            type="warning"
+            size="mini"
+            round
+          >
+            {{ $t('product.globalDynamicHouse.titleBuyBtnText') }}
+            <i class="el-icon-right" />
+          </el-button>
+        </router-link>
       </template>
       <el-tabs v-model="activeName">
         <el-tab-pane

@@ -43,11 +43,13 @@
           </div>
         </div>
       </div>
-      <ProductBox
-        :product-list="packageList"
-        :type="formData.type"
-        :status="formData.status"
-      />
+      <div class="product-container">
+        <ProductBox
+          :product-list="packageList"
+          :type="formData.type"
+          :status="formData.status"
+        />
+      </div>
     </template>
     <div class="field-item other-recommend">
       <div class="field-item-label">{{ $t('createGuide.recommend.otherRecommendTitle') }}：</div>
@@ -150,9 +152,6 @@ export default {
     },
     handleSetFormData(val, key) {
       this.formData[key] = val
-    },
-    handleBuyPackage() {
-
     }
   }
 }
@@ -200,7 +199,9 @@ export default {
     }
   }
 }
-
+.product-container {
+  border-bottom: 1px solid $border-color;
+}
 .other-recommend {
   height: 80px;
   .field-item-label {

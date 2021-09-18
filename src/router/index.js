@@ -117,6 +117,16 @@ export const constantRoutes = [
         component: () => import('@/views/product/global_computer_room'),
         name: 'ProductGlobalComputerRoomPage',
         meta: { title: 'product-globalComputerRoom' }
+      },
+      {
+        path: 'buy',
+        component: () => import('@/views/product/buy'),
+        name: 'ProductBuyPage',
+        hidden: true,
+        meta: {
+          title: 'product-buy',
+          activeMenu: '/product/global_dynamic_house'
+        }
       }
     ]
   },

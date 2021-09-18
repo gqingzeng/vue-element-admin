@@ -2,19 +2,19 @@
   <el-form label-position="top">
     <div class="form-item-group">
       <el-form-item label="地区">
-        <AreaCascader type="1" />
+        <AreaCascader v-model="formData.country" type="1" />
       </el-form-item>
       <el-form-item label="是否去重">
-        <el-radio-group>
+        <el-radio-group v-model="formData.is_diff">
           <el-radio :label="1">是</el-radio>
           <el-radio :label="0">否</el-radio>
         </el-radio-group>
       </el-form-item>
       <el-form-item label="去重周期">
-        <el-input-number />
+        <el-input-number v-model="formData.diffUser" :max="2" />
       </el-form-item>
       <el-form-item label="子账号数量">
-        <el-input-number />
+        <el-input-number v-model="formData.num" />
       </el-form-item>
     </div>
     <div class="form-item-group">
@@ -27,8 +27,8 @@
           <el-radio :label="0">否</el-radio>
         </el-radio-group>
       </el-form-item>
-      <el-form-item label="剩余子账号数量">
-        <el-input-number />
+      <el-form-item label="当前可用剩余流量">
+        <el-input readonly />
       </el-form-item>
       <el-form-item label=" ">
         <el-button
@@ -53,7 +53,8 @@ export default {
   data() {
     return {
       formData: {
-
+        is_diff: 0,
+        diffUser: ''
       }
     }
   },
