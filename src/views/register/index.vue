@@ -229,7 +229,7 @@ export default {
           this.loading = true
           const { formData, redirect, otherQuery } = this
           this.$store.dispatch('user/register', formData).then(() => {
-            this.$router.push({ path: redirect || '/', query: otherQuery })
+            this.$router.push({ path: redirect || '/dashboard', query: otherQuery })
           }).finally(() => {
             this.loading = false
           })

@@ -1,5 +1,6 @@
 export default {
   route: {
+    website: '蜘蛛IP',
     dashboard: '首页',
     createGuide: '创建向导',
     product: '代理产品',

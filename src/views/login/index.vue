@@ -258,7 +258,7 @@ export default {
             dispatchUrl = 'user/mobilelogin'
           }
           this.$store.dispatch(dispatchUrl, params).then(() => {
-            this.$router.push({ path: redirect || '/', query: otherQuery })
+            this.$router.push({ path: redirect || '/dashboard', query: otherQuery })
           }).finally(() => {
             this.loading = false
           })
@@ -327,7 +327,7 @@ export default {
           platform
         }
         this.$store.dispatch('user/thirdlogin', params).then(() => {
-          this.$router.push({ path: redirect || '/', query: otherQuery })
+          this.$router.push({ path: redirect || '/dashboard', query: otherQuery })
         }).finally(() => {
           this.loading = false
         })

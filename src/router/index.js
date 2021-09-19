@@ -72,8 +72,14 @@ export const constantRoutes = [
   },
   {
     path: '/',
+    component: () => import('@/views/website/index'),
+    hidden: true,
+    name: 'WebsitePage',
+    meta: { title: 'website' }
+  },
+  {
+    path: '/dashboard',
     component: Layout,
-    redirect: '/dashboard',
     children: [
       {
         path: 'dashboard',

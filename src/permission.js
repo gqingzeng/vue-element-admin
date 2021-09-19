@@ -8,7 +8,7 @@ import getPageTitle from '@/utils/get-page-title'
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
-const whiteList = ['/login', '/auth-redirect', '/register'] // no redirect whitelist
+const whiteList = ['/', '/login', '/auth-redirect', '/register'] // no redirect whitelist
 
 router.beforeEach(async(to, from, next) => {
   // start progress bar
@@ -22,7 +22,7 @@ router.beforeEach(async(to, from, next) => {
   if (hasAccessToken) {
     if (to.path === '/login') {
       // if is logged in, redirect to the home page
-      next({ path: '/' })
+      next({ path: '/dashboard' })
       NProgress.done() // hack: https://github.com/PanJiaChen/vue-element-admin/pull/2939
     } else {
       const hasRoles = store.getters.userInfo && store.getters.userInfo.id
