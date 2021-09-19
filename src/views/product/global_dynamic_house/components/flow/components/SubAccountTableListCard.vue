@@ -33,13 +33,23 @@
 import ProCard from '@/components/ProCard'
 import requestListMixins from '@/mixins/requestList'
 import { getAccountList } from '@/api/device'
-import { PROXY_TYPE } from '@/constant/proxy'
+
 export default {
   name: 'ProductTableListCard',
   components: {
     ProCard
   },
   mixins: [requestListMixins],
+  props: {
+    type: {
+      type: Number,
+      required: true
+    },
+    status: {
+      type: Number,
+      required: true
+    }
+  },
   data() {
     return {
       tableColumn: [
@@ -87,14 +97,12 @@ export default {
         {
           label: this.$t('globalVar.protocol'),
           align: 'center',
-          prop: 'protocol'
+          prop: 'agree'
         },
         {
-          label: this.$t('product.whetherFilter'),
+          label: this.$t('globalVar.isDiff'),
           align: 'center',
-          formatter(row) {
-            return row.is_diff === 1 ? '是' : '否'
-          }
+          prop: 'is_diff'
         },
         {
           label: this.$t('globalVar.operate'),
@@ -114,16 +122,13 @@ export default {
         }
       ],
       listQuery: {
-        type: PROXY_TYPE.GLOBAL_DYNAMIC_HOUSE
+        type: this.type
       },
       listFetchApi: getAccountList
     }
   },
   created() {
     this.fetchData(true)
-  },
-  methods: {
-
   }
 }
 </script>

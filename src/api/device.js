@@ -8,3 +8,20 @@ export function getAccountList(params) {
     params
   })
 }
+
+export function accountAdd(data) {
+  return request({
+    url: '/api/device/accountAdd',
+    method: 'post',
+    data
+  })
+}
+
+export function getUserSetMeal(params) {
+  return request({
+    url: '/api/device/userSetMeal',
+    method: 'get',
+    params
+  })
+}
+

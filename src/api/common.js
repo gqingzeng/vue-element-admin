@@ -40,3 +40,11 @@ export function getStatics(params) {
     params
   })
 }
+
+export function getTimelenSetting(params) {
+  return request({
+    url: '/api/common/timelenSetting',
+    method: 'get',
+    params
+  })
+}

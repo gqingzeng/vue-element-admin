@@ -365,8 +365,8 @@ export const constantToMap = (sourceMap) => {
 }
 
 export const constantToKeyMap = (sourceMap) => {
-  const result = Object.keys(sourceMap).reduce((obj, key) => {
-    obj[key] = sourceMap[key]
+  const result = Object.values(sourceMap).reduce((obj, item) => {
+    obj[item.key] = item
     return obj
   }, {})
   return Object.freeze(result)

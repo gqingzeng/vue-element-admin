@@ -3,7 +3,6 @@
     <ProTable
       ref="table"
       v-loading="loading"
-      row-key="id"
       :column="tableColumn"
       :data="listData"
     />
@@ -19,6 +18,8 @@
 import ProCard from '@/components/ProCard'
 import requestListMixins from '@/mixins/requestList'
 import RenewDialog from './RenewDialog'
+import { getUserSetMeal } from '@/api/device'
+
 export default {
   name: 'ProductTableListCard',
   components: {
@@ -26,9 +27,23 @@ export default {
     RenewDialog
   },
   mixins: [requestListMixins],
+  props: {
+    type: {
+      type: Number,
+      required: true
+    },
+    status: {
+      type: Number,
+      required: true
+    }
+  },
   data() {
     return {
-      listData: [{}],
+      listQuery: {
+        status: this.status,
+        type: this.type
+      },
+      listFetchApi: getUserSetMeal,
       tableColumn: [
         {
           type: 'index',
@@ -38,23 +53,28 @@ export default {
         },
         {
           label: this.$t('product.productName'),
-          align: 'center'
+          align: 'center',
+          prop: 'name'
         },
         {
           label: this.$t('product.purchaseTime'),
-          align: 'center'
+          align: 'center',
+          prop: 'createtime_text'
         },
         {
           label: this.$t('product.generateSubAccountNum'),
-          align: 'center'
+          align: 'center',
+          empty: this.$t('globalVar.infinite')
         },
         {
           label: this.$t('product.subAccountThread'),
-          align: 'center'
+          align: 'center',
+          empty: this.$t('globalVar.infinite')
         },
         {
           label: this.$t('product.expirationTime'),
-          align: 'center'
+          align: 'center',
+          empty: this.$t('globalVar.infinite')
         },
         {
           label: this.$t('globalVar.operate'),
@@ -70,6 +90,9 @@ export default {
         }
       ]
     }
+  },
+  created() {
+    this.fetchData(true)
   },
   methods: {
     openRenewDialog() {

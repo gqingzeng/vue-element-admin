@@ -1,7 +1,7 @@
 <template>
   <ProCard v-loading="loading">
     <template #header>
-      {{ $t('globalVar.flowChat') }}
+      {{ $t(`components.flowChatCard.${typeName}Flow`) }}
       <div class="date-box">
         <el-date-picker
           v-model="time"
@@ -29,24 +29,22 @@ import ProCard from '@/components/ProCard'
 import { getAccountFlowList } from '@/api/user'
 import variables from '@/styles/variables.scss'
 import resizeChartMixins from '@/mixins/resizeChart'
+import { PROXY_TYPE_MAP } from '@/constant/proxy'
 
 echarts.use(
   [GridComponent, TooltipComponent, LineChart, CanvasRenderer]
 )
-const typeMap = {
-  globalDynamicHouse: 0,
-  staticHouse: 1
-}
+
 export default {
-  name: 'FlowCard',
+  name: 'FlowChartCard',
   components: {
     ProCard
   },
   mixins: [resizeChartMixins],
   props: {
     type: {
-      type: String,
-      default: 'globalDynamicHouse'
+      type: Number,
+      required: true
     }
   },
   data() {
@@ -54,6 +52,12 @@ export default {
       time: dayjs().format('YYYY-MM'),
       chart: null,
       loading: false
+    }
+  },
+  computed: {
+    typeName() {
+      const { type } = this
+      return PROXY_TYPE_MAP[type].name
     }
   },
   created() {
@@ -70,7 +74,7 @@ export default {
     getAccountFlowList() {
       const { type, time } = this
       const params = {
-        type: typeMap[type],
+        type,
         time
       }
       this.loading = true

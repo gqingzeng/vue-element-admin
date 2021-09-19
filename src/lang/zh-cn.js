@@ -79,13 +79,23 @@ export default {
     account: '账号',
     password: '密码',
     country: '地区',
+    countryPlaceholder: '请选择地区',
     protocol: '协议',
     delete: '删除',
     flowStatistics: '流量统计',
     useHelp: '使用教程',
     flowChat: '流量统计图',
     tips: '提示',
-    batchDelete: '批量删除'
+    batchDelete: '批量删除',
+    minute: '分钟',
+    isDiff: '是否去重',
+    yes: '是',
+    no: '否',
+    diffCycle: '去重周期',
+    subAccountNum: '子账号数量',
+    ipTimeLen: 'IP时长',
+    ipTimeLenPlaceholder: '请输入IP时长',
+    infinite: '无限'
   },
   components: {
     productBox: {
@@ -104,6 +114,13 @@ export default {
       buyBtnText: '去购买',
       buyMessage: '您确定要购买{0}吗？',
       buySuccess: '购买成功'
+    },
+    flowChatCard: {
+      globalDynamicHouseFlow: '全球动态住宅流量使用',
+      globalStaticHouseFlow: '全球静态住宅流量使用',
+      globalComputerRoomFlow: '全球数据中心流量使用',
+      xAxisName: '天数（日）',
+      yAxisName: '流量（GB）'
     }
   },
   login: {
@@ -166,14 +183,12 @@ export default {
       title: '创建代理',
       targetWebSiteName: '目标网站名',
       purpose: '用途',
-      ipTime: 'IP时长',
       quantityPerDay: '每天需要的IP数量',
       useDevice: '使用设备',
       onlineQuantity: '同时在线IP数量',
       createProxyBtn: '创建代理信息',
       flow: '每月使用的流量',
       purposePlaceholder: '请选择用途',
-      ipTimePlaceholder: '请输入IP时长',
       quantityPerDayPlaceholder: '请输入每天需要的IP数量',
       useDevicePlaceholder: '请选择用途使用设备',
       onlineQuantityPlaceholder: '请输入同时在线IP数量',
@@ -203,11 +218,12 @@ export default {
     generateSubAccountNum: '可生成子账号数量',
     subAccountThread: '子账号线程',
     expirationTime: '到期时间',
-    whetherFilter: '是否去重',
     modifySubAccount: '修改子账号',
     batchExportSubAccount: '批量导出子账号信息',
     flowUsage: '共计{0}GB，已用{1}GB',
-    residualFlow: '可用剩余流量{0}GB',
+    residualFlow: '剩余流量{0}GB',
+    generateProxy: '生成代理',
+    balanceFlow: '可用流量',
     globalDynamicHouse: {
       title: '全球动态住宅',
       titleBuyBtnText: '购买动态住宅流量包',

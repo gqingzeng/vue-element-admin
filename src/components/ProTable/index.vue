@@ -48,11 +48,14 @@ export default {
         this.$set(this, method, this.$refs.elTable[method])
       })
     },
-    getDefaultColumn({ prepend = '', append = '', prop, ...props }) {
+    getDefaultColumn({ prepend = '', append = '', empty, prop, ...props }) {
       const soltInfo = {}
-      if (prepend || append) {
+      if (prepend || append || empty) {
         soltInfo['scopedSlots'] = {
           default: ({ row }) => {
+            if (!row[prop]) {
+              return empty
+            }
             return `${prepend}${row[prop] || ''}${append}`
           }
         }

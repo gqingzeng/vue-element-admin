@@ -1,17 +1,32 @@
 <template>
   <div>
     <ProCard>
-      <SearchBox />
+      <SearchBox
+        :type="type"
+        :status="status"
+      />
     </ProCard>
-    <ProductTableListCard />
-    <SubAccountTableListCard />
+    <ProductTableListCard
+      :type="type"
+      :status="status"
+    />
+    <SubAccountTableListCard
+      :type="type"
+      :status="status"
+    />
     <el-row :gutter="20">
       <el-col :span="12">
-        <FlowStatisticsCard />
+        <FlowStatisticsCard
+          :type="type"
+          :status="status"
+        />
         <HelpCard />
       </el-col>
       <el-col :span="12">
-        <FlowChatCard />
+        <FlowChartCard
+          :type="type"
+          :status="status"
+        />
       </el-col>
     </el-row>
   </div>
@@ -24,7 +39,11 @@ import ProductTableListCard from './components/ProductTableListCard'
 import SubAccountTableListCard from './components/SubAccountTableListCard'
 import FlowStatisticsCard from './components/FlowStatisticsCard'
 import HelpCard from './components/HelpCard'
-import FlowChatCard from './components/FlowChatCard'
+import FlowChartCard from '@/components/FlowChartCard'
+import {
+  PROXY_TYPE,
+  PROXY_STATUS
+} from '@/constant/proxy'
 export default {
   components: {
     ProCard,
@@ -33,11 +52,12 @@ export default {
     SubAccountTableListCard,
     FlowStatisticsCard,
     HelpCard,
-    FlowChatCard
+    FlowChartCard
   },
   data() {
     return {
-
+      type: PROXY_TYPE.GLOBAL_DYNAMIC_HOUSE,
+      status: PROXY_STATUS.FLOW
     }
   },
   methods: {

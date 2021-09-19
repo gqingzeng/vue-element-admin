@@ -27,7 +27,7 @@
           />
         </el-form-item>
         <el-form-item
-          :label="$t('createGuide.search.ipTime')"
+          :label="$t('globalVar.ipTimeLen')"
           prop="ip_timelen"
         >
           <el-input
@@ -123,7 +123,7 @@ export default {
           { required: true, message: this.$t('createGuide.search.purposePlaceholder'), trigger: 'blur' }
         ],
         ip_timelen: [
-          { required: true, message: this.$t('createGuide.search.ipTimePlaceholder'), trigger: 'blur' }
+          { required: true, message: this.$t('globalVar.ipTimeLenPlaceholder'), trigger: 'blur' }
         ],
         ip_num: [
           { required: true, message: this.$t('createGuide.search.quantityPerDayPlaceholder'), trigger: 'blur' }

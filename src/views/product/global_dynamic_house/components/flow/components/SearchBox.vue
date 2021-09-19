@@ -1,41 +1,82 @@
 <template>
-  <el-form label-position="top">
+  <el-form
+    ref="formRef"
+    label-position="top"
+    :model="formData"
+    :rules="formRules"
+  >
     <div class="form-item-group">
-      <el-form-item label="地区">
-        <AreaCascader v-model="formData.country" type="1" />
+      <el-form-item
+        :label="$t('globalVar.country')"
+        prop="country"
+      >
+        <AreaSelect
+          v-model="formData.country"
+          :type="type"
+          :status="status"
+        />
       </el-form-item>
-      <el-form-item label="是否去重">
+      <el-form-item
+        :label="$t('globalVar.isDiff')"
+        prop="is_diff"
+      >
         <el-radio-group v-model="formData.is_diff">
-          <el-radio :label="1">是</el-radio>
-          <el-radio :label="0">否</el-radio>
+          <el-radio
+            v-for="item in IS_DIFF_LIST"
+            :key="item.key"
+            :label="item.key"
+          >{{ $t(`globalVar.${item.name}`) }}</el-radio>
         </el-radio-group>
       </el-form-item>
-      <el-form-item label="去重周期">
-        <el-input-number v-model="formData.diffUser" :max="2" />
+      <el-form-item
+        :label="$t('globalVar.diffCycle')"
+        prop="diffUser"
+      >
+        <el-input-number
+          v-model="formData.diffUser"
+          :max="2"
+        />
       </el-form-item>
-      <el-form-item label="子账号数量">
-        <el-input-number v-model="formData.num" />
+      <el-form-item
+        :label="$t('globalVar.subAccountNum')"
+        prop="num"
+      >
+        <el-input-number
+          v-model="formData.num"
+          :min="1"
+        />
       </el-form-item>
     </div>
     <div class="form-item-group">
-      <el-form-item label="IP时长">
-        <AreaCascader type="1" />
+      <el-form-item
+        :label="$t('globalVar.ipTimeLen')"
+        prop="changeInterval"
+      >
+        <IpTimeLenSelect
+          v-model="formData.changeInterval"
+          default-first
+        />
       </el-form-item>
-      <el-form-item label="协议">
-        <el-radio-group>
-          <el-radio :label="1">是</el-radio>
-          <el-radio :label="0">否</el-radio>
-        </el-radio-group>
+      <el-form-item
+        :label="$t('globalVar.protocol')"
+        prop="agree"
+      >
+        <ProxyProtocolSelect
+          v-model="formData.agree"
+          default-first
+        />
       </el-form-item>
-      <el-form-item label="当前可用剩余流量">
+      <el-form-item :label="$t('product.balanceFlow')">
         <el-input readonly />
       </el-form-item>
       <el-form-item label=" ">
         <el-button
+          :loading="loading"
           type="primary"
           class="el-icon-download"
+          @click="handleAddAccount"
         >
-          生成代理
+          {{ $t('product.generateProxy') }}
         </el-button>
       </el-form-item>
     </div>
@@ -43,23 +84,61 @@
 </template>
 
 <script>
-import AreaCascader from '@/components/AreaCascader'
-
+import AreaSelect from '@/components/AreaSelect'
+import IpTimeLenSelect from '@/components/IpTimeLenSelect'
+import ProxyProtocolSelect from '@/components/ProxyProtocolSelect'
+import { IS_DIFF_LIST } from '@/constant/product'
+import { accountAdd } from '@/api/device'
 export default {
   name: 'SearchBox',
   components: {
-    AreaCascader
+    AreaSelect,
+    IpTimeLenSelect,
+    ProxyProtocolSelect
+  },
+  props: {
+    type: {
+      type: Number,
+      required: true
+    },
+    status: {
+      type: Number,
+      required: true
+    }
   },
   data() {
     return {
+      IS_DIFF_LIST,
       formData: {
+        country: '',
         is_diff: 0,
-        diffUser: ''
-      }
+        diffUser: '',
+        num: 1,
+        changeInterval: '',
+        agree: ''
+      },
+      formRules: {
+        country: [
+          { required: true, message: this.$t('globalVar.countryPlaceholder') }
+        ]
+      },
+      loading: false
     }
   },
   methods: {
+    handleAddAccount() {
+      this.$refs.formRef.validate((valid) => {
+        if (valid) {
+          const { formData, type } = this
+          this.loading = true
+          accountAdd({ ...formData, type }).then(res => {
 
+          }).finally(() => {
+            this.loading = false
+          })
+        }
+      })
+    }
   }
 }
 </script>

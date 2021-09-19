@@ -1,32 +1,31 @@
 <template>
-  <el-cascader
-    :options="list"
-    :props="{
-      value: 'id',
-      label: 'name',
-      ...props,
-    }"
+  <el-select
+    filterable
     v-bind="$attrs"
     v-on="$listeners"
-  />
+  >
+    <el-option
+      v-for="item in list"
+      :key="item.id"
+      :value="item.id"
+      :label="item.name"
+    />
+  </el-select>
 </template>
 
 <script>
 import { getStatics } from '@/api/common'
 export default {
-  name: 'AreaCascader',
-  components: {
-
-  },
+  name: 'AreaSelect',
   inheritAttrs: false,
   props: {
     type: {
-      type: String,
+      type: Number,
       required: true
     },
-    props: {
-      type: Object,
-      default: () => ({})
+    status: {
+      type: Number,
+      required: true
     }
   },
   data() {
@@ -45,12 +44,11 @@ export default {
   },
   methods: {
     getStatics() {
-      const { type } = this
+      const { type, status } = this
       this.loading = true
-      getStatics({ type }).then(res => {
-        const { data, msg } = res
-        this.list = data || msg
-        console.log(res)
+      getStatics({ type, status }).then(res => {
+        const { data } = res
+        this.list = data
       }).finally(() => {
         this.loading = false
       })

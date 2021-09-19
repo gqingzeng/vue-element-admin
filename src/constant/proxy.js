@@ -41,3 +41,24 @@ export const PROXY_STATUS = constantToMap(proxyStatusSourceMap)
 export const PROXY_STATUS_MAP = constantToKeyMap(proxyStatusSourceMap)
 
 export const PROXY_STATUS_LIST = constantToList(proxyStatusSourceMap)
+
+const proxyProtocolSourceMap = {
+  HTTP: {
+    key: 'Http',
+    name: 'Http'
+  },
+  SOCKS5: {
+    key: 'Socks5',
+    name: 'Socks5'
+  },
+  HTTPS: {
+    key: 'Https',
+    name: 'Https'
+  }
+}
+
+export const PROXY_PROTOCOL = constantToMap(proxyProtocolSourceMap)
+
+export const PROXY_PROTOCOL_MAP = constantToKeyMap(proxyProtocolSourceMap)
+
+export const PROXY_PROTOCOL_LIST = constantToList(proxyProtocolSourceMap)
