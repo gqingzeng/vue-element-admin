@@ -24,6 +24,7 @@ const rebuildSendData = (config) => {
   const access_token = store.getters.access_token
   switch (method) {
     case 'post':
+    case 'delete':
     case 'put': {
       const newData = {
         ...data

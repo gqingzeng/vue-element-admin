@@ -34,7 +34,8 @@
 import ProCard from '@/components/ProCard'
 const componentsMap = {
   flow: () => import('./components/flow'),
-  time: () => import('./components/time')
+  time: () => import('./components/time'),
+  num: () => import('./components/num')
 }
 export default {
   name: 'ProductGlobalDynamicHousePage',

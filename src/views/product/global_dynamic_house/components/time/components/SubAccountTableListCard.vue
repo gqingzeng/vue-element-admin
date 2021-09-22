@@ -42,7 +42,7 @@
 import ProCard from '@/components/ProCard'
 import requestListMixins from '@/mixins/requestList'
 import {
-  getAccountList,
+  getAccountTimeList,
   accountDelete,
   deleteList
 } from '@/api/device'
@@ -139,7 +139,7 @@ export default {
       listQuery: {
         type: this.type
       },
-      listFetchApi: getAccountList,
+      listFetchApi: getAccountTimeList,
       selectedList: []
     }
   },
@@ -169,9 +169,9 @@ export default {
     },
     deleteList() {
       this.loading = true
-      const { selectedList, type, status } = this
+      const { selectedList } = this
       const ids = selectedList.map(item => item.id).join(',')
-      deleteList(ids, { type, status }).then(res => {
+      deleteList(ids).then(res => {
         this.fetchData(true)
         this.$message.success(this.$t('globalVar.deleteSuccess'))
       }).finally(() => {

@@ -7,7 +7,7 @@
           v-model="time"
           type="month"
           value-format="yyyy-MM"
-          @change="getAccountFlowList"
+          @change="getMonthTotal"
         />
         <div class="data-value-box">
           {{ getDateText() }}
@@ -26,7 +26,7 @@ import { LineChart } from 'echarts/charts'
 import { CanvasRenderer } from 'echarts/renderers'
 import dayjs from 'dayjs'
 import ProCard from '@/components/ProCard'
-import { getAccountFlowList } from '@/api/user'
+import { getMonthTotal } from '@/api/total'
 import variables from '@/styles/variables.scss'
 import resizeChartMixins from '@/mixins/resizeChart'
 import { PROXY_TYPE_MAP } from '@/constant/proxy'
@@ -61,7 +61,7 @@ export default {
     }
   },
   created() {
-    this.getAccountFlowList()
+    this.getMonthTotal()
   },
   mounted() {
     this.chart = echarts.init(this.$refs.chartBox)
@@ -71,14 +71,14 @@ export default {
       const { time } = this
       return dayjs(time).format('MMM')
     },
-    getAccountFlowList() {
+    getMonthTotal() {
       const { type, time } = this
       const params = {
         type,
         time
       }
       this.loading = true
-      getAccountFlowList(params).then(res => {
+      getMonthTotal(params).then(res => {
         const { data = {}} = res
         const { rows = [] } = data
         const seriesData = rows.map(item => {

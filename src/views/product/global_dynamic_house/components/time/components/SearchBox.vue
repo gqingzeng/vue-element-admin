@@ -66,9 +66,9 @@
           default-first
         />
       </el-form-item>
-      <el-form-item :label="$t('product.balanceFlow')">
+      <el-form-item :label="$t('product.balanceSubAccount')">
         <el-input
-          v-model="balanceFlow"
+          v-model="balanceSubAccount"
           readonly
         />
       </el-form-item>
@@ -91,7 +91,7 @@ import AreaSelect from '@/components/AreaSelect'
 import IpTimeLenSelect from '@/components/IpTimeLenSelect'
 import ProxyProtocolSelect from '@/components/ProxyProtocolSelect'
 import { IS_DIFF_LIST } from '@/constant/product'
-import { accountAdd } from '@/api/device'
+import { addTimeSetmealIp } from '@/api/device'
 export default {
   name: 'SearchBox',
   inject: ['productViews'],
@@ -134,7 +134,7 @@ export default {
     }
   },
   computed: {
-    balanceFlow() {
+    balanceSubAccount() {
       const { totalInfo } = this
       const { base } = totalInfo
       return base
@@ -146,7 +146,7 @@ export default {
         if (valid) {
           const { formData, type } = this
           this.loading = true
-          accountAdd({ ...formData, type }).then(res => {
+          addTimeSetmealIp({ ...formData, type }).then(res => {
             this.$message.success(this.$t('globalVar.generateSuccess'))
             this.productViews.$emit('generateProxySuccess')
           }).finally(() => {

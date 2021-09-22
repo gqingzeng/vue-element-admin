@@ -4,6 +4,7 @@
       <SearchBox
         :type="type"
         :status="status"
+        :total-info="totalInfo"
       />
     </ProCard>
     <ProductTableListCard
@@ -19,6 +20,7 @@
         <FlowStatisticsCard
           :type="type"
           :status="status"
+          :total-info="totalInfo"
         />
         <HelpCard />
       </el-col>
@@ -38,8 +40,9 @@ import SearchBox from './components/SearchBox'
 import ProductTableListCard from './components/ProductTableListCard'
 import SubAccountTableListCard from './components/SubAccountTableListCard'
 import FlowStatisticsCard from './components/FlowStatisticsCard'
-import HelpCard from './components/HelpCard'
+import HelpCard from '../../../components/HelpCard'
 import FlowChartCard from '@/components/FlowChartCard'
+import { getBaseTotal } from '@/api/total'
 import {
   PROXY_TYPE,
   PROXY_STATUS
@@ -54,14 +57,30 @@ export default {
     HelpCard,
     FlowChartCard
   },
+  provide() {
+    return {
+      productViews: this
+    }
+  },
   data() {
     return {
       type: PROXY_TYPE.GLOBAL_DYNAMIC_HOUSE,
-      status: PROXY_STATUS.FLOW
+      status: PROXY_STATUS.FLOW,
+      totalInfo: {}
     }
   },
+  created() {
+    this.getBaseTotal()
+  },
   methods: {
-
+    getBaseTotal() {
+      const { type } = this
+      getBaseTotal({ type }).then(res => {
+        const { data } = res
+        const { bill } = data
+        this.totalInfo = bill
+      })
+    }
   }
 }
 </script>

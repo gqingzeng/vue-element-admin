@@ -82,7 +82,7 @@ export const constantRoutes = [
     component: Layout,
     children: [
       {
-        path: 'dashboard',
+        path: '/dashboard',
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
         meta: { title: 'dashboard', icon: 'shouye', activeIcon: 'shouye-check', affix: true }

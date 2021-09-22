@@ -65,7 +65,7 @@ export default {
   data() {
     return {
       type: PROXY_TYPE.GLOBAL_DYNAMIC_HOUSE,
-      status: PROXY_STATUS.TIME,
+      status: PROXY_STATUS.IP_NUM,
       totalInfo: {}
     }
   },
@@ -77,8 +77,8 @@ export default {
       const { type } = this
       getBaseTotal({ type }).then(res => {
         const { data } = res
-        const { time } = data
-        this.totalInfo = time
+        const { num } = data
+        this.totalInfo = num
       })
     }
   }

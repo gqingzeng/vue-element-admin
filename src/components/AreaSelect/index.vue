@@ -6,8 +6,8 @@
   >
     <el-option
       v-for="item in list"
-      :key="item.id"
-      :value="item.id"
+      :key="item.code"
+      :value="item.code"
       :label="item.name"
     />
   </el-select>

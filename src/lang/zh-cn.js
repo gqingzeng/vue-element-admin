@@ -96,7 +96,11 @@ export default {
     subAccountNum: '子账号数量',
     ipTimeLen: 'IP时长',
     ipTimeLenPlaceholder: '请输入IP时长',
-    infinite: '无限'
+    infinite: '无限',
+    confirmDelete: '确定要删除吗？',
+    deleteSuccess: '删除成功',
+    generateSuccess: '生成成功',
+    confirmRenew: '确定要续费吗？'
   },
   components: {
     productBox: {
@@ -225,13 +229,15 @@ export default {
     residualFlow: '剩余流量{0}GB',
     generateProxy: '生成代理',
     balanceFlow: '可用流量',
+    balanceSubAccount: '可用子账号数量',
     globalDynamicHouse: {
       title: '全球动态住宅',
       titleBuyBtnText: '购买动态住宅流量包',
       subAccountList: '全球动态住宅子账号列表',
       tab: {
         flow: '流量计费',
-        time: '时间计费'
+        time: '时间计费',
+        num: '数量计费'
       }
     }
   },
