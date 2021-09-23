@@ -21,7 +21,7 @@
           :name="key"
         >
           <template #label>
-            <span class="tab-pane-label">{{ $t(`product.globalDynamicHouse.tab.${key}`) }}</span>
+            <span class="tab-pane-label">{{ $t(`product.tab.${key}`) }}</span>
           </template>
         </el-tab-pane>
       </el-tabs>

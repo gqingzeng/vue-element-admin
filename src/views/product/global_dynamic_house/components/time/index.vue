@@ -17,7 +17,7 @@
     />
     <el-row :gutter="20">
       <el-col :span="12">
-        <FlowStatisticsCard
+        <TotalCard
           :type="type"
           :status="status"
           :total-info="totalInfo"
@@ -39,7 +39,7 @@ import ProCard from '@/components/ProCard'
 import SearchBox from './components/SearchBox'
 import ProductTableListCard from './components/ProductTableListCard'
 import SubAccountTableListCard from './components/SubAccountTableListCard'
-import FlowStatisticsCard from './components/FlowStatisticsCard'
+import TotalCard from '../../../components/TotalCard'
 import HelpCard from '../../../components/HelpCard'
 import FlowChartCard from '@/components/FlowChartCard'
 import { getBaseTotal } from '@/api/total'
@@ -53,7 +53,7 @@ export default {
     SearchBox,
     ProductTableListCard,
     SubAccountTableListCard,
-    FlowStatisticsCard,
+    TotalCard,
     HelpCard,
     FlowChartCard
   },

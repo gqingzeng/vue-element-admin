@@ -1,18 +1,18 @@
 <template>
-  <ProCard :header="$t('globalVar.flowStatistics')">
+  <ProCard :header="$t(`product.statistics${statusName}`)">
     <div class="info-box">
       <i18n
-        path="product.flowUsage"
+        :path="`product.usage${statusName}`"
         tag="div"
-        class="flow-usage"
+        class="usage-total"
       >
         <span>{{ totalInfo.total }}</span>
         <span>{{ totalInfo.use }}</span>
       </i18n>
       <i18n
-        path="product.residualFlow"
+        :path="`product.residual${statusName}`"
         tag="div"
-        class="residual-flow"
+        class="residual-total"
       >
         <span>{{ totalInfo.base }}</span>
       </i18n>
@@ -27,13 +27,23 @@
 </template>
 
 <script>
+import { upperFirst } from 'lodash-es'
 import ProCard from '@/components/ProCard'
+import { PROXY_STATUS_MAP } from '@/constant/proxy'
 export default {
-  name: 'FlowStatisticsCard',
+  name: 'TotalCard',
   components: {
     ProCard
   },
   props: {
+    type: {
+      type: Number,
+      required: true
+    },
+    status: {
+      type: Number,
+      required: true
+    },
     totalInfo: {
       type: Object,
       default: () => ({})
@@ -41,6 +51,7 @@ export default {
   },
   data() {
     return {
+      PROXY_STATUS_MAP
     }
   },
   computed: {
@@ -51,7 +62,14 @@ export default {
         return 0
       }
       return Number(use) / Number(total)
+    },
+    statusName() {
+      const { status } = this
+      return upperFirst(PROXY_STATUS_MAP[status].name)
     }
+  },
+  methods: {
+    upperFirst
   }
 }
 </script>
@@ -66,10 +84,10 @@ export default {
   justify-content: space-between;
   font-size: 18px;
   padding: 15px 0;
-  .flow-usage {
+  .usage-total {
     color: $color-info;
   }
-  .residual-flow {
+  .residual-total {
     color: $color-text-regular;
 
     & > span {

@@ -83,7 +83,6 @@ export default {
     countryPlaceholder: '请选择地区',
     protocol: '协议',
     delete: '删除',
-    flowStatistics: '流量统计',
     useHelp: '使用教程',
     flowChat: '流量统计图',
     tips: '提示',
@@ -225,20 +224,27 @@ export default {
     expirationTime: '到期时间',
     modifySubAccount: '修改子账号',
     batchExportSubAccount: '批量导出子账号信息',
-    flowUsage: '共计{0}GB，已用{1}GB',
+    statisticsFlow: '流量统计',
+    usageFlow: '共计{0}GB，已用{1}GB',
     residualFlow: '剩余流量{0}GB',
+    statisticsTime: '流量统计',
+    usageTime: '共计{0}GB，已用{1}GB',
+    residualTime: '剩余流量{0}GB',
+    statisticsIpNum: 'IP数量使用统计',
+    usageIpNum: '共计{0}个，已用{1}个',
+    residualIpNum: '剩余{0}个',
     generateProxy: '生成代理',
     balanceFlow: '可用流量',
     balanceSubAccount: '可用子账号数量',
+    tab: {
+      flow: '流量计费',
+      time: '时间计费',
+      num: '数量计费'
+    },
     globalDynamicHouse: {
       title: '全球动态住宅',
       titleBuyBtnText: '购买动态住宅流量包',
-      subAccountList: '全球动态住宅子账号列表',
-      tab: {
-        flow: '流量计费',
-        time: '时间计费',
-        num: '数量计费'
-      }
+      subAccountList: '全球动态住宅子账号列表'
     }
   },
   bill: {
