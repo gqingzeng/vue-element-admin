@@ -160,6 +160,25 @@ export default {
     hasAccount: '已有账号？',
     goLogin: '去登录'
   },
+  website: {
+    dashboard: '首页',
+    product: '产品',
+    price: '价格',
+    scenario: '使用场景',
+    help: '文档帮助',
+    login: '登录',
+    register: '注册',
+    bannerTitle: `为大数据产业，
+跨境电商产业提供优质可靠的代理网络服务`,
+    bannerTips: `9800w+住宅ip池时刻为您准备
+计费灵活，价格低至3$/GB`,
+    cloudArchitecture: '云端架构',
+    highAnonymity: '高匿名',
+    highAvailability: '高可用',
+    highConcurrency: '高并发',
+    seePackage: '查看套餐',
+    freeTrial: '免费试用'
+  },
   dashboard: {
     balance: {
       title: '金币',

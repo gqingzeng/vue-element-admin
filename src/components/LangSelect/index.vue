@@ -69,7 +69,7 @@ export default {
   display: flex;
   align-items: center;
   color: $color-info;
-
+  cursor: pointer;
   &-primary {
     color: $color-primary;
   }
