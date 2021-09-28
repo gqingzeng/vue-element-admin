@@ -5,6 +5,8 @@
     </Sticky>
     <el-main>
       <BannerBox />
+      <SelectionReason />
+      <ScenarioBox />
       <div style="height:500px">
         xxx
       </div>
@@ -16,12 +18,16 @@
 import Sticky from '@/components/Sticky'
 import Header from './components/Header'
 import BannerBox from './components/BannerBox'
+import SelectionReason from './components/SelectionReason'
+import ScenarioBox from './components/ScenarioBox'
 export default {
   name: 'WebsitePage',
   components: {
     Sticky,
     Header,
-    BannerBox
+    BannerBox,
+    SelectionReason,
+    ScenarioBox
   },
   data() {
     return {

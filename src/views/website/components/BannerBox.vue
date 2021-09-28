@@ -2,7 +2,7 @@
   <div class="banner-box">
     <img
       class="banner-image"
-      src="@/assets/images/banner.png"
+      src="@/assets/images/website/banner.png"
       alt=""
     >
     <div class="banner-content">

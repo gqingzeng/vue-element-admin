@@ -177,7 +177,22 @@ export default {
     highAvailability: '高可用',
     highConcurrency: '高并发',
     seePackage: '查看套餐',
-    freeTrial: '免费试用'
+    freeTrial: '免费试用',
+    selectionReason: {
+      title: '为什么要选择蜘蛛IP?',
+      api: 'API',
+      apiTips: '简单易用的API，高匿名，高可用，高并发',
+      country: '230+ 国家/地区',
+      countryTips: '覆盖全球230+国家和地区的真实，优质的家庭住宅IP',
+      num: '9500 万的住宅 IP',
+      numTips: '这些都是干净的房子 IP，它可以很好地完成这项工作。',
+      flexible: '灵活的计费模式',
+      flexibleTips: '极度适合中小用户',
+      customized: '可按需求定制',
+      customizedTips: '随心所欲，尽情搭配',
+      time: '7x24小时',
+      timeTips: '贴心服务'
+    }
   },
   dashboard: {
     balance: {
