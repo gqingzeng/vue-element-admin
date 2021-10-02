@@ -99,7 +99,15 @@ export default {
     confirmDelete: '确定要删除吗？',
     deleteSuccess: '删除成功',
     generateSuccess: '生成成功',
-    confirmRenew: '确定要续费吗？'
+    confirmRenew: '确定要续费吗？',
+    globalDynamicHouse: '全球动态住宅',
+    globalStaticHouse: '全球静态住宅',
+    globalComputerRoom: '全球数据中心',
+    useFlowCharging: '按流量计费',
+    useTimeCharging: '按时间计费',
+    useIpNumCharging: '按IP数量计费',
+    proxyType: '代理类型',
+    chargingType: '计费方式'
   },
   components: {
     productBox: {
@@ -171,7 +179,7 @@ export default {
     bannerTitle: `为大数据产业，
 跨境电商产业提供优质可靠的代理网络服务`,
     bannerTips: `9800w+住宅ip池时刻为您准备
-计费灵活，价格低至3$/GB`,
+计费灵活，价格低至3￥/GB`,
     cloudArchitecture: '云端架构',
     highAnonymity: '高匿名',
     highAvailability: '高可用',
@@ -192,6 +200,38 @@ export default {
       customizedTips: '随心所欲，尽情搭配',
       time: '7x24小时',
       timeTips: '贴心服务'
+    },
+    scenarioBox: {
+      title: '经典用例和场景',
+      subTitle: '用例和场景',
+      ad: '广告验证',
+      adTips: '追踪网络并检查广告是否到达正确的受众，提高ROI',
+      brand: '品牌保护',
+      brandTips: '通过监控您的品牌标识,收集假冒侵权信息,保护您的权益不被侵犯',
+      seo: 'SEO优化',
+      seoTips: '监控您的网站在搜索引擎全球各地的排名信息，以便更好的优化',
+      market: '市场调查',
+      marketTips: '从全球各地获取准确全面的市场信息，例如：电商价格，市场新闻，竞争对手情报，方便企业决策',
+      ticket: '旅行票价',
+      ticketTips: '方便快速地获取世界各地的酒店机票实时数据',
+      webTest: '网站测试',
+      webTestTips: '通过设置多种环境和参数，更全面地对网站进行多维度的测试',
+      financeStat: '金融数据',
+      financeStatTips: '批量实时获取股市、期货等市场公开数据',
+      more: `更多使用场景
+期待您的发掘`
+    },
+    priceBox: {
+      title: '灵活定价',
+      subTitle: '多种计费模式和定价，极度适合中小用户',
+      moreProductBtn: '更多套餐'
+    },
+    commonProblem: {
+      title: '常见问题'
+    },
+    cooperativePartner: {
+      title: '为超过500家企业提供稳定优质的服务',
+      subTitle: '覆盖互联网，金融，大数据，电子商务等多个领域'
     }
   },
   dashboard: {
@@ -234,15 +274,7 @@ export default {
     },
     recommend: {
       title: '根据您的业务需求，推荐您使用',
-      proxyType: '代理类型',
-      chargingType: '计费方式',
       otherRecommendTitle: '您也可以尝试其他的代理产品',
-      globalDynamicHouse: '全球动态住宅',
-      globalStaticHouse: '全球静态住宅',
-      globalComputerRoom: '全球数据中心',
-      flow: '按流量计费',
-      time: '按时间计费',
-      ipNum: '按IP数量计费',
       ipTotalDesc: '9800w+ip池',
       subAccountNum: '子账号数量{0}个',
       subAccountThread: '子账号线程{0}个',
@@ -258,15 +290,15 @@ export default {
     expirationTime: '到期时间',
     modifySubAccount: '修改子账号',
     batchExportSubAccount: '批量导出子账号信息',
-    statisticsFlow: '流量统计',
-    usageFlow: '共计{0}GB，已用{1}GB',
-    residualFlow: '剩余流量{0}GB',
-    statisticsTime: '流量统计',
-    usageTime: '共计{0}GB，已用{1}GB',
-    residualTime: '剩余流量{0}GB',
-    statisticsIpNum: 'IP数量使用统计',
-    usageIpNum: '共计{0}个，已用{1}个',
-    residualIpNum: '剩余{0}个',
+    statisticsUseFlowCharging: '流量统计',
+    usageUseFlowCharging: '共计{0}GB，已用{1}GB',
+    residualUseFlowCharging: '剩余流量{0}GB',
+    statisticsUseTimeCharging: '流量统计',
+    usageUseTimeCharging: '共计{0}GB，已用{1}GB',
+    residualUseTimeCharging: '剩余流量{0}GB',
+    statisticsUseIpNumCharging: 'IP数量使用统计',
+    usageUseIpNumCharging: '共计{0}个，已用{1}个',
+    residualUseIpNumCharging: '剩余{0}个',
     generateProxy: '生成代理',
     balanceFlow: '可用流量',
     balanceSubAccount: '可用子账号数量',

@@ -7,6 +7,9 @@
       <BannerBox />
       <SelectionReason />
       <ScenarioBox />
+      <PriceBox />
+      <CommonProblem />
+      <CooperativePartner />
       <div style="height:500px">
         xxx
       </div>
@@ -20,6 +23,9 @@ import Header from './components/Header'
 import BannerBox from './components/BannerBox'
 import SelectionReason from './components/SelectionReason'
 import ScenarioBox from './components/ScenarioBox'
+import PriceBox from './components/PriceBox'
+import CommonProblem from './components/CommonProblem'
+import CooperativePartner from './components/CooperativePartner'
 export default {
   name: 'WebsitePage',
   components: {
@@ -27,7 +33,10 @@ export default {
     Header,
     BannerBox,
     SelectionReason,
-    ScenarioBox
+    ScenarioBox,
+    PriceBox,
+    CommonProblem,
+    CooperativePartner
   },
   data() {
     return {

@@ -3,7 +3,7 @@
     <ProCard v-loading="loading">
       <div class="field-item">
         <div class="field-item-label">
-          {{ $t('createGuide.recommend.proxyType') }}：
+          {{ $t('globalVar.proxyType') }}：
         </div>
         <div class="field-item-content">
           <div class="select-list">
@@ -15,13 +15,13 @@
                 active: formData.type === item.key
               }"
               @click="handleSetFormData(item.key,'type')"
-            >{{ $t(`createGuide.recommend.${item.name}`) }}</div>
+            >{{ $t(`globalVar.${item.name}`) }}</div>
           </div>
         </div>
       </div>
       <div class="field-item">
         <div class="field-item-label">
-          {{ $t('createGuide.recommend.chargingType') }}：
+          {{ $t('globalVar.chargingType') }}：
         </div>
         <div class="field-item-content">
           <div class="select-list">
@@ -33,7 +33,7 @@
                 active: formData.status === item.key
               }"
               @click="handleSetFormData(item.key, 'status')"
-            >{{ $t(`createGuide.recommend.${item.name}`) }}</div>
+            >{{ $t(`globalVar.${item.name}`) }}</div>
           </div>
         </div>
       </div>

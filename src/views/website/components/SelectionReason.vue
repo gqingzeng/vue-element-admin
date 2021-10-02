@@ -6,7 +6,7 @@
       </div>
       <ul>
         <li v-for="item in list" :key="item.title">
-          <img :src="item.icon" class="item-icon">
+          <svg-icon :icon-class="item.icon" class="item-icon" />
           <div class="item-title">{{ $t(`website.selectionReason.${item.title}`) }}</div>
           <div class="item-tips">{{ $t(`website.selectionReason.${item.tips}`) }}</div>
         </li>
@@ -27,32 +27,32 @@ export default {
         {
           title: 'api',
           tips: 'apiTips',
-          icon: require('@/assets/images/website/selected-reason-api.png')
+          icon: 'selected-reason-api'
         },
         {
           title: 'country',
           tips: 'countryTips',
-          icon: require('@/assets/images/website/selected-reason-country.png')
+          icon: 'selected-reason-country'
         },
         {
           title: 'num',
           tips: 'numTips',
-          icon: require('@/assets/images/website/selected-reason-num.png')
+          icon: 'selected-reason-num'
         },
         {
           title: 'flexible',
           tips: 'flexibleTips',
-          icon: require('@/assets/images/website/selected-reason-flexible.png')
+          icon: 'selected-reason-flexible'
         },
         {
           title: 'customized',
           tips: 'customizedTips',
-          icon: require('@/assets/images/website/selected-reason-customized.png')
+          icon: 'selected-reason-customized'
         },
         {
           title: 'time',
           tips: 'timeTips',
-          icon: require('@/assets/images/website/selected-reason-time.png')
+          icon: 'selected-reason-time'
         }
       ]
     }
@@ -75,28 +75,29 @@ export default {
   .title {
     color: $color-primary;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 24px;
     position: relative;
     display: inline-block;
     z-index: 1;
+    margin-bottom: 50px;
     &::before {
-      left: -25px;
-      bottom: -5px;
+      left: -55px;
+      bottom: -15px;
       position: absolute;
       content: '';
-      width: 60px;
-      height: 15px;
-      background-image: linear-gradient(to right, #FFFFFF, rgba($color-primary, .2));
+      width: 90px;
+      height: 10px;
+      background-image: linear-gradient(to right, rgba(#FFFFFF, 0), rgba(#A5C1FF, .26));
       z-index: -1;
     }
     &::after {
-      right: -20px;
+      right: -38px;
       top: 0px;
       position: absolute;
       content: '';
-      width: 60px;
+      width: 90px;
       height: 15px;
-      background-image: linear-gradient(to right, rgba($color-warning, .2) , #FFFFFF);
+      background-image: linear-gradient(to right, #FFDA84 , rgba(#FFFFFF, 0));
       z-index: -1;
     }
   }
@@ -115,9 +116,11 @@ export default {
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      img {
-        width: 230px;
+      margin-bottom: 20px;
+      .item-icon {
+        font-size: 200px;
       }
+
       .item-title {
         color: $color-primary;
         font-weight: bold;
@@ -128,6 +131,7 @@ export default {
         color: $color-info;
         line-height: 21px;
         width: 230px;
+        margin-top: 10px;
       }
     }
   }

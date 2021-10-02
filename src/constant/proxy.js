@@ -24,15 +24,15 @@ export const PROXY_TYPE_LIST = constantToList(proxyTypeSourceMap)
 const proxyStatusSourceMap = {
   FLOW: {
     key: 0,
-    name: 'flow'
+    name: 'useFlowCharging'
   },
   TIME: {
     key: 1,
-    name: 'time'
+    name: 'useTimeCharging'
   },
   IP_NUM: {
     key: 2,
-    name: 'ipNum'
+    name: 'useIpNumCharging'
   }
 }
 
