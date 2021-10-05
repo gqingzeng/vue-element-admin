@@ -107,7 +107,9 @@ export default {
     useTimeCharging: '按时间计费',
     useIpNumCharging: '按IP数量计费',
     proxyType: '代理类型',
-    chargingType: '计费方式'
+    chargingType: '计费方式',
+    purchase: '购买',
+    num: '数量'
   },
   components: {
     productBox: {
@@ -311,6 +313,16 @@ export default {
       title: '全球动态住宅',
       titleBuyBtnText: '购买动态住宅流量包',
       subAccountList: '全球动态住宅子账号列表'
+    },
+    globalStaticHouse: {
+      title: '全球静态住宅',
+      titleBuyBtnText: '购买静态住宅流量包',
+      subAccountList: '全球静态住宅子账号列表'
+    },
+    globalComputerRoom: {
+      title: '全球数据中心',
+      titleBuyBtnText: '购买数据中心流量包',
+      subAccountList: '全球数据中心子账号列表'
     }
   },
   bill: {

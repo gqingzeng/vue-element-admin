@@ -96,8 +96,8 @@ export default {
   },
   methods: {
     handleRenew({ row }) {
-      const { name, id } = row
-      this.$confirm(name, this.$t('globalVar.confirmReneww')).then(() => {
+      const { name } = row
+      this.$confirm(name, this.$t('globalVar.confirmRenew')).then(() => {
         this.loading = true
       })
     }

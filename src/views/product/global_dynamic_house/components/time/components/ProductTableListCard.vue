@@ -19,6 +19,7 @@ import ProCard from '@/components/ProCard'
 import requestListMixins from '@/mixins/requestList'
 // import RenewDialog from './RenewDialog'
 import { getUserSetMeal } from '@/api/device'
+// import { renewOrder } from '@/api/set_meal'
 
 export default {
   name: 'ProductTableListCard',
@@ -96,9 +97,12 @@ export default {
   },
   methods: {
     handleRenew({ row }) {
-      const { name, id } = row
-      this.$confirm(name, this.$t('globalVar.confirmReneww')).then(() => {
+      const { name } = row
+      this.$confirm(name, this.$t('globalVar.confirmRenew')).then(() => {
         this.loading = true
+        // renewOrder({ }).then(res => {
+
+        // })
       })
     }
   }

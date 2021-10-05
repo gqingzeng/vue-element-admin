@@ -48,3 +48,11 @@ export function setMealplaceOrder(data) {
   })
 }
 
+export function renewOrder(data) {
+  return request({
+    url: '/api/set_meal/renewOrder',
+    method: 'post',
+    data
+  })
+}
+
